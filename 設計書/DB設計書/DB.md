@@ -38,7 +38,7 @@
 |サイズ|item_size|varchar(20)||||||
 |レコード作成日時|item_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|item_updated|datetime||〇||タイムスタンプ|
-|取引開始日時|item_start||||now関数|
+|取引開始日時|item_start|darerime||||now関数|
 
 ## カテゴリマスタ
 ###category
