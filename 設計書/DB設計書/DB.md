@@ -18,7 +18,7 @@
 |ペナルティ|user_penalty|int||〇||デフォルト0|
 |レコード作成日時|user_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|user_updated|datetime||〇||タイムスタンプ|
-|レコード削除日時|user_deleted|datetime||||タイムスタンプ|
+|レコード削除日時|user_deleted|datetime||||now関数|
 
 
 ## 商品テーブル
@@ -49,7 +49,7 @@
 |カテゴリ名|category_name|varchar(50)|〇||||
 |レコード作成日時|category_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|category_updated|datetime||〇||タイムスタンプ|
-|レコード削除日時|category_deleted|datetime||||タイムスタンプ|
+|レコード削除日時|category_deleted|datetime||||now関数|
 
 ## 取引テーブル
 ### order
