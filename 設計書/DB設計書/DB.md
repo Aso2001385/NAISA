@@ -11,7 +11,7 @@
 |メールアドレス|user_mail|varchar(50)||〇|||
 |電話番号|user_tel|varchar(50)||〇|||
 |郵便番号|user_post|varchar(50)|||||
-|住所|user_addless|varchar(80)|||||
+|住所|user_address|varchar(80)|||||
 |出品数|user_sale|int||〇|||
 |グッド数|user_good|int||〇||デフォルト0|
 |バッド数|user_bad|int||〇||デフォルト0|
@@ -42,7 +42,7 @@
 |取引開始日時|item_start|darerime||||now関数|
 
 ## カテゴリテーブル
-### ncategory
+### category
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |カテゴリ番号|category_id|int|〇|〇|||
@@ -69,7 +69,7 @@
 
 
 ## 商品コメントテーブル
-### comment(名称が浮かばない)
+### itemComment
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品コメント番号|comment_id|int|〇|〇|||
@@ -84,7 +84,7 @@
 
 
 ## 取引コメントテーブル
-### comment(名称が浮かばない)
+### orderComment
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |取引コメント番号|comment_item_id|int|〇|〇|||
@@ -98,7 +98,7 @@
 
 
 ## 商品コメント通報テーブル
-### commentReport(名称が浮かばない)
+### itemCommentReport
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品通報番号|commentReport_id|int|〇|〇|||
@@ -109,10 +109,10 @@
 |通報内容|commentReport_contents|varchar(200)||〇|〇||
 |レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
-|コメント削除日時|commentReport_deleted|datetime||||タイムスタンプ|
+|コメント削除日時|commentReport_deleted|datetime||||now関数|
 
 ## 注文コメント通報テーブル
-### commentReport(名称が浮かばない)
+### orderCommentReport
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |注文通報番号|commentReport_id|int|〇|〇|||
@@ -123,7 +123,7 @@
 |通報内容|commentReport_contents|varchar(200)||〇|〇||
 |レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
-|コメント削除日時|commentReport_deleted|datetime||||タイムスタンプ|
+|コメント削除日時|commentReport_deleted|datetime||||now関数|
 
 
 ## 商品通報テーブル
@@ -136,7 +136,7 @@
 |通報内容|itemReport_contents|varchar(200)||〇|〇||
 |レコード作成日時|itemReport_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|itemReport_updated|datetime||〇||タイムスタンプ|
-|コメント削除日時|itemReport_deleted|datetime||||タイムスタンプ|
+|コメント削除日時|itemReport_deleted|datetime||||now関数|
 
 ## お知らせテーブル
 ### info
