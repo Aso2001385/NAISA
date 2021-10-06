@@ -41,8 +41,8 @@
 |レコード更新日時|item_updated|datetime||〇||タイムスタンプ|
 |取引開始日時|item_start|darerime||||now関数|
 
-## カテゴリマスタ
-###category
+## カテゴリテーブル
+### ncategory
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |カテゴリ番号|category_id|int|〇|〇|||
@@ -87,7 +87,7 @@
 ### comment(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|取引コメント番号|comment_item_id|int|〇|〇|〇||
+|取引コメント番号|comment_item_id|int|〇|〇|||
 |商品番号|comment_item_id|int||〇|〇||
 |ユーザー番号|comment_user_id|int||〇|〇||
 |ユーザー名|comment_user_name|varchar(50)||〇|〇||
@@ -101,7 +101,7 @@
 ### commentReport(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|商品通報番号|commentReport_id|int|〇|〇|〇||
+|商品通報番号|commentReport_id|int|〇|〇|||
 |商品コメント番号|commentReport_comment_item_id|int||〇|〇||
 |商品番号|commentReport_item_id|int||〇|〇||
 |ユーザー番号|commentReport_user_id|int||〇|〇||
@@ -115,7 +115,7 @@
 ### commentReport(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|注文通報番号|commentReport_id|int|〇|〇|〇||
+|注文通報番号|commentReport_id|int|〇|〇|||
 |取引コメント番号|commentReport_comment_item_id|int||〇|〇||
 |商品番号|commentReport_item_id|int||〇|〇||
 |ユーザー番号|commentReport_user_id|int||〇|〇||
@@ -130,24 +130,34 @@
 ### itemReport(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|商品通報番号|itemReport_id|int|〇|〇|〇||
+|商品通報番号|itemReport_id|int|〇|〇|||
 |商品番号|itemReport_item_id|int||〇|〇||
-|通報理由|commentReport_reason|varchar(50)||〇|〇||
-|通報内容|commentReport_contents|varchar(200)||〇|〇||
-|レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
-|レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
-|コメント削除日時|commentReport_deleted|datetime||||タイムスタンプ|
+|通報理由|itemReport_reason|varchar(50)||〇|〇||
+|通報内容|itemReport_contents|varchar(200)||〇|〇||
+|レコード作成日時|itemReport_created|datetime||〇||タイムスタンプ|
+|レコード更新日時|itemReport_updated|datetime||〇||タイムスタンプ|
+|コメント削除日時|itemReport_deleted|datetime||||タイムスタンプ|
 
 ## お知らせテーブル
 ### info
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|お知らせ番号|info_id|int|〇|〇|〇||
+|お知らせ番号|info_id|int|〇|〇|||
+|対象ユーザー番号|info_user_id|int|||〇|nullは全体公開|
 |お知らせ件名|info_name|varchar(50)||〇|||
 |お知らせ内容|info_contents|varchar(200)||〇|||
-|レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
-|レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
+|レコード作成日時|info_created|datetime||〇||タイムスタンプ|
+|レコード更新日時|info_updated|datetime||〇||タイムスタンプ|
 
-## 問い合わせテーブル
-### inquiry
-
+## ペナルティテーブル
+### penalty
+|和名|属性名|型|PK|NN|FK|備考|
+|:---|:---|:---|:---:|:---:|:---:|:---|
+|ペナルティ番号|penalty_id|int|〇|〇|||
+|ユーザー番号|penalty_user_id|int||〇|〇||
+|加算点数|penalty_addPoints|int||〇|||
+|加算時合計点数|penalty_allPoints|int||〇|||
+|ペナルティ件名|penalty_name|varchar(50)||〇|||
+|ペナルティ理由|penalty_contents|varchar(200)||〇|||
+|レコード作成日時|penalty_created|datetime||〇||タイムスタンプ|
+|レコード更新日時|penalty_updated|datetime||〇||タイムスタンプ|
