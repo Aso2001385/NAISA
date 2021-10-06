@@ -51,8 +51,8 @@
 |レコード更新日時|category_updated|datetime||〇||タイムスタンプ|
 |レコード削除日時|category_deleted|datetime||||タイムスタンプ|
 
-##取引テーブル
-###order
+## 取引テーブル
+### order
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品番号|order_item_id|int|〇|〇|〇||
@@ -68,8 +68,8 @@
 |取引中止日時|order_stop|datetime||||now関数|
 
 
-##商品コメントテーブル
-###comment(名称が浮かばない)
+## 商品コメントテーブル
+### comment(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品コメント番号|comment_id|int|〇|〇|||
@@ -83,8 +83,8 @@
 |コメント削除日時|comment_deleted|datetime||||タイムスタンプ|
 
 
-##取引コメントテーブル
-###comment(名称が浮かばない)
+## 取引コメントテーブル
+### comment(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |取引コメント番号|comment_item_id|int|〇|〇|〇||
@@ -97,8 +97,8 @@
 |コメント削除日時|comment_deleted|datetime||||タイムスタンプ|
 
 
-##商品コメント通報テーブル
-###commentReport(名称が浮かばない)
+## 商品コメント通報テーブル
+### commentReport(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品通報番号|commentReport_id|int|〇|〇|〇||
@@ -111,8 +111,8 @@
 |レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
 |コメント削除日時|commentReport_deleted|datetime||||タイムスタンプ|
 
-##注文コメント通報テーブル
-###commentReport(名称が浮かばない)
+## 注文コメント通報テーブル
+### commentReport(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |注文通報番号|commentReport_id|int|〇|〇|〇||
@@ -126,8 +126,8 @@
 |コメント削除日時|commentReport_deleted|datetime||||タイムスタンプ|
 
 
-##商品通報テーブル
-###itemReport(名称が浮かばない)
+## 商品通報テーブル
+### itemReport(名称が浮かばない)
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品通報番号|itemReport_id|int|〇|〇|〇||
@@ -137,3 +137,17 @@
 |レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
 |コメント削除日時|commentReport_deleted|datetime||||タイムスタンプ|
+
+## お知らせテーブル
+### info
+|和名|属性名|型|PK|NN|FK|備考|
+|:---|:---|:---|:---:|:---:|:---:|:---|
+|お知らせ番号|info_id|int|〇|〇|〇||
+|お知らせ件名|info_name|varchar(50)||〇|||
+|お知らせ内容|info_contents|varchar(200)||〇|||
+|レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
+|レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
+
+## 問い合わせテーブル
+### inquiry
+
