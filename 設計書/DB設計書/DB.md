@@ -20,6 +20,7 @@
 |レコード更新日時|user_updated|datetime||〇||タイムスタンプ|
 |レコード削除日時|user_deleted|datetime||||タイムスタンプ|
 
+
 ## 商品テーブル
 ### item
 |和名|属性名|型|PK|NN|FK|備考|
