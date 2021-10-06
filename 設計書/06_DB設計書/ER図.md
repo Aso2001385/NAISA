@@ -12,22 +12,29 @@ skinparam class {
 
 package "ECサイト" as target_system{
 
-  entity "購入テーブル" as purchase <<T,Color_T>> {
-    + order_id [PK]
+  entity "ユーザーテーブル" as user <<T,Color_T>> {
+    + user_id [PK]
     --
-    order_id
-    customer_code
-    purchase_date 
-    total_price 
+    user_name
+    user_mail
+    user_tel
+    user_post
+    user_address
+    user_sale
+    user_good
+    user_bad
+    user_created	
+    user_updated	
+    user_deleted
   }
 
-  entity "購入詳細テーブル" as purchase_detail <<T,Color_T>> {
-    + order_id [PK][FK]
-    + detail_id [PK]
+  entity "商品テーブル" as item <<T,Color_T>> {
+    + item_id [PK]
     --
-    item_code
-    price
-    num
+    item_user_id
+    item_category_id
+    item_price
+    item_name
   }
 
   entity "顧客マスタ" as customers <<M,Color_M>> {
