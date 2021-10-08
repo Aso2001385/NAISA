@@ -35,38 +35,82 @@ package "ECサイト" as target_system{
     item_category_id
     item_price
     item_name
-  }
-
-  entity "顧客マスタ" as customers <<M,Color_M>> {
-    + customer_code [PK]
-    --
-    pass
-    name
-    address
-    tel
-    mail
-    del_flag 
-    reg_date
+    item_maker
+    item_makerRead
+    item_color
+    item_sizeType
+    item_size
+    item_created
+    item_updated
+    item_start
   }
 
   entity "カテゴリマスタ" as category <<M,Color_M>> {
     + category_id [PK]
     --
-    name 
-    reg_date 
+    category_name
+    category_created
+    category_updated
+    category_deleted
+ 
   }
 
-  entity "商品マスタ" as items <<M,Color_M>> {
-    + item_code [PK]
+  entity "取引テーブル" as order <<M,Color_M>> {
+    + order_item_id [PK]
     --
-    item_name
-    price
-    category_id [FK]
-    image
-    detail
-    del_flag
-    reg_date
+    order_user_id
+    order_item_image
+    order_post
+    order_addless
+    order_send
+    order_recived
+    order_created
+    order_updated
+    order_completion
+   	order_stop
   }
+  
+  entity "カテゴリマスタ" as category <<M,Color_M>> {
+    + category_id [PK]
+    --
+    category_name
+    category_created
+    category_updated
+    category_deleted
+ 
+  }
+  
+  entity "カテゴリマスタ" as category <<M,Color_M>> {
+    + category_id [PK]
+    --
+    category_name
+    category_created
+    category_updated
+    category_deleted
+ 
+  }
+  
+  entity "カテゴリマスタ" as category <<M,Color_M>> {
+    + category_id [PK]
+    --
+    category_name
+    category_created
+    category_updated
+    category_deleted
+ 
+  }
+  
+  entity "カテゴリマスタ" as category <<M,Color_M>> {
+    + category_id [PK]
+    --
+    category_name
+    category_created
+    category_updated
+    category_deleted
+ 
+  }
+  
+  
   
 }
 
