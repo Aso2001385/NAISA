@@ -70,44 +70,54 @@ package "ECサイト" as target_system{
    	order_stop
   }
   
-  entity "カテゴリマスタ" as category <<M,Color_M>> {
-    + category_id [PK]
+  entity "商品コメントテーブル" as itemComment <<M,Color_M>> {
+    + itemComment_id [PK]
     --
-    category_name
-    category_created
-    category_updated
-    category_deleted
- 
+    itemComment_item_id	
+    itemComment_user_id
+    itemComment_user_name
+    itemComment_contents
+    itemComment_private
+    itemComment_created
+    itemComment_updated
+    itemComment_deleted
   }
   
-  entity "カテゴリマスタ" as category <<M,Color_M>> {
-    + category_id [PK]
+  entity "取引コメントテーブル" as orderComment <<M,Color_M>> {
+    + orderComment_id [PK]
     --
-    category_name
-    category_created
-    category_updated
-    category_deleted
- 
+    orderComment_item_id
+    orderComment_user_id	
+    orderComment_user_name
+    orderComment_contents
+    orderComment_created
+    orderComment_updated
+    orderComment_deleted	
   }
   
-  entity "カテゴリマスタ" as category <<M,Color_M>> {
-    + category_id [PK]
+  entity "商品コメント通報テーブル" as itemCommentReport <<M,Color_M>> {
+    + itemCommentReport_id [PK]
     --
-    category_name
-    category_created
-    category_updated
-    category_deleted
- 
+    itemCommentReport_itemComment_id
+    itemCommentReport_item_id
+    itemCommentReport_user_id
+    itemCommentReport_reason
+    itemCommentReport_contents
+    itemCommentReport_created
+    itemCommentReport_updated
+    itemCommentReport_deleted
   }
   
-  entity "カテゴリマスタ" as category <<M,Color_M>> {
-    + category_id [PK]
+  entity "注文コメント通報テーブル" as orderCommentReport <<M,Color_M>> {
+    + commentReport_id [PK]
     --
-    category_name
-    category_created
-    category_updated
-    category_deleted
- 
+    orderCommentReport_orderComment_id
+    orderCommentReport_user_id
+    orderCommentReport_reason
+    orderCommentReport_contents
+    orderCommentReport_created
+    orderCommentReport_updated
+    orderCommentReport_deleted
   }
   
   
