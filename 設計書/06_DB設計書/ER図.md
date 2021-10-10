@@ -142,7 +142,7 @@ package "ECサイト" as target_system{
     info_updated
   }
   
-    entity "ペナルティテーブル" as penalty <<T,Color_T>> {
+    entity "ペナルティテーブル" as penalty <<R,Color_R>> {
     + penalty_id [PK]
     --
     penalty_user_id
