@@ -46,7 +46,7 @@ package "ECサイト" as target_system{
     item_start
   }
 
-  entity "カテゴリマスタ" as category <<M,Color_M>> {
+  entity "カテゴリテーブル" as category <<T,Color_T>> {
     + category_id [PK]
     --
     category_name
@@ -56,7 +56,7 @@ package "ECサイト" as target_system{
  
   }
 
-  entity "取引テーブル" as order <<M,Color_M>> {
+  entity "取引テーブル" as order <<T,Color_T>> {
     + order_item_id [PK]
     --
     order_user_id
@@ -71,7 +71,7 @@ package "ECサイト" as target_system{
    	order_stop
   }
   
-  entity "商品コメントテーブル" as itemComment <<M,Color_M>> {
+  entity "商品コメントテーブル" as itemComment <<C,Color_C>> {
     + itemComment_id [PK]
     --
     itemComment_item_id	
@@ -84,7 +84,7 @@ package "ECサイト" as target_system{
     itemComment_deleted
   }
   
-  entity "取引コメントテーブル" as orderComment <<M,Color_M>> {
+  entity "取引コメントテーブル" as orderComment <<C,Color_C>> {
     + orderComment_id [PK]
     --
     orderComment_item_id
@@ -96,7 +96,7 @@ package "ECサイト" as target_system{
     orderComment_deleted	
   }
   
-  entity "商品コメント通報テーブル" as itemCommentReport <<M,Color_M>> {
+  entity "商品コメント通報テーブル" as itemCommentReport <<R,Color_R>> {
     + itemCommentReport_id [PK]
     --
     itemCommentReport_itemComment_id
@@ -121,7 +121,7 @@ package "ECサイト" as target_system{
     orderCommentReport_deleted
   }
   
-   entity "商品通報テーブル" as itemReport <<M,Color_M>> {
+   entity "商品通報テーブル" as itemReport <<R,Color_R>> {
     + itemReport_id [PK]
     --
     itemReport_item_id
@@ -142,7 +142,7 @@ package "ECサイト" as target_system{
     info_updated
   }
   
-    entity "ペナルティテーブル" as penalty <<M,Color_M>> {
+    entity "ペナルティテーブル" as penalty <<T,Color_T>> {
     + penalty_id [PK]
     --
     penalty_user_id
