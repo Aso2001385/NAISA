@@ -158,8 +158,8 @@ package "ECサイト" as target_system{
 
   user ||-r-o{ item
   user |o-d-o{  penalty
-  item |o-r-o{ itemComment
+  item ||-r-o{ itemComment
   itemComment }o-r-o{ itemCommentReport
   item ||--|| order
   item ||-u-|| category
-
+  orderComment }o--|| order 
