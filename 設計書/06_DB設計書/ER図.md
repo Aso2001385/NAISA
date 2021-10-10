@@ -1,8 +1,8 @@
 ```uml
 @startuml
 !define Color_T Lime
-!define Color_I Yellow
-!define Color_M DeepSkyBlue
+!define Color_Report Red
+!define Color_Comment DeepSkyBlue
 
 skinparam class {
   BackgroundColor DarkGrey-Snow
@@ -71,7 +71,7 @@ package "ECサイト" as target_system{
    	order_stop
   }
   
-  entity "商品コメントテーブル" as itemComment <<M,Color_M>> {
+  entity "商品コメントテーブル" as itemComment <<C,Color_Comment>> {
     + itemComment_id [PK]
     --
     itemComment_item_id	
@@ -84,7 +84,7 @@ package "ECサイト" as target_system{
     itemComment_deleted
   }
   
-  entity "取引コメントテーブル" as orderComment <<M,Color_M>> {
+  entity "取引コメントテーブル" as orderComment <<C,Color_Comment>> {
     + orderComment_id [PK]
     --
     orderComment_item_id
@@ -96,7 +96,7 @@ package "ECサイト" as target_system{
     orderComment_deleted	
   }
   
-  entity "商品コメント通報テーブル" as itemCommentReport <<M,Color_M>> {
+  entity "商品コメント通報テーブル" as itemCommentReport <<R,Color_Report>> {
     + itemCommentReport_id [PK]
     --
     itemCommentReport_itemComment_id
@@ -109,7 +109,7 @@ package "ECサイト" as target_system{
     itemCommentReport_deleted
   }
   
-  entity "取引コメント通報テーブル" as orderCommentReport <<M,Color_M>> {
+  entity "取引コメント通報テーブル" as orderCommentReport <<R,Color_Report>> {
     + orderCommentReport_id [PK]
     --
     orderCommentReport_orderComment_id
@@ -121,7 +121,7 @@ package "ECサイト" as target_system{
     orderCommentReport_deleted
   }
   
-   entity "商品通報テーブル" as itemReport <<M,Color_M>> {
+   entity "商品通報テーブル" as itemReport <<R,Color_Report>> {
     + itemReport_id [PK]
     --
     itemReport_item_id
