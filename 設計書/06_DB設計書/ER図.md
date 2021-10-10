@@ -120,7 +120,38 @@ package "ECサイト" as target_system{
     orderCommentReport_deleted
   }
   
+   entity "商品通報テーブル" as itemReport <<M,Color_M>> {
+    + itemReport_id [PK]
+    --
+    itemReport_item_id
+    itemReport_reason
+    itemReport_contents
+    itemReport_created	
+    itemReport_updated
+    itemReport_deleted
+  }
   
+   entity "お知らせテーブル" as info <<M,Color_M>> {
+    + info_id [PK]
+    --
+    info_user_id
+    info_name
+    info_contents		
+    info_created
+    info_updated
+  }
+  
+    entity "ペナルティテーブル" as penalty <<M,Color_M>> {
+    + penalty_id [PK]
+    --
+    penalty_user_id
+    penalty_addPoints
+    penalty_totalPoints
+    penalty_name
+    penalty_contents
+    penalty_created
+    penalty_updated
+  }
   
 }
 
