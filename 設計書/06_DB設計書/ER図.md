@@ -109,7 +109,7 @@ package "ECサイト" as target_system{
     itemCommentReport_deleted
   }
   
-  entity "注文コメント通報テーブル" as orderCommentReport <<M,Color_M>> {
+  entity "取引コメント通報テーブル" as orderCommentReport <<M,Color_M>> {
     + orderCommentReport_id [PK]
     --
     orderCommentReport_orderComment_id
