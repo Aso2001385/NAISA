@@ -1,8 +1,8 @@
 ```uml
 @startuml
 !define Color_T Lime
-!define Color_I Yellow
-!define Color_M DeepSkyBlue
+!define Color_R Red
+!define Color_C DeepSkyBlue
 
 skinparam class {
   BackgroundColor DarkGrey-Snow
@@ -109,7 +109,7 @@ package "ECサイト" as target_system{
     itemCommentReport_deleted
   }
   
-  entity "取引コメント通報テーブル" as orderCommentReport <<M,Color_M>> {
+  entity "取引コメント通報テーブル" as orderCommentReport <<R,Color_R>> {
     + orderCommentReport_id [PK]
     --
     orderCommentReport_orderComment_id
