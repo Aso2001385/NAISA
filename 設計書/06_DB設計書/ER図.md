@@ -160,4 +160,5 @@ package "ECサイト" as target_system{
   user |o-d-o{  penalty
   item |o-r-o{ itemComment
   itemComment }o-r-o{ itemCommentReport
+  item ||---|| oredr
 
