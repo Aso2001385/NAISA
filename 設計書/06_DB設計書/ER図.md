@@ -163,3 +163,8 @@ package "ECサイト" as target_system{
   item ||--|| order
   item ||-u-|| category
   orderComment }o--|| order 
+  item ||--o{ itemReport
+  order ||--o{ orderComment
+  orderCommemt ||--o{ orderCommentReport
+  
+  
