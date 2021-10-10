@@ -158,6 +158,7 @@ package "ECサイト" as target_system{
 
   user ||-r-o{ item
   user |o-d-o{  penalty
+  item |o-r-o{ itemComment
   purchase ||-r-|{ purchase_detail
   purchase_detail }-d-|| items
   items }o-l-|| category
