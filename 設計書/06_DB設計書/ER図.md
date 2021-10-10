@@ -165,6 +165,6 @@ package "ECサイト" as target_system{
   orderComment }o--|| order 
   item ||--o{ itemReport
   order ||--o{ orderComment
-  orderCommemt ||--o{ orderCommentReport
+  orderComment ||--o{ orderCommentReport
   
   
