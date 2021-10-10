@@ -156,8 +156,7 @@ package "ECサイト" as target_system{
   
 }
 
-　user ||-r-o{ item
-  customers |o-r-o{ purchase
+  user |o-r-o{ item
   purchase ||-r-|{ purchase_detail
   purchase_detail }-d-|| items
   items }o-l-|| category
