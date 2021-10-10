@@ -132,7 +132,7 @@ package "ECサイト" as target_system{
     itemReport_deleted
   }
   
-   entity "お知らせテーブル" as info <<M,Color_M>> {
+   entity "お知らせテーブル" as info <<T,Color_T>> {
     + info_id [PK]
     --
     info_user_id
