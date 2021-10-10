@@ -1,6 +1,7 @@
 ```uml
 @startuml
 !define Color_T Lime
+!define Color_I Yellow
 !define Color_M DeepSkyBlue
 
 skinparam class {
@@ -109,7 +110,7 @@ package "ECサイト" as target_system{
   }
   
   entity "注文コメント通報テーブル" as orderCommentReport <<M,Color_M>> {
-    + commentReport_id [PK]
+    + orderCommentReport_id [PK]
     --
     orderCommentReport_orderComment_id
     orderCommentReport_user_id
@@ -155,6 +156,7 @@ package "ECサイト" as target_system{
   
 }
 
+　user |--o{ item
   customers |o-r-o{ purchase
   purchase ||-r-|{ purchase_detail
   purchase_detail }-d-|| items
