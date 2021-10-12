@@ -115,19 +115,19 @@
 ### orderCommentReport
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|注文通報番号|commentReport_id|int|〇|〇|||
-|取引コメント番号|commentReport_comment_item_id|int||〇|〇||
-|商品番号|commentReport_item_id|int||〇|〇||
-|ユーザー番号|commentReport_user_id|int||〇|〇||
-|通報理由|commentReport_reason|varchar(50)||〇|〇||
-|通報内容|commentReport_contents|varchar(200)||〇|〇||
-|レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
-|レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
-|コメント削除日時|commentReport_deleted|datetime||||now関数|
+|注文通報番号|orderCommentReport_id|int|〇|〇|||
+|取引コメント番号|orderCommentReport_comment_item_id|int||〇|〇||
+|商品番号|orderCommentReport_item_id|int||〇|〇||
+|ユーザー番号|orderCommentReport_user_id|int||〇|〇||
+|通報理由|orderCommentReport_reason|varchar(50)||〇|〇||
+|通報内容|orderCommentReport_contents|varchar(200)||〇|〇||
+|レコード作成日時|orderCommentReport_created|datetime||〇||タイムスタンプ|
+|レコード更新日時|orderCommentReport_updated|datetime||〇||タイムスタンプ|
+|コメント削除日時|orderCommentReport_deleted|datetime||||now関数|
 
 
 ## 商品通報テーブル
-### itemReport(名称が浮かばない)
+### itemReport
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品通報番号|itemReport_id|int|〇|〇|||
