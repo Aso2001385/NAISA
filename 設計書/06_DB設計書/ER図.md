@@ -60,6 +60,17 @@ package "ECサイト" as target_system{
     item_start
   }
 
+  entity "カテゴリテーブル" as category <<T,Color_T>> {
+    + category_id [PK]
+    --
+    category_name
+    category_created
+    category_updated
+    category_deleted
+
+ 
+  }
+
   entity "取引テーブル" as order <<T,Color_T>> {
     + order_item_id [PK]
     --
@@ -161,10 +172,12 @@ package "ECサイト" as target_system{
 }
 
   user ||-r-o{ item
-  user |o-d-o{  penalty
+  user |o-d-o{ penalty
+  card o|-r-|| user
   item ||-d-o{ itemComment
   itemComment }o--o{ itemCommentReport
   item ||-r-o{ order
+  item ||-u-|| category
   item ||-u-o{ itemReport
   order ||--o{ orderComment
   orderComment ||--o{ orderCommentReport
