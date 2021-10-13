@@ -13,13 +13,25 @@
 |郵便番号|user_post|varchar(50)|||||
 |住所|user_address|varchar(80)|||||
 |出品数|user_sale|int||〇|||
-|グッド数|user_good|int||〇||デフォルト0|
-|バッド数|user_bad|int||〇||デフォルト0|
+|~~グッド数|user_good|int||〇||デフォルト0|
+|バッド数|user_bad|int||〇||デフォルト0~~|
 |ペナルティ|user_penalty|int||〇||デフォルト0|
 |レコード作成日時|user_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|user_updated|datetime||〇||タイムスタンプ|
 |レコード削除日時|user_deleted|datetime||||now関数|
 
+## クレジットカードテーブル
+### card
+|和名|属性名|型|PK|NN|FK|備考|
+|:---|:---|:---|:---:|:---:|:---:|:---|
+|ユーザー番号|card_user_id|int|〇|〇|||
+|カード項番|card_id|int||〇||識別ID|
+|カード番号|card_code|varchar(19)||〇|||
+|月有効期限|card_code|varchar(19)||〇|||
+|年有効期限|card_code|varchar(19)||〇|||
+|セキュリティコード|card_code|varchar(19)||〇|||
+|レコード作成日時|user_created|datetime||〇||タイムスタンプ|
+|レコード削除日時|user_deleted|datetime||||now関数|
 
 ## 商品テーブル
 ### item
@@ -57,7 +69,6 @@
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |商品番号|order_item_id|int|〇|〇|〇||
 |注文者番号|order_user_id|int||〇|〇||
-|商品画像|order_item_image|varchar(50)||〇|〇||
 |届先郵便番号|order_post|varchar(50)||〇|||
 |届先住所|order_addless|varchar(80)||〇|||
 |発送通知日時|order_send|datetime||||now関数|
@@ -101,15 +112,15 @@
 ### itemCommentReport
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|商品通報番号|commentReport_id|int|〇|〇|||
-|商品コメント番号|commentReport_comment_item_id|int||〇|〇||
-|商品番号|commentReport_item_id|int||〇|〇||
-|ユーザー番号|commentReport_user_id|int||〇|〇||
-|通報理由|commentReport_reason|varchar(50)||〇|〇||
-|通報内容|commentReport_contents|varchar(200)||〇|〇||
-|レコード作成日時|commentReport_created|datetime||〇||タイムスタンプ|
-|レコード更新日時|commentReport_updated|datetime||〇||タイムスタンプ|
-|コメント削除日時|commentReport_deleted|datetime||||now関数|
+|商品通報番号|itemCommentReport_id|int|〇|〇|||
+|商品コメント番号|itemCommentReport_comment_item_id|int||〇|〇||
+|商品番号|itemCommentReport_item_id|int||〇|〇||
+|ユーザー番号|itemCommentReport_user_id|int||〇|〇||
+|通報理由|itemCommentReport_reason|varchar(50)||〇|〇||
+|通報内容|itemCommentReport_contents|varchar(200)||〇|〇||
+|レコード作成日時|itemCommentReport_created|datetime||〇||タイムスタンプ|
+|レコード更新日時|itemCommentReport_updated|datetime||〇||タイムスタンプ|
+|コメント削除日時|itemCommentReport_deleted|datetime||||now関数|
 
 ## 注文コメント通報テーブル
 ### orderCommentReport
