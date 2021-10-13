@@ -18,16 +18,29 @@ package "ECサイト" as target_system{
     --
     user_name
     user_mail
+    user_psw
     user_tel
     user_post
     user_address
     user_sale
-    user_good
-    user_bad
+    user_penalty
     user_created	
     user_updated	
     user_deleted
   }
+  
+    entity "クレジットカードテーブル" as card <<T,Color_T>> {
+    + card_user_id [PK]
+    --
+    card_id
+    card_code
+    card_month
+    card_year
+    card_security
+    card_created
+    card_deleted
+  }
+
 
   entity "商品テーブル" as item <<T,Color_T>> {
     + item_id [PK]
@@ -36,11 +49,12 @@ package "ECサイト" as target_system{
     item_category_id
     item_price
     item_name
-    item_maker
-    item_makerRead
-    item_color
-    item_sizeType
-    item_size
+    item_nameRead
+    item_deliveryMethod
+    item_deliveryFee
+    item_deliveryDays
+    item_deliveryPrefecture
+    item_description
     item_created
     item_updated
     item_start
@@ -53,6 +67,7 @@ package "ECサイト" as target_system{
     category_created
     category_updated
     category_deleted
+
  
   }
 
