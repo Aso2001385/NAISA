@@ -60,17 +60,6 @@ package "ECサイト" as target_system{
     item_start
   }
 
-  entity "カテゴリテーブル" as category <<T,Color_T>> {
-    + category_id [PK]
-    --
-    category_name
-    category_created
-    category_updated
-    category_deleted
-
- 
-  }
-
   entity "取引テーブル" as order <<T,Color_T>> {
     + order_item_id [PK]
     --
