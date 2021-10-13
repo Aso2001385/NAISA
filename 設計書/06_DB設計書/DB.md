@@ -13,7 +13,7 @@
 |郵便番号|user_post|varchar(50)|||||
 |住所|user_address|varchar(80)|||||
 |出品数|user_sale|int||〇|||
-|~~グッド数|user_good|int||〇||デフォルト0|
+|~~グッド数~~|~~user_good~~|int||〇||デフォルト0|
 |バッド数|user_bad|int||〇||デフォルト0~~|
 |ペナルティ|user_penalty|int||〇||デフォルト0|
 |レコード作成日時|user_created|datetime||〇||タイムスタンプ|
