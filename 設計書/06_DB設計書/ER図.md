@@ -173,7 +173,7 @@ package "ECサイト" as target_system{
 
   user ||-r-o{ item
   user |o-d-o{ penalty
-  card -o-r-|| user
+  card |o-r-|| user
   item ||-d-o{ itemComment
   itemComment }o--o{ itemCommentReport
   item ||-r-o{ order
