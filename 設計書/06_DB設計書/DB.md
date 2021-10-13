@@ -31,8 +31,8 @@
 |月有効期限|card_month|int||〇|||
 |年有効期限|card_year|int||〇|||
 |セキュリティコード|card_security|varchar(19)||〇|||
-|レコード作成日時|user_created|datetime||〇||タイムスタンプ|
-|レコード削除日時|user_deleted|datetime||||now関数|
+|レコード作成日時|card_created|datetime||〇||タイムスタンプ|
+|レコード削除日時|card_deleted|datetime||||now関数|
 
 
 ## 商品テーブル
