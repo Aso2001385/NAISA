@@ -55,7 +55,10 @@
 |レコード作成日時|item_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|item_updated|datetime||〇||タイムスタンプ|
 |取引開始日時|item_start|darerime||||now関数|
-|-|-|-|-|-|-|-|-|
+
+機能追加の余裕があれば
+|和名|属性名|型|PK|NN|FK|備考|
+|:---|:---|:---|:---:|:---:|:---:|:---|
 |サイズタイプ|item_sizeType|varchar(10)|||||
 |サイズ|item_size|varchar(10)|||||
 |カラー|item_color|int|||||
