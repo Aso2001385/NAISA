@@ -2,6 +2,10 @@
 ## ER図
 [ER図](https://github.com/Aso2001385/NAISA/blob/main/%E8%A8%AD%E8%A8%88%E6%9B%B8/06_DB%E8%A8%AD%E8%A8%88%E6%9B%B8/ER%E5%9B%B3.md)
 
+各表の下にある小さい表は、機能を追加する余裕があるときに組み込みたい情報群
+
+ところどころ副問い合わせや結合でも実現可能な部分があり、敢えて別途保存したほうが楽なのか完全に正規化すべきかわからない
+
 ## ユーザーテーブル
 ### user
 |和名|属性名|型|PK|NN|FK|備考|
@@ -13,14 +17,16 @@
 |電話番号|user_tel|varchar(50)||〇|||
 |郵便番号|user_post|varchar(50)|||||
 |住所|user_address|varchar(80)|||||
-|出品数|user_sale|int||〇|||
-|~~グッド数~~|user_good|int||〇||デフォルト0|
-|~~バッド数~~|user_bad|int||〇||デフォルト0|
+|出品数|user_saleCount|int||〇|||
 |ペナルティ|user_penalty|int||〇||デフォルト0|
 |レコード作成日時|user_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|user_updated|datetime||〇||タイムスタンプ|
 |レコード削除日時|user_deleted|datetime||||now関数|
 
+|和名|属性名|型|PK|NN|FK|備考|
+|:---|:---|:---|:---:|:---:|:---:|:---|
+|~~グッド数~~|user_good|int||〇||デフォルト0|
+|~~バッド数~~|user_bad|int||〇||デフォルト0|
 ## クレジットカードテーブル
 ### card
 |和名|属性名|型|PK|NN|FK|備考|
@@ -46,25 +52,23 @@
 |商品名読み|item_nameRead|varchar(120)||||カタカナ|
 |商品画像|item_image|varchar(100)||〇|〇||
 |商品価格|item_price|int||〇||下限三百,上限十万|
-|商品状態|item_quality|varchar(120)||||カタカナ|
+|商品状態|item_quality|varchar(120)|||||
 |配送方法|item_deliveryMethod|varchar(30)||〇||選択式|
 |配送料負担|item_deliveryFee|varchar(30)||〇||選択式|
 |発送日数|item_deliveryDays|int||〇||日数|
-|配送元地域|item_deliveryPrefecture|varchar(10)||〇||選択式|
-|商品説明|item_description|text|||〇|||
+|配送元地域|item_deliveryPrefecture|varchar(10)||〇||選択式、県名|
+|商品説明|item_description|text||||||
+|商品コメント数|item_commentCount|int||〇||デフォルト0|
 |レコード作成日時|item_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|item_updated|datetime||〇||タイムスタンプ|
 |取引開始日時|item_start|darerime||||now関数|
 
-機能追加の余裕があれば
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |サイズタイプ|item_sizeType|varchar(10)|||||
 |サイズ|item_size|varchar(10)|||||
 |カラー|item_color|int|||||
 |メーカー名|item_maker|varchar(50)|||||
-
-
 
 ## 取引テーブル
 ### order
