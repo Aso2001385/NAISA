@@ -42,9 +42,11 @@
 |商品番号|item_id|int|〇|〇|||
 |ユーザー番号|item_user_id|int||〇|〇||
 |カテゴリID|item_category_id|int|||〇||
-|商品価格|item_price|int||〇||下限三百,上限十万|
 |商品名|item_name|varchar(50)||〇|〇||
 |商品名読み|item_nameRead|varchar(120)||||カタカナ|
+|商品画像|item_image|varchar(100)||〇|〇||
+|商品価格|item_price|int||〇||下限三百,上限十万|
+|商品状態|item_quality|varchar(120)||||カタカナ|
 |配送方法|item_deliveryMethod|varchar(30)||〇||選択式|
 |配送料負担|item_deliveryFee|varchar(30)||〇||選択式|
 |発送日数|item_deliveryDays|int||〇||日数|
@@ -53,6 +55,13 @@
 |レコード作成日時|item_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|item_updated|datetime||〇||タイムスタンプ|
 |取引開始日時|item_start|darerime||||now関数|
+|-|-|-|-|-|-|-|-|
+|サイズタイプ|item_sizeType|varchar(10)|||||
+|サイズ|item_size|varchar(10)|||||
+|カラー|item_color|int|||||
+|メーカー名|item_maker|varchar(50)|||||
+
+
 
 ## 取引テーブル
 ### order
