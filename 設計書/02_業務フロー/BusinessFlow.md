@@ -26,6 +26,10 @@ Webサーバー -> ユーザー : 詳細情報表示
    DB -> Webサーバー:処理結果
    Webサーバー -> ユーザー:いいねリスト更新
   end
+  
+  opt 通報処理
+  hnote across: 通報処理
+  end
 
   opt 購入
    opt 未ログイン
@@ -100,13 +104,12 @@ end
 ```
 ```uml
 @startuml
- center header <size:20><b>ログアウト処理</b></size>
+center header <size:20><b>ログアウト処理</b></size>
  loop ログアウト成功まで
   ユーザー -> Webサーバー:ログアウト
-  Webサーバー -> DBサーバー:ログアウト申請
-  DBサーバー -> DBサーバー:ログアウト処理
+  Webサーバー -> Webサーバー:ログアウト処理
   alt 処理成功
-   DBサーバー -> Webサーバー:ログアウト処理結果
+   Webサーバー -> Webサーバー:ログアウト処理結果
   else 処理失敗
    Webサーバー ->ユーザー:ログアウトメッセージ表示
   end
@@ -205,3 +208,12 @@ center header <size:20><b>出品処理</b></size>
   end
 @enduml
 ```
+@startuml
+  center header <size:20><b>通報処理</b></size>
+  opt 通報処理
+  ユーザー -> Webサーバー:通報
+  Webサーバー -> DBサーバー:通報処理
+  DB -> Webサーバー:処理結果
+  Webサーバー -> ユーザー:結果表示
+  end
+@endum
