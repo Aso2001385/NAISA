@@ -4,7 +4,6 @@
 
 各表の下にある小さい表は、機能を追加する余裕があるときに組み込みたい情報群
 
-ところどころ副問い合わせや結合でも実現可能な部分があり、敢えて別途保存したほうが楽なのか完全に正規化すべきかわからない
 
 ## ユーザーテーブル
 ### user
@@ -27,6 +26,7 @@
 |:---|:---|:---|:---:|:---:|:---:|:---|
 |~~グッド数~~|user_good|int||〇||デフォルト0|
 |~~バッド数~~|user_bad|int||〇||デフォルト0|
+
 ## クレジットカードテーブル
 ### card
 |和名|属性名|型|PK|NN|FK|備考|
@@ -74,9 +74,10 @@
 ### order
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|注文番号|order_id|int|〇|〇|||
+|取引番号|order_id|int|〇|〇|||
 |商品番号|order_item_id|int||〇|〇||
 |注文者番号|order_user_id|int||〇|〇||
+|カード番号|order_card_id|int||〇|〇||
 |届先郵便番号|order_post|varchar(50)||〇|||
 |届先住所|order_addless|varchar(80)||〇|||
 |発送通知日時|order_send|datetime||||now関数|
@@ -86,7 +87,6 @@
 |取引完了日時|order_completion|datetime||||now関数|
 |取引中止日時|order_stop|datetime||||now関数|
 
-
 ## 商品コメントテーブル
 ### itemComment
 |和名|属性名|型|PK|NN|FK|備考|
@@ -94,7 +94,6 @@
 |商品コメント番号|itemComment_id|int|〇|〇|||
 |商品番号|itemComment_item_id|int||〇|〇||
 |ユーザー番号|itemComment_user_id|int||〇|〇||
-|ユーザー名|itemComment_user_name|varchar(50)||〇|〇||
 |コメント内容|itemComment_contents|varchar(255)||〇|〇||
 |パッシブフラグ|itemComment_passive|int|||||
 |レコード作成日時|itemComment_created|datetime||〇||タイムスタンプ|
@@ -109,7 +108,6 @@
 |取引コメント番号|orderComment_item_id|int|〇|〇|||
 |商品番号|orderComment_item_id|int||〇|〇||
 |ユーザー番号|orderComment_user_id|int||〇|〇||
-|ユーザー名|orderComment_user_name|varchar(50)||〇|〇||
 |コメント内容|orderComment_contents|varchar(200)||〇|〇||
 |レコード作成日時|orderComment_created|datetime||〇||タイムスタンプ|
 |レコード更新日時|orderComment_updated|datetime||〇||タイムスタンプ|
