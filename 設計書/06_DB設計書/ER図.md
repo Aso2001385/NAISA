@@ -176,12 +176,12 @@ package "ECサイト" as target_system{
   user ||-u-o{ info
   user ||-r-o{ card
   user ||-d-o{ item
-  user ||-r-o{ itemComment
+  user ||-l-o{ itemComment
   card ||-d-o{ order
   item ||-l-o{ itemComment
   item ||-r-o| order
   item ||-d-o{ itemReport
-  itemComment ||-d-o{ itemCommentReport
+  itemComment ||-l-o{ itemCommentReport
   order ||-r-o{ orderComment
   orderComment ||-d-o{ orderCommentReport
   
