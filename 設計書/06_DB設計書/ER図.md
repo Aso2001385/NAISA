@@ -187,5 +187,5 @@ package "ECサイト" as target_system{
   
   user ||-o{ itemReport
   user ||-o{ itemCommentReport
-  user ||-o{ CommentReport
+  user ||-o{ orderCommentReport
   
