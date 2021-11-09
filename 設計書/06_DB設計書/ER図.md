@@ -171,9 +171,20 @@ package "ECサイト" as target_system{
   
 }
 
-  user ||-r-o{ item
-  user |o-d-o{ penalty
-  card |o-r-|| user
+  user ||-u-o{ info
+  user ||-u-o{ penalty
+  user ||-r-o{ card
+  user ||-d-o{ item
+  user ||-l-o{ itemComment
+  card ||-d-o{ order
+  item ||-l-o{ itemComment
+  item ||-r-o| order
+  item ||-d-o{ itemReport
+  itemComment ||-d-o{ itemCommentReport
+  order ||-r-o{ orderComment
+  orderComment ||-d-o{ orderCommentReport
+  
+  
   item ||-d-o{ itemComment
   itemComment }o--o{ itemCommentReport
   item ||-r-o{ order
