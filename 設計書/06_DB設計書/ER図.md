@@ -176,7 +176,7 @@ package "ECサイト" as target_system{
   user ||-u-o{ info
   user ||-r-o{ card
   user ||-d-o{ item
-  user ||-l-o{ itemComment
+  user ||-r-o{ itemComment
   card ||-d-o{ order
   item ||-l-o{ itemComment
   item ||-r-o| order
