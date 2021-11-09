@@ -171,8 +171,8 @@ package "ECサイト" as target_system{
   
 }
 
+  penalty }o-d-|| user
   user ||-u-o{ info
-  user ||-u-o{ penalty
   user ||-r-o{ card
   user ||-d-o{ item
   user ||-l-o{ itemComment
