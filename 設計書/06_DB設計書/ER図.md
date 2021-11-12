@@ -184,7 +184,7 @@ package "ECサイト" as target_system{
   itemComment ||-l-o{ itemCommentReport
   order ||-r-o{ orderComment
   orderComment ||-d-o{ orderCommentReport
-  
+  item }|-o-|| category
   user ||-o{ itemReport
   user ||-o{ itemCommentReport
   user ||-o{ orderCommentReport
