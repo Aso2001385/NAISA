@@ -31,8 +31,8 @@
 ### card
 |和名|属性名|型|PK|NN|FK|備考|
 |:---|:---|:---|:---:|:---:|:---:|:---|
-|ユーザー番号|card_user_id|int|〇|〇|||
-|カード項番|card_id|int||〇||識別ID|
+|カード項番|card_id|int|〇|〇||識別ID|
+|ユーザー番号|card_user_id|int||〇|||
 |カード番号|card_code|varchar(19)||〇|||
 |月有効期限|card_month|int||〇|||
 |年有効期限|card_year|int||〇|||
