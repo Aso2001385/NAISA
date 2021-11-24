@@ -12,7 +12,7 @@
 |ユーザー番号|id|int(20)|〇|〇|||
 |ユーザー名|name|varchar(50)||〇|||
 |メールアドレス|mail|varchar(50)||〇||unique|
-|パスワード|pass|vatchara(20)||〇||||
+|パスワード|pass|char(60)||〇||||
 |電話番号|tel|varchar(50)||〇|||
 |郵便番号|post|varchar(50)|||||
 |住所|address|varchar(80)|||||
