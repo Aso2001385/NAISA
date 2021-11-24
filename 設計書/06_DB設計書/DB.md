@@ -201,3 +201,13 @@
 |ペナルティ理由|contents|varchar(200)||〇|||
 |レコード作成日時|created|datetime||〇||タイムスタンプ|
 |レコード更新日時|updated|datetime||〇||タイムスタンプ|
+
+## オペレーターテーブル
+### operator
+|和名|属性名|型|PK|NN|FK|備考|
+|:---|:---|:---|:---:|:---:|:---:|:---|
+|オペレーターid|id|int|〇|〇|||
+|ログインid|login_id|char(7)||〇|〇||
+|パスワード|pass|char(60)||〇|||
+|レコード作成日時|created|datetime||〇||タイムスタンプ|
+|レコード更新日時|updated|datetime||〇||タイムスタンプ|
