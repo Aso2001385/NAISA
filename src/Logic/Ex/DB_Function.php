@@ -34,33 +34,40 @@ class DB_function{
         }
     }
 
-    public function toSELECT ( $columnName=[], $tableName=0) {
+    public function toSELECT ( $columnName=[], $tableName = []) {
 
         $this->sql .= "SELECT ";
 
-        if(count($columnName)>0){
-            foreach ($columnName as $column) {
+        if(count($tableName)>0){
 
-                if(preg_match('/[A-Z]/',$column)){
-                    $this->sql .= $column;
-                }else{
-                    $this->sql .= "`" . $column . "`";
+            
+
+        }else{
+
+            if(count($columnName)>0){
+                foreach ($columnName as $column) {
+    
+                    if(preg_match('/[A-Z]/',$column)){
+                        $this->sql .= $column;
+                    }else{
+                        $this->sql .= "`" . $column . "`";
+                    }
+                   
+                    if (!($column === end($columnName))) {
+                        $this->sql .= ",";
+                    }
                 }
-               
-                if (!($column === end($columnName))) {
-                    $this->sql .= ",";
-                }
+            }else{
+                $this->sql .= "*";
             }
-        }else{
-            $this->sql .= "*";
+
         }
-        
-        if($tableName == 0){
-            $this->sql .= " FROM `".$this->mainTableName."`";
-        }else{
-            $this->sql .= " FROM `".$tableName."`";
-        }
-      
+
+
+
+
+        $this->sql .= " FROM `".$this->mainTableName."`";
+
         return $this;
     }
 

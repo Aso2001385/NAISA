@@ -1,16 +1,16 @@
 <?php
 
-require_once 'C:\xampp\htdocs\school\Program_PHP2\music\Logic\Model\User.php';
+require_once '..\Model\User_Model.php';
 
 class Authent {
     /* データ登録 */
-    public function auth_regist ($registData,$passCoulmn) 
+    public function auth_register ($data,$pass) 
     {
 
-        $model_user = new User_Master();
-        $pass = "solo".$registData[$passCoulmn]."mon"; 
-        $registData[$passCoulmn] = password_hash($pass,PASSWORD_BCRYPT);
-        $act = $model_user->insertData($registData);
+        $model_user = new User_Model();
+        $pass = "732ec97fdce14b1895cecf0c8010ee".$regist['pass']."fa6e902564992ed34cf17b6a80520dd79f"; 
+        $data['pass'] = password_hash($pass,PASSWORD_BCRYPT);
+        $act = $model_user->add($data);
 
         if($act["check"]){
             return true;
@@ -24,7 +24,31 @@ class Authent {
     public function auth_authent ($authentData)
     {
 
-        $model_user = new User_Master();
+        $model_user = new User_Model();
+        $act = $model_user->get($authentData["mail"]);
+        $pass = "solo".$authentData["pass"]."mon";
+
+        if(password_verify($pass,$act["pass"])){
+
+            return [ 
+                "check" => true,
+                "data" => $act
+            ];
+
+        }else{
+
+            return [ 
+                "check" => true,
+                "message" => "認証に失敗しました"
+            ];
+            
+        }
+
+    }
+
+    public function re_register() {
+
+        $model_user = new User_Model();
         $act = $model_user->selectData($authentData["mail"]);
         $pass = "solo".$authentData["pass"]."mon";
 
@@ -39,11 +63,6 @@ class Authent {
                 "message" => "認証に失敗しました"
             ];
         }
-
-    }
-
-    public function re_regist() {
-
         
     }
 

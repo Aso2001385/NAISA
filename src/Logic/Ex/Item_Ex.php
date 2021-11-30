@@ -2,11 +2,32 @@
 
 require_once 'DB_Function.php';
 
-class Item_Model
+/*
+
+id
+user_id
+category_id
+name
+name_read
+image
+price
+quality
+delivery_method
+delivery_fee
+delivery_days
+delivery_prefecture
+description
+comment_count
+created
+updated
+deleted
+
+*/
+
+class Item_Ex
 {
 
     private $main = 'item';
-
 
     /* 商品データ複数取得 */
     public function get_multi($limit = 25)
