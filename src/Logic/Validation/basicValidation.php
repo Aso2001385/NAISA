@@ -1,6 +1,6 @@
 <?php 
 
-    require('C:/xampp/htdocs/school/Program_PHP2/music/Model/Valodation.php');
+    require('Validation.php');
 
     function nameCheck($receive,$low,$upper){
     

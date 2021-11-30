@@ -43,10 +43,16 @@ class Item_Ex
             ->toLIMIT(25)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-                'data' => $act
-            ];
+            if($act['check']){
+                return [
+                    'check' => true,
+                    'data' => $act
+                ];
+            }else{
+                return [
+                    'check' => false
+                ];
+            }
 
         }catch(Exception $ex){
 
@@ -70,10 +76,17 @@ class Item_Ex
             ->toLIMIT(1)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-                'data' => $act
-            ];
+            if($act['check']){
+                return [
+                    'check' => true,
+                    'data' => $act
+                ];
+            }else{
+                return [
+                    'check' => false
+                ];
+            }
+
 
         }catch(Exception $ex){
 
@@ -97,10 +110,16 @@ class Item_Ex
             ->toLIMIT($limit)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-                'data' => $act
-            ];
+            if($act['check']){
+                return [
+                    'check' => true,
+                ];
+            }else{
+                return [
+                    'check' => false
+                ];
+            }
+
 
         }catch(Exception $ex){
 
@@ -122,9 +141,16 @@ class Item_Ex
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true
-            ];
+            if($act['check']){
+                return [
+                    'check' => true,
+                ];
+            }else{
+                return [
+                    'check' => false
+                ];
+            }
+
 
         }catch(Exception $ex){
 
@@ -147,9 +173,16 @@ class Item_Ex
             ->toWHERE('id','=',$data['id'])
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-            ];
+            if($act['check']){
+                return [
+                    'check' => true,
+                ];
+            }else{
+                return [
+                    'check' => false
+                ];
+            }
+
 
         }catch(Exception $ex){
 
@@ -175,9 +208,16 @@ class Item_Ex
             ->toWHERE('id','=',$id)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-            ];
+            if($act['check']){
+                return [
+                    'check' => true,
+                ];
+            }else{
+                return [
+                    'check' => false
+                ];
+            }
+
 
         }catch(Exception $ex){
 

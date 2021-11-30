@@ -40,7 +40,22 @@ class DB_function{
 
         if(count($tableName)>0){
 
-            
+            if(count($columnName)>0){
+                for ($i=0; $i<count($columnName); $i++) {
+    
+                    if(preg_match('/[A-Z]/',$columnName[$i])){
+                        $this->sql .= $columnName[$i];
+                    }else{
+                        $this->sql .= "`{$tableName[$i]}`.`" . $columnName[$i] . "`";
+                    }
+                   
+                    if (!($columnName[$i] === end($columnName))) {
+                        $this->sql .= ",";
+                    }
+                }
+            }else{
+                $this->sql .= "*";
+            }
 
         }else{
 
