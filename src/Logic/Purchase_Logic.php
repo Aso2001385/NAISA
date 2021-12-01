@@ -18,8 +18,8 @@ class Purchase_Logic{
             foreach($data['data'] as $record){
 
                 $image_tag  = "<div class='item_image'><img class='img' src='/image/item/{$record['image']}'alt='商品画像'></img></div>";
-                $item_name  = "<div class='item_name'>{$record['name']}</div>";
-                $item_price = "<div class='item_price'>¥{$record['price']}</div>";
+                $item_name  = "<div class'item_status'><div class='item_name'>{$record['name']}</div>";
+                $item_price = "<div class='item_price'>¥{$record['price']}</div></div>";
     
                 $item_block  = "<div onclick='DivFrameClick({$record['id']})'>";
                 $item_block .= $image_tag.$item_name.$item_price.'</div>';
