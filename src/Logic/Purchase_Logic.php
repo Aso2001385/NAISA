@@ -30,6 +30,9 @@ class Purchase_Logic{
 
         }
 
+        var_dump($output);
+        exit();
+
         return [
             'item_list' => $output
         ];

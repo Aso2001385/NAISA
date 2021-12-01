@@ -21,17 +21,37 @@ class DB_function{
 
     }
 
-    function connect($dbName,$dbHost = "localhost",$dbUser = "root",$dbPwd = ""){
-        $dbn = "mysql:dbname={$dbName};charset=utf8;port=3306;host={$dbHost}";
-        $user = $dbUser;
-        $pwd = $dbPwd;
-        try {
-            $this->pdo = new PDO($dbn, $user, $pwd);
-            return $this;
-        } catch (PDOException $e) {
-            echo json_encode(["db error" => "{$e->getMessage()}"]);
-            exit();
+    function connect($dbName = 0,$dbHost = "localhost",$dbUser = "root",$dbPwd = ""){
+
+        if($dbName != 0){
+            $dbn = "mysql:dbname={$dbName};charset=utf8;port=3306;host={$dbHost}";
+            $user = $dbUser;
+            $pwd = $dbPwd;
+            try {
+                $this->pdo = new PDO($dbn, $user, $pwd);
+                return $this;
+            } catch (PDOException $e) {
+                echo json_encode(["db error" => "{$e->getMessage()}"]);
+                exit();
+            }
+        }else{
+            $dbn = 'mysql:dbname=LAA1291142-'.$db_name.';charset=utf8;port=3306;host=mysql'.$host_num.'.phy.lolipop.lan';
+            $user = 'LAA1291142';
+
+            try {
+
+                $this->pdo = new PDO('mysql:host=mysql152.phy.lolipop.lan;
+                dbname=LAA1291142-mydb;charset=utf8','LAA1291142','Albaorco');
+                return $this;
+
+            } catch (PDOException $e) {
+
+                echo json_encode(["db error" => "{$e->getMessage()}"]);
+                exit();
+
+            }
         }
+
     }
 
     public function toSELECT ( $columnName=[], $tableName = []) {
