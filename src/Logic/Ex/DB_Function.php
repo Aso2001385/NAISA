@@ -778,12 +778,18 @@ class DB_function{
                     for($i=0; $i<count($mode_commit); $i++){
                         $mode_commit[$i] = array_values($mode_commit[$i]);
                     }
-                    return $mode_commit;
+                    return ['check' => true,'data' => $mode_commit];
                 }else{
                     if($stmt->rowCount() > 1){
-                        return $stmt->fetchAll($mode);
+                        return [
+                            'check' => true,
+                            'data' => $stmt->fetchAll($mode)
+                        ];
                     }else{
-                        return $stmt->fetch($mode);
+                        return [
+                            'check' => true,
+                            'data' => $stmt->fetch($mode)
+                        ];
                     }
                 }
             }else{

@@ -11,8 +11,7 @@ class Purchase_Logic{
 
         $item_ex = new Item_Ex();
         $data = $item_ex->get_multi();
-        var_dump($data);
-        exit();
+   
         $output = '';
         if($data['check']){
 
@@ -20,7 +19,7 @@ class Purchase_Logic{
 
                 $image_tag  = "<div class='item_image'><img class='img' src='/image/item/{$record['image']}'alt='商品画像'></img></div>";
                 $item_name  = "<div class='item_name'>{$record['name']}</div>";
-                $item_price = "<div class='item_price'>¥{$record['peice']}</div>";
+                $item_price = "<div class='item_price'>¥{$record['price']}</div>";
     
                 $item_block  = "<div onclick='DivFrameClick({$record['id']})'>";
                 $item_block .= $image_tag.$item_name.$item_price.'</div>';
@@ -31,8 +30,9 @@ class Purchase_Logic{
 
         }
 
-        var_dump($output);
-        exit();
+        return [
+            'item_list' => $output
+        ];
 
     } 
 

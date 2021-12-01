@@ -38,7 +38,7 @@ class Item_Ex
             $act = DB_function::create($this->main)
             ->connect('naisa')
             ->toSELECT()
-            ->toWHERE('deleted','IS','NULL')
+            ->toWHERE('deleted','IS',NULL)
             ->toDESC('id')
             ->toLIMIT(25)
             ->toEXECUTE(PDO::FETCH_ASSOC);
@@ -46,7 +46,7 @@ class Item_Ex
             if($act['check']){
                 return [
                     'check' => true,
-                    'data' => $act
+                    'data' => $act['data']
                 ];
             }else{
                 return [
@@ -79,7 +79,7 @@ class Item_Ex
             if($act['check']){
                 return [
                     'check' => true,
-                    'data' => $act
+                    'data' => $act['data']
                 ];
             }else{
                 return [
@@ -113,6 +113,7 @@ class Item_Ex
             if($act['check']){
                 return [
                     'check' => true,
+                    'data' => $act['data']
                 ];
             }else{
                 return [
