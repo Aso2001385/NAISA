@@ -1,46 +1,31 @@
 <?php
 
-require_once('DB_Function.php');
+require_once 'DB_Function.php';
 
-
-/* 
-
-user
+/*
 
 id
-name
-mail
-pass
-tel
+item_id
+user_id
+card_id
 post
 address
-sale_count
-penalty
+send
+recived
+completion
+stop
 created
 updated
-deleted
 
 */
 
-class User_Model
+class Order_Ex
 {
 
-    private $main = 'user';
+    private $main = 'order';
 
-    public function get_authent($mail)
-    {
-
-        $act = DB_function::create($this->main)
-        ->connect('naisa')
-        ->toSELECT()
-        ->toWHERE('mail','=',$mail)
-        ->toLIMIT(1)
-        ->toEXECUTE(PDO::FETCH_ASSOC);
-
-    }
-
-    /* ユーザーデータ複数取得 */
-    public function get_multi($limit = 25)
+    /* 商品データ複数取得 */
+    public function get_multi($id,$limit = 25)
     {
 
         try{
@@ -48,12 +33,15 @@ class User_Model
             $act = DB_function::create($this->main)
             ->connect('naisa')
             ->toSELECT()
+            ->toWHERE('deleted','IS','NULL')
+            ->toAND('user_id','=',$id)
+            ->toDESC('id')
             ->toLIMIT(25)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
             return [
                 'check' => true,
-                'data' => $act
+                'data' => $act['data']
             ];
 
         }catch(Exception $ex){
@@ -65,15 +53,59 @@ class User_Model
         }
     }
 
-    public function get_singul($id){
+    /* 商品データ単体取得 */
+    public function get_singul($id,$user_id = 0){
+
+        try{
+
+            if($user_id == 0){
+
+                $act = DB_function::create($this->main)
+                ->connect('naisa')
+                ->toSELECT()
+                ->toWHERE('id','=',$id)
+                ->toAND('deleted','IS','NULL')
+                ->toLIMIT(1)
+                ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            }else{
+
+                $act = DB_function::create($this->main)
+                ->connect('naisa')
+                ->toSELECT()
+                ->toWHERE('ite_id','=',$id)
+                ->toAND('user_id','=',$user_id)
+                ->toAND('deleted','IS','NULL')
+                ->toLIMIT(1)
+                ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            }
+        
+            return [
+                'check' => true,
+                'data' => $act['data']
+            ];
+
+        }catch(Exception $ex){
+
+            return [
+                'check' => false
+            ];
+
+        }
+    }
+
+    /* 指定ユーザ商品データ複数取得 */
+    public function get_user_multi($user_id,$limit = 25){
 
         try{
 
             $act = DB_function::create($this->main)
             ->connect('naisa')
             ->toSELECT()
-            ->toWHERE('id','=',$id)
-            ->toLIMIT(1)
+            ->toWHERE('user_id','=',$user_id)
+            ->toAND('deleted','IS','NULL')
+            ->toLIMIT($limit)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
             return [
@@ -88,9 +120,10 @@ class User_Model
             ];
 
         }
+
     }
 
-
+    /* 商品データ追加 */
     public function add($data){
 
         try{
@@ -114,29 +147,16 @@ class User_Model
 
     }
 
-
-    public function update($data,$id=0){
+    /* 商品データ更新 */
+    public function update($data){
 
         try{
 
-            if($id==0){
-
-                $act = DB_function::create($this->main)
-                ->connect('naisa')
-                ->toUPDATE($data)
-                ->toWHERE('id','=',$data['id'])
-                ->toEXECUTE(PDO::FETCH_ASSOC);
-
-            }else{
-
-                $act = DB_function::create($this->main)
-                ->connect('naisa')
-                ->toUPDATE($data)
-                ->toWHERE('id','=',$id)
-                ->toEXECUTE(PDO::FETCH_ASSOC);
-
-            }
-    
+            $act = DB_function::create($this->main)
+            ->connect('naisa')
+            ->toUPDATE($data)
+            ->toWHERE('id','=',$data['id'])
+            ->toEXECUTE(PDO::FETCH_ASSOC);
 
             return [
                 'check' => true,
@@ -149,9 +169,9 @@ class User_Model
             ];
 
         }
+    }
 
-    } 
-
+    /* 商品削除(論理削除) */
     public function delete($id){
 
         try{
@@ -180,7 +200,7 @@ class User_Model
 
     }
 
-
+    
 
 }
 

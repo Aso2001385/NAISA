@@ -39,6 +39,7 @@ class Item_Ex
             ->connect('naisa')
             ->toSELECT()
             ->toWHERE('deleted','IS',NULL)
+            ->toAND('start','IS',NULL)
             ->toDESC('id')
             ->toLIMIT(25)
             ->toEXECUTE(PDO::FETCH_ASSOC);
@@ -72,7 +73,7 @@ class Item_Ex
             ->connect('naisa')
             ->toSELECT()
             ->toWHERE('id','=',$item_id)
-            ->toAND('deleted','IS','NULL')
+            ->toAND('deleted','IS',NULL)
             ->toLIMIT(1)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -106,7 +107,7 @@ class Item_Ex
             ->connect('naisa')
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
-            ->toAND('deleted','IS','NULL')
+            ->toAND('deleted','IS',NULL)
             ->toLIMIT($limit)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 

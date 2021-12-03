@@ -58,7 +58,7 @@ class Comments_Ex{
 
             return [
                 'check' => true,
-                'data' => $act
+                'data' => $act['data']
             ];
 
         }catch(Exception $ex){

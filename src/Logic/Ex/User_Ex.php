@@ -1,30 +1,45 @@
 <?php
 
-require_once 'DB_Function.php';
+require_once('DB_Function.php');
 
-/*
+
+/* 
+
+user
 
 id
-item_id
-user_id
-card_id
+name
+mail
+pass
+tel
 post
 address
-send
-recived
-completion
-stop
+sale_count
+penalty
 created
 updated
+deleted
 
 */
 
-class Item_Model
+class User_Ex
 {
 
-    private $main = 'item';
+    private $main = 'user';
 
-    /* 商品データ複数取得 */
+    public function get_authent($mail)
+    {
+
+        $act = DB_function::create($this->main)
+        ->connect('naisa')
+        ->toSELECT()
+        ->toWHERE('mail','=',$mail)
+        ->toLIMIT(1)
+        ->toEXECUTE(PDO::FETCH_ASSOC);
+
+    }
+
+    /* ユーザーデータ複数取得 */
     public function get_multi($limit = 25)
     {
 
@@ -33,14 +48,12 @@ class Item_Model
             $act = DB_function::create($this->main)
             ->connect('naisa')
             ->toSELECT()
-            ->toWHERE('deleted','IS','NULL')
-            ->toDESC('id')
             ->toLIMIT(25)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
             return [
                 'check' => true,
-                'data' => $act
+                'data' => $act['data']
             ];
 
         }catch(Exception $ex){
@@ -52,22 +65,21 @@ class Item_Model
         }
     }
 
-    /* 商品データ単体取得 */
-    public function get_singul($item_id){
+    public function get_singul($id)
+    {
 
         try{
 
             $act = DB_function::create($this->main)
             ->connect('naisa')
             ->toSELECT()
-            ->toWHERE('id','=',$item_id)
-            ->toAND('deleted','IS','NULL')
+            ->toWHERE('id','=',$id)
             ->toLIMIT(1)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
             return [
                 'check' => true,
-                'data' => $act
+                'data' => $act['data']
             ];
 
         }catch(Exception $ex){
@@ -79,36 +91,9 @@ class Item_Model
         }
     }
 
-    /* 指定ユーザ商品データ複数取得 */
-    public function get_user_multi($user_id,$limit = 25){
 
-        try{
-
-            $act = DB_function::create($this->main)
-            ->connect('naisa')
-            ->toSELECT()
-            ->toWHERE('user_id','=',$user_id)
-            ->toAND('deleted','IS','NULL')
-            ->toLIMIT($limit)
-            ->toEXECUTE(PDO::FETCH_ASSOC);
-
-            return [
-                'check' => true,
-                'data' => $act
-            ];
-
-        }catch(Exception $ex){
-
-            return [
-                'check' => false
-            ];
-
-        }
-
-    }
-
-    /* 商品データ追加 */
-    public function add($data){
+    public function add($data)
+    {
 
         try{
 
@@ -131,16 +116,30 @@ class Item_Model
 
     }
 
-    /* 商品データ更新 */
-    public function update($data){
+
+    public function update($data,$id=0)
+    {
 
         try{
 
-            $act = DB_function::create($this->main)
-            ->connect('naisa')
-            ->toUPDATE($data)
-            ->toWHERE('id','=',$data['id'])
-            ->toEXECUTE(PDO::FETCH_ASSOC);
+            if($id==0){
+
+                $act = DB_function::create($this->main)
+                ->connect('naisa')
+                ->toUPDATE($data)
+                ->toWHERE('id','=',$data['id'])
+                ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            }else{
+
+                $act = DB_function::create($this->main)
+                ->connect('naisa')
+                ->toUPDATE($data)
+                ->toWHERE('id','=',$id)
+                ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            }
+    
 
             return [
                 'check' => true,
@@ -153,10 +152,11 @@ class Item_Model
             ];
 
         }
-    }
 
-    /* 商品削除(論理削除) */
-    public function delete($id){
+    } 
+
+    public function delete($id)
+    {
 
         try{
 
@@ -184,7 +184,7 @@ class Item_Model
 
     }
 
-    
+
 
 }
 

@@ -35,13 +35,11 @@ class DB_function{
                 exit();
             }
         }else{
-            $dbn = 'mysql:dbname=LAA1291142-'.$db_name.';charset=utf8;port=3306;host=mysql'.$host_num.'.phy.lolipop.lan';
-            $user = 'LAA1291142';
-
+        
             try {
 
                 $this->pdo = new PDO('mysql:host=mysql152.phy.lolipop.lan;
-                dbname=LAA1291142-mydb;charset=utf8','LAA1291142','Albaorco');
+                dbname=LAA1291142-mydb;charset=utf8','LAA1291142','mydb');
                 return $this;
 
             } catch (PDOException $e) {
