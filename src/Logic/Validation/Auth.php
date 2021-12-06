@@ -46,7 +46,7 @@ class Authent {
 
     }
 
-    public function re_register() {
+    public function edit() {
 
         $model_user = new User_Model();
         $act = $model_user->selectData($authentData["mail"]);
@@ -65,13 +65,6 @@ class Authent {
         }
         
     }
-
-    public function login_check(){
-
-        if(!isset($_SESSION['user'])){
-            header('Location:index.php?PICK=Login:login');
-        }
-
-    }
+    
 }
 ?>

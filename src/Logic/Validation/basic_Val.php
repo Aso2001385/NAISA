@@ -2,7 +2,7 @@
 
     require('Validation.php');
 
-    function nameCheck($receive,$low,$upper){
+    function name_check($receive,$low,$upper){
     
         $checkData = Validation::creat()->input($receive)
         ->charType(1,1,0,0,1,1,1)
@@ -14,19 +14,39 @@
 
     }
     
-    function passwordCheck($receive,$low,$upper){
+    function password_check($receive,$low,$upper){
         
         $checkData = Validation::creat()->input($receive)
         ->charType(1,1,1,1,0,0,0)
         ->toSYMBOL("-_")
         ->toLENGTH($low,$upper)
         ->toEXECUTE();
+        
+        if(!$checkData['check']){
+            return $checkData;
+        }
 
+        $word = ['a-z','A-Z','0-9','-_'];
+
+        $ans = $receive;
+
+        foreach($word as $row){
+
+            $ans = preg_replace("/[{$row}]/u",'',$receive); 
+            if(mb_strlen($ans) == mb_strlen($receive)){
+                return [
+                    'check' => false,
+                    'errors' => '入力必須文字が入力されていません'
+                ];
+            }
+            $receive = $ans;
+        }
+        
         return $checkData;
 
     }
 
-    function mailCheck($receive,$low,$upper){
+    function mail_check($receive,$low,$upper){
         
         $checkData = Validation::creat()->input($receive)
         ->toLENGTH($low,$upper)
@@ -36,7 +56,7 @@
 
     }
 
-    function telCheck($receive){
+    function tel_check($receive){
 
         $checkData = Validation::creat()->input($receive)
         ->charType(0,0,1,0,0,0,0)
@@ -44,10 +64,17 @@
         ->toLENGTH(10,11)
         ->toEXECUTE();
 
+        if(substr($receive,0,1) != 0){
+            return [
+                'check' => false,
+                'errors' => '一桁目が0以外の数字です'
+            ];
+        }
+
         return $checkData;
     }
 
-    function postCheck($receive){
+    function post_check($receive){
 
         $checkData = Validation::creat()->input($receive)
         ->charType(0,0,1,0,0,0,0)
