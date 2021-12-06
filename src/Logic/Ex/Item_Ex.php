@@ -98,6 +98,41 @@ class Item_Ex
         }
     }
 
+        /* 指定最新商品データ単体取得 */
+        public function get_new_singul($user_id){
+
+            try{
+    
+                $act = DB_function::create($this->main)
+                ->connect('naisa')
+                ->toSELECT()
+                ->toWHERE('user_id','=',$user_id)
+                ->toAND('deleted','IS',NULL)
+                ->toDESC('id')
+                ->toLIMIT(1)
+                ->toEXECUTE(PDO::FETCH_ASSOC);
+    
+                if($act['check']){
+                    return [
+                        'check' => true,
+                        'data' => $act['data']
+                    ];
+                }else{
+                    return [
+                        'check' => false
+                    ];
+                }
+    
+    
+            }catch(Exception $ex){
+    
+                return [
+                    'check' => false
+                ];
+    
+            }
+        }
+
     /* 指定ユーザ商品データ複数取得 */
     public function get_user_multi($user_id,$limit = 25){
 
@@ -108,6 +143,42 @@ class Item_Ex
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
             ->toAND('deleted','IS',NULL)
+            ->toDESC('id')
+            ->toLIMIT($limit)
+            ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            if($act['check']){
+                return [
+                    'check' => true,
+                    'data' => $act['data']
+                ];
+            }else{
+                return [
+                    'check' => false
+                ];
+            }
+
+
+        }catch(Exception $ex){
+
+            return [
+                'check' => false
+            ];
+
+        }
+
+    }
+
+    public function search($word,$limit = 25){
+
+        try{
+
+            $act = DB_function::create($this->main)
+            ->connect('naisa')
+            ->toSELECT()
+            ->toWHERE('name','%:%',$word)
+            ->toAND('deleted','IS',NULL)
+            ->toDESC('id')
             ->toLIMIT($limit)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -165,14 +236,14 @@ class Item_Ex
     }
 
     /* 商品データ更新 */
-    public function update($data){
+    public function update($data,$id){
 
         try{
 
             $act = DB_function::create($this->main)
             ->connect('naisa')
             ->toUPDATE($data)
-            ->toWHERE('id','=',$data['id'])
+            ->toWHERE('id','=',$id)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
             if($act['check']){

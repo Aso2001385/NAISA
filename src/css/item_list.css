@@ -1,0 +1,26 @@
+
+.flex {
+  flex-wrap: wrap;
+  width: 1300px;
+}
+
+.item_box {
+  width: 20%;
+  margin-bottom: 100px;
+}
+
+.item_image {
+  width: 200px;
+  height: 200px;
+  background-color: #CEBB90;
+  border-radius: 20px;
+}
+
+.item_status {
+  width: 200px;
+  height: 80px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+  box-sizing: border-box;
+}

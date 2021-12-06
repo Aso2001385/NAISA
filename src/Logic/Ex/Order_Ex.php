@@ -73,7 +73,7 @@ class Order_Ex
                 $act = DB_function::create($this->main)
                 ->connect('naisa')
                 ->toSELECT()
-                ->toWHERE('ite_id','=',$id)
+                ->toWHERE('item_id','=',$id)
                 ->toAND('user_id','=',$user_id)
                 ->toAND('deleted','IS','NULL')
                 ->toLIMIT(1)
@@ -123,7 +123,7 @@ class Order_Ex
 
     }
 
-    /* 商品データ追加 */
+    /* 取引データ追加 */
     public function add($data){
 
         try{

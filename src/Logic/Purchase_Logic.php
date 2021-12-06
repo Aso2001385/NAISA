@@ -5,10 +5,14 @@ require_once 'Validation/basicValidation.php';
 /* 購入系 */
 class Purchase_Logic{
 
-    /* + 表示系 + */
+    /* 
+    表示系 + 
+    操作系 -
+    */
 
-    /* 商品一覧 */
-    public static function item_list(){
+    /* 商品一覧 + */
+    public static function item_list()
+    {
 
         require_once 'Ex/Item_Ex.php';
 
@@ -39,8 +43,44 @@ class Purchase_Logic{
 
     }
 
-    /* 商品詳細 */
-    public static function item_detail($id){
+    /* 商品検索 */
+    public static function item_search($search_word)
+    {
+
+        require_once 'Ex/Item_Ex.php';
+
+        $item_ex = new Item_Ex();
+
+        $item_data = $item_ex->search($search_word);
+
+        $output = '';
+        if($item_data['check']){
+
+            foreach($item_data['data'] as $record){
+
+                $image_tag  = "<div class='item_image'><img class='img' src='/image/item/{$record['image']}'alt='商品画像'></img></div>";
+                $item_name  = "<div class'item_status'><div class='item_name'>{$record['name']}</div>";
+                $item_price = "<div class='item_price'>¥{$record['price']}</div></div>";
+    
+                $item_block  = "<div onclick='DivFrameClick({$record['id']})'>";
+                $item_block .= $image_tag.$item_name.$item_price.'</div>';
+
+                $output .= $item_block;
+
+            }
+
+        }
+
+        return [
+            'list' => $output
+        ];
+
+
+    }
+
+    /* 商品詳細 + */
+    public static function item_detail($id)
+    {
 
         require_once 'Ex/Item_Ex.php';
         require_once 'Ex/User_Ex.php';
@@ -62,8 +102,9 @@ class Purchase_Logic{
     
     }
 
-    /* 商品購入 */
-    public static function buy($id){
+    /* 商品購入 + */
+    public static function buy($id)
+    {
 
         require_once 'Ex/Item_Ex.php';
         require_once 'Ex/User_Ex.php';
@@ -72,31 +113,73 @@ class Purchase_Logic{
         $user_ex = new User_Ex();
 
         $item_data   = $item_ex->get_singul($id);
+        if($item_data['data']['user_id'] == $_SESSION['user_data']['id']){
+            //リダイレクト
+        }
         $user_data = $user_ex->get_singul($item_data['data']['id']);
         
-        if($item_data['data']['start'] === NULL){
-            $start_flg = true;
-        }else{
-            $start_flg = false;
+        if($item_data['data']['start'] !== NULL){
+            //リダイレクト処理
         }
 
         return [
-            'data' => $item_data['data'],
-            'data' => $seller_data['data'],
-            'start_flg' => $start_flg
+            'item' => $item_data['data'],
+            'seller' => $seller_data['data'],
         ];
     
     }
 
-    /* 取引 */
-    public static function order($id,$user_id=0){
+    /* 商品購入処理 - */
+    public static function buy_act($data)
+    {
+
+        /*  */
+        require_once 'Ex/Order_Ex.php';
+        require_once 'Ex/Item_Ex.php';
+        require_once 'Ex/User_Ex.php';
+
+        $order_ex = new Order_Ex();
+        $item_ex = new Item_Ex();
+
+        /* 商品データ取得 */
+        $item_data = $item_ex->get_singul($data['id']);
+        
+        /* 取引可能かチェック */
+        if($item_data['data']['start'] !== NULL){
+            //リダイレクト
+        }
+
+        /* 取引開始日時を記録 */
+        $datetime_ins = new DateTime();
+        $datetime = $datetime_ins->format('Y-m-d H:i:s');
+        $act = $item_ex->update(['start'=>$datetime],$id);
+        if($act['check']){
+            //リダイレクト
+        }
+        $act = $order_ex->add($data);
+        /* 取引テーブルにレコード追加 */
+        if($act['check']){
+            //リダイレクト
+        }
+        
+        return [
+            'item' => $item_data['data'],
+            'seller' => $seller_data['data'],
+            'flg' => $start_flg
+        ];
+    
+    }
+
+    /* 取引 + */
+    public static function order($id,$user_id=0)
+    {
 
         require_once 'Ex/Order_Ex.php';
         require_once 'Ex/Item_Ex.php';
         require_once 'Ex/User_Ex.php';
         require_once 'Ex/Comment_Ex.php';
         
-        $order_ex = new Order_EX();
+        $order_ex = new Order_Ex();
         $item_ex = new Item_Ex();
         $user_ex = new User_Ex();
         $come_ex = new Comments_Ex();
@@ -109,7 +192,7 @@ class Purchase_Logic{
         
         $item_data   = $item_ex->get_singul($order_data['data']['item_id']);
         $user_data = $user_ex->get_singul($item_data['data']['id']);
-        $item_come   = $come_ex->get_order_comment($id);
+        $order_come   = $come_ex->get_order_comment($order_data['data']['order_id']);
         
         $flgs = [
             'send' => $order_data['data']['send'] === NULL,
@@ -122,9 +205,68 @@ class Purchase_Logic{
             'order' => $order_data['data'],
             'item' => $item_data['data'],
             'user' => $user_data['data'],
+            'come' => $order_come,
             'flgs' => $flgs
         ];
     
+    }
+
+
+    /* 受け取り通知処理 */
+    public static function order_recived_notic($id,$user_id)
+    {
+
+        require_once 'Ex/Order_Ex.php';
+        require_once 'Ex/Item_Ex.php';
+        
+        $order_ex = new Order_Ex();
+        $order_data = $order_ex->get_singul($id);
+
+        /* 発送通知が既に入っていないかチェック */
+        if($order_data['data']['recived'] === NULL){
+
+            /* ユーザーが正しいかチェック */
+            if($order_data['data']['user_id'] == $user_id){
+                $datetime_ins = new DateTime();
+                $datetime = $datetime_ins->format('Y-m-d H:i:s');
+                $order_ex->update(['id'=>$id,'recived'=>$datetime]);
+            }else{
+                //リダイレクト
+            }
+            
+        }else{
+            //リダイレクト
+        }
+
+        //リダイレクト：完了処理
+
+    }
+
+    /* キャンセル処理 */
+    public static function order_cancel($id)
+    {
+
+        require_once 'Ex/Order_Ex.php';
+        require_once 'Ex/Item_Ex.php';
+        
+        $order_ex = new Order_Ex();
+        $item_ex = new Item_Ex();
+        
+        $order_data = $order_ex->get_singul($id);
+
+        /* 発送通知が既に入っていないかチェック */
+        if($order_data['data']['send'] === NULL){
+
+            $datetime_ins = new DateTime();
+            $datetime = $datetime_ins->format('Y-m-d H:i:s');
+            $order_ex->update(['id'=>$id,'send'=>$datetime]);
+
+        }else{
+            //リダイレクト
+        }
+
+        //リダイレクト
+
     }
 
 }

@@ -26,7 +26,7 @@ class Authent {
 
         $model_user = new User_Model();
         $act = $model_user->get($authentData["mail"]);
-        $pass = "solo".$authentData["pass"]."mon";
+        $pass = '$2y$10$Fx4FReusbCKrVvWVEkWjEuc'.$authentData["pass"].'dhIdcqrozCZMLKdZPw2fMKv4cw9pJi';
 
         if(password_verify($pass,$act["pass"])){
 
@@ -50,9 +50,9 @@ class Authent {
 
         $model_user = new User_Model();
         $act = $model_user->selectData($authentData["mail"]);
-        $pass = "solo".$authentData["pass"]."mon";
+        $pass = '$2y$10$Fx4FReusbCKrVvWVEkWjEuc'.$authentData["pass"].'fa6e902564992ed34cf17b6a80520dd79f';
 
-        if(password_verify ($pass,$act["pass"])){
+        if(password_verify ($pass,$act['data']['pass'])){
             return [ 
                 "check" => true,
                 "data" => $act
