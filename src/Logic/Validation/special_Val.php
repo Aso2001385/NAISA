@@ -18,6 +18,10 @@ class Special{
 
         }
 
+        if($user_data['pass'] !== $user_data['re_pass']){
+            return false;
+        }
+        
         return true;
 
     }
