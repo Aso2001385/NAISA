@@ -1,5 +1,5 @@
-INSERT INTO `user`(`name`, `mail`, `pass`, `tel`, `post`, `address`) 
-VALUES ('テスト君','mail-2001@s.asojuku.ac.jp','732ec97fdce14b1895cecf0c8010eefa6e902564992ed34cf17b6a80520dd79f',
+INSERT INTO `user`(`name`, `nick_name`, `mail`, `pass`, `tel`, `post`, `address`) 
+VALUES ('テスト君','テストマン','mail-2001@s.asojuku.ac.jp','732ec97fdce14b1895cecf0c8010eefa6e902564992ed34cf17b6a80520dd79f',
 '09012349876','3216789','架空県空想市妄想町12-3-45');
 
 INSERT INTO `category`(`name`) VALUES ('衣料品'),('家電'),('ゲーム');

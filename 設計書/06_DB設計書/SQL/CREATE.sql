@@ -1,6 +1,8 @@
 CREATE TABLE `user` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
+    `name_read` VARCHAR(150) NOT NULL, 
+    `nick_name` VARCHAR(50) NOT NULL,
     `mail` VARCHAR(50) NOT NULL UNIQUE,
     `pass` CHAR(60) NOT NULL, 
     `tel` VARCHAR(50) NOT NULL,

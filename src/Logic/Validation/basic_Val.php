@@ -2,11 +2,35 @@
 
     require('Validation.php');
 
-    function name_check($receive,$low,$upper){
+    function name_check($receive,$low=2,$upper=50){
     
         $checkData = Validation::creat()->input($receive)
         ->charType(1,1,0,0,1,1,1)
-        ->toSYMBOL()
+        ->toSYMBOL('-_')
+        ->toLENGTH($low,$upper)
+        ->toEXECUTE();
+
+        return $checkData;
+
+    }
+
+    function name_read_check($receive,$low=2,$upper=150){
+    
+        $checkData = Validation::creat()->input($receive)
+        ->charType(0,0,0,0,0,0,1)
+        ->toSYMBOL('-_')
+        ->toLENGTH($low,$upper)
+        ->toEXECUTE();
+
+        return $checkData;
+
+    }
+
+    function nick_name_check($receive,$low=1,$upper=50){
+    
+        $checkData = Validation::creat()->input($receive)
+        ->charType(1,1,1,1,1,1,1)
+        ->toSYMBOL('-_')
         ->toLENGTH($low,$upper)
         ->toEXECUTE();
 
@@ -14,11 +38,11 @@
 
     }
     
-    function password_check($receive,$low,$upper){
+    function password_check($receive,$low=8,$upper=40){
         
         $checkData = Validation::creat()->input($receive)
         ->charType(1,1,1,1,0,0,0)
-        ->toSYMBOL("-_")
+        ->toSYMBOL('-_')
         ->toLENGTH($low,$upper)
         ->toEXECUTE();
         
@@ -46,7 +70,7 @@
 
     }
 
-    function mail_check($receive,$low,$upper){
+    function mail_check($receive,$low=8,$upper=50){
         
         $checkData = Validation::creat()->input($receive)
         ->toLENGTH($low,$upper)

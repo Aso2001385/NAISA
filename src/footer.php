@@ -1,4 +1,5 @@
 <!--footer-->
+</div>
 <footer>
 <div class="footer-wrap">
   <div class="footer-left">
