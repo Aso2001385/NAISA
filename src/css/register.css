@@ -1,9 +1,4 @@
-* {
-    box-sizing: border-box;
-  }
-
 .contents{
-    border: solid black;
     width: 50%;
     text-align: center;
 }
@@ -11,7 +6,6 @@
 .form_outer{
     width: 80%;
     margin: 0 auto;
-    border: solid red;
 }
 
 .form_inner{
@@ -40,6 +34,7 @@ input{
     padding: 0;
     padding-left: 2%;
     padding-right: 2%;
+    border-radius: 5px;
 }
 
 .next_btn{
