@@ -1,9 +1,8 @@
 <?php
 
-
-require_once 'Ex\User_Ex.php';
 require_once 'Validation/Special_Val.php';
-
+require_once 'Ex/User_Ex.php';
+require_once 'Ex/Card_Ex.php';
 
 /*
 
@@ -29,8 +28,17 @@ class Authent_Logic{
 
     public static function login_check()
     {
-        $check = isset($_SESSION['user_data']);
-        return $check;
+        return isset($_SESSION['user']);
+    }
+
+    public static function input_retention($user_data){
+
+        if(!Special::user_val($user_data)){
+            return false;
+        }
+
+        $_SESSION['register'] = $user_data;
+
     }
 
 
@@ -39,10 +47,8 @@ class Authent_Logic{
     {
 
         /* 入力チェック */
-        $check = Special::user_val($user_data);
-
-        if(!$check){
-            // リダイレクト
+        if(!Special::user_val($user_data)){
+            return false;
         }
 
         /* 登録処理 */
@@ -50,6 +56,30 @@ class Authent_Logic{
         $pass = '$2y$10$Fx4FReusbCKrVvWVEkWjEuc'.$user_data['pass'].'dhIdcqrozCZMLKdZPw2fMKv4cw9pJi'; 
         $user_data['pass'] = password_hash($pass,PASSWORD_BCRYPT);
         $act = $user_ex->add($data);
+
+        return $act['check'];
+
+    }
+
+    /* カード登録 */
+    public static function card_rigister($card_data,$mail){
+
+        if(!Special::card_val($card_data)){
+            return false;
+        }
+
+        $user_ex = new User_Ex();
+        $card_ex = new Card_Ex();
+
+        $act = $user_ex->get_authent($mail);
+
+        if(!$act['check']){
+            return false;
+        }
+
+        $card_data =  array_merge($card_data,array('user_id'=>$act['data']['id']));
+
+        $act = $card_ex->add($card_data);
 
         return $act['check'];
 

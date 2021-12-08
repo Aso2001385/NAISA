@@ -30,12 +30,23 @@ class User_Ex
     public function get_authent($mail)
     {
 
-        $act = DB_function::create($this->main)
-        ->connect('naisa')
-        ->toSELECT()
-        ->toWHERE('mail','=',$mail)
-        ->toLIMIT(1)
-        ->toEXECUTE(PDO::FETCH_ASSOC);
+        try{
+
+            $act = DB_function::create($this->main)
+            ->connect('naisa')
+            ->toSELECT()
+            ->toWHERE('mail','=',$mail)
+            ->toLIMIT(1)
+            ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            
+        }catch(Exception $ex){
+
+            return [
+                'check' => false
+            ];
+    
+        }
 
     }
 

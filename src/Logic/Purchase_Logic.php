@@ -1,6 +1,10 @@
 <?php
 
-require_once 'Validation/basicValidation.php';
+require_once 'Validation/Special_Val.php';
+require_once 'Ex/Item_Ex.php';
+require_once 'Ex/User_Ex.php';
+require_once 'Ex/Comment_Ex.php';
+require_once 'Ex/Order_Ex.php';
 
 /* 購入系 */
 class Purchase_Logic{
@@ -13,8 +17,6 @@ class Purchase_Logic{
     /* 商品一覧 + */
     public static function item_list()
     {
-
-        require_once 'Ex/Item_Ex.php';
 
         $item_ex = new Item_Ex();
         $data = $item_ex->get_multi();
@@ -46,8 +48,6 @@ class Purchase_Logic{
     /* 商品検索 */
     public static function item_search($search_word)
     {
-
-        require_once 'Ex/Item_Ex.php';
 
         $item_ex = new Item_Ex();
 
@@ -82,10 +82,6 @@ class Purchase_Logic{
     public static function item_detail($id)
     {
 
-        require_once 'Ex/Item_Ex.php';
-        require_once 'Ex/User_Ex.php';
-        require_once 'Ex/Comment_Ex.php';
-
         $item_ex = new Item_Ex();
         $user_ex = new User_Ex();
         $come_ex = new Comments_Ex();
@@ -105,9 +101,6 @@ class Purchase_Logic{
     /* 商品購入 + */
     public static function buy($id)
     {
-
-        require_once 'Ex/Item_Ex.php';
-        require_once 'Ex/User_Ex.php';
 
         $item_ex = new Item_Ex();
         $user_ex = new User_Ex();
@@ -134,9 +127,9 @@ class Purchase_Logic{
     {
 
         /*  */
-        require_once 'Ex/Order_Ex.php';
-        require_once 'Ex/Item_Ex.php';
-        require_once 'Ex/User_Ex.php';
+        
+        
+        
 
         $order_ex = new Order_Ex();
         $item_ex = new Item_Ex();
@@ -173,11 +166,6 @@ class Purchase_Logic{
     /* 取引 + */
     public static function order($id,$user_id=0)
     {
-
-        require_once 'Ex/Order_Ex.php';
-        require_once 'Ex/Item_Ex.php';
-        require_once 'Ex/User_Ex.php';
-        require_once 'Ex/Comment_Ex.php';
         
         $order_ex = new Order_Ex();
         $item_ex = new Item_Ex();
@@ -216,8 +204,8 @@ class Purchase_Logic{
     public static function order_recived_notic($id,$user_id)
     {
 
-        require_once 'Ex/Order_Ex.php';
-        require_once 'Ex/Item_Ex.php';
+        
+        
         
         $order_ex = new Order_Ex();
         $order_data = $order_ex->get_singul($id);
@@ -246,8 +234,8 @@ class Purchase_Logic{
     public static function order_cancel($id)
     {
 
-        require_once 'Ex/Order_Ex.php';
-        require_once 'Ex/Item_Ex.php';
+        
+        
         
         $order_ex = new Order_Ex();
         $item_ex = new Item_Ex();

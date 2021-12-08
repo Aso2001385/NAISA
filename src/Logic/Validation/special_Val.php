@@ -1,6 +1,6 @@
 <?php
 
-require_once 'basic_Val.php';
+require_once 'Basic_Val.php';
 
 class Special{
 
@@ -11,15 +11,23 @@ class Special{
 
         foreach($column as $col){
 
-            $act = $col.'_check'($user_data[$col]);
+            $method_name = $col.'_check';
+            $act = Basic_Val::$method_name($user_data[$col]);
+            
             if($act['check']){
-                return false;
+                return [
+                    'check' => false,
+                    'message' => $col
+                ];
             }
 
         }
 
         if($user_data['pass'] !== $user_data['re_pass']){
-            return false;
+            return [
+                'check' => false,
+                'message' => 're_pass'
+            ];
         }
         
         return true;
@@ -29,20 +37,30 @@ class Special{
     public static function edit_val($user_data)
     {
 
-        $column = ['name','nick_name','mail','tel','post'];
+        $column = ['name','name_read','nick_name','mail','pass','tel','post'];
 
         foreach($column as $col){
 
-            $act = $col.'_check'($user_data[$col]);
+            $method = $col.'_check';
+            $act = $method($user_data[$col]);
+            
             if($act['check']){
-                return false;
+                return [
+                    'check' => false,
+                    'message' => $col
+                ];
             }
 
         }
 
         if($user_data['pass'] !== $user_data['re_pass']){
-            return false;
+            return [
+                'check' => false,
+                'message' => 're_pass'
+            ];
         }
+        
+        return true;
         
         return true;
 
