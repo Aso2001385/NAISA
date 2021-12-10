@@ -39,6 +39,7 @@ class User_Ex
             ->toLIMIT(1)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
+            return $act;
             
         }catch(Exception $ex){
 
@@ -112,9 +113,9 @@ class User_Ex
             ->connect('naisa')
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
-
+            
             return [
-                'check' => true
+                'check' => $act['check']
             ];
 
         }catch(Exception $ex){
@@ -139,7 +140,8 @@ class User_Ex
                 ->connect('naisa')
                 ->toUPDATE($data)
                 ->toWHERE('id','=',$data['id'])
-                ->toEXECUTE(PDO::FETCH_ASSOC);
+                ->toEXECUTE();
+
 
             }else{
 
@@ -147,13 +149,12 @@ class User_Ex
                 ->connect('naisa')
                 ->toUPDATE($data)
                 ->toWHERE('id','=',$id)
-                ->toEXECUTE(PDO::FETCH_ASSOC);
+                ->toEXECUTE();
 
             }
     
-
             return [
-                'check' => true,
+                'check' => $act['check'],
             ];
 
         }catch(Exception $ex){

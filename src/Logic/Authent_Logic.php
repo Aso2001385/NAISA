@@ -26,18 +26,18 @@ require_once 'Ex/Card_Ex.php';
 
 class Authent_Logic{
 
-    public static function login_check()
-    {
-        return isset($_SESSION['user']);
-    }
-
     public static function input_retention($user_data){
 
         if(!Special::user_val($user_data)){
-            return false;
+            return [
+                'check' => true
+            ];
         }
 
-        $_SESSION['register'] = $user_data;
+        $_SESSION['tmp_user'] = $user_data;
+        return [
+            'check' => true
+        ];
 
     }
 
@@ -55,7 +55,7 @@ class Authent_Logic{
         $user_ex = new User_Ex();
         $pass = '$2y$10$Fx4FReusbCKrVvWVEkWjEuc'.$user_data['pass'].'dhIdcqrozCZMLKdZPw2fMKv4cw9pJi'; 
         $user_data['pass'] = password_hash($pass,PASSWORD_BCRYPT);
-        $act = $user_ex->add($data);
+        $act = $user_ex->add($user_data);
 
         return $act['check'];
 
@@ -64,9 +64,9 @@ class Authent_Logic{
     /* カード登録 */
     public static function card_rigister($card_data,$mail){
 
-        if(!Special::card_val($card_data)){
-            return false;
-        }
+        // if(!Special::card_val($card_data)){
+        //     return false;
+        // }
 
         $user_ex = new User_Ex();
         $card_ex = new Card_Ex();
@@ -86,7 +86,7 @@ class Authent_Logic{
     }
 
     /* ユーザー編集 */
-    public static function user_edit($user_data)
+    public static function user_edit($user_data,$id)
     {
         /* 入力チェック */
         $check = Special::user_val($user_data);
@@ -97,9 +97,13 @@ class Authent_Logic{
         
         /* 更新 */
         $user_ex = new User_Ex();
-        $pass = '$2y$10$Fx4FReusbCKrVvWVEkWjEuc'.$user_data['pass'].'dhIdcqrozCZMLKdZPw2fMKv4cw9pJi';
-        $user_data['pass'] = password_hash($pass,PASSWORD_BCRYPT);
-        $act = $user_ex->update($user_data);
+        $act = $user_ex->update($user_data,$id);
+
+        if($act['check']){
+            $act = $user_ex->get_singul($_SESSION['id']);
+            /* セッションにデータ挿入 */
+            $_SESSION['user'] = $act['data'];
+        }
 
         return $act['check'];
 
@@ -145,10 +149,10 @@ class Authent_Logic{
         $pass = '$2y$10$Fx4FReusbCKrVvWVEkWjEuc'.$user_data["pass"].'dhIdcqrozCZMLKdZPw2fMKv4cw9pJi';
 
         /* パスワード照合 */
-        if(password_verify($pass,$act["pass"])){
+        if(password_verify($pass,$act["data"]["pass"])){
 
             /* セッションにデータ挿入 */
-            $_SESSION['user_data'] = $act['data'];
+            $_SESSION['user'] = $act['data'];
 
             return [ 
                 "check" => true,

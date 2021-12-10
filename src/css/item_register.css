@@ -25,16 +25,24 @@
     text-align: left;
 }
 
-input,select{
+input,select,textarea{
+    resize: none;
     left: 0;
     box-sizing: border-box;
     height: 2.5em;
     width: 100%;
     font-size: 1em;
-    padding: 0;
     padding-left: 2%;
     padding-right: 2%;
     border-radius: 5px;
+}
+
+textarea{
+    font-size: 1em;
+    font-weight: bold;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    height: 5.5em;
 }
 
 .lim{

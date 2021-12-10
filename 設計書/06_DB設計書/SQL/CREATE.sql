@@ -15,55 +15,36 @@ CREATE TABLE `user` (
     `deleted` DATETIME
 );
 
-
-
 CREATE TABLE `card` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
     `user_id` INT NOT NULL,
     `code` VARCHAR(19) NOT NULL UNIQUE,
     `month` CHAR(2) NOT NULL, 
-    `year` CHAR(2) INT NOT NULL,
+    `year` CHAR(2) NOT NULL,
     `security` VARCHAR(19) NOT NULL,
     `created` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `deleted` DATETIME,
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) 
 );
 
-
-
-CREATE TABLE `category` (
-	`id` INT PRIMARY KEY AUTO_INCREMENT,
-    `name` VARCHAR(50) NOT NULL,
-    `created` DATETIME DEFAULT CURRENT_TIMESTAMP,
-    `updated` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-
-
 CREATE TABLE `item` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
     `user_id` INT NOT NULL,
-    `category_id` INT,
     `name` VARCHAR(50),
     `name_read` VARCHAR(120),
-    `image` VARCHAR(100) NOT NULL,
+    `image` CHAR(17) NOT NULL,
     `price` INT,
-    `quality` VARCHAR(120),
-    `delivery_method` VARCHAR(30) NOT NULL,
-    `delivery_fee` VARCHAR(30) NOT NULL,
-    `delivery_days` INT NOT NULL,
-    `delivery_prefecture` VARCHAR(30),
+    `quality` INT(1),
+    `delivery_fee` INT(1) NOT NULL,
+    `delivery_days` INT(1) NOT NULL,
     `description` TEXT,
     `comment_count` INT DEFAULT 0,
     `created` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `deleted` DATETIME,
     `start` DATETIME,
-    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`category_id`) REFERENCES `category`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 );
-
-
 
 CREATE TABLE `order` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -82,8 +63,6 @@ CREATE TABLE `order` (
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 );
 
-
-
 CREATE TABLE `item_comment` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
     `item_id` INT NOT NULL,
@@ -96,8 +75,6 @@ CREATE TABLE `item_comment` (
     FOREIGN KEY (`item_id`) REFERENCES `item` (`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
-
-
 
 CREATE TABLE `order_comment` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -112,8 +89,6 @@ CREATE TABLE `order_comment` (
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 );
 
-
-
 CREATE TABLE `item_comment_report` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
    	`item_comment_id` INT NOT NULL,
@@ -126,7 +101,6 @@ CREATE TABLE `item_comment_report` (
     FOREIGN KEY (`item_comment_id`) REFERENCES `item_comment` (`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
-
 
 CREATE TABLE `order_comment_report` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -141,8 +115,6 @@ CREATE TABLE `order_comment_report` (
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
-
-
 CREATE TABLE `item_report` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
    	`item_id` INT NOT NULL,
@@ -156,8 +128,6 @@ CREATE TABLE `item_report` (
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 );
 
-
-
 CREATE TABLE `info` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
    	`user_id` INT NOT NULL,
@@ -169,12 +139,11 @@ CREATE TABLE `info` (
 );
 
 
-
 CREATE TABLE `penalty` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
    	`user_id` INT NOT NULL,
-	`add_points` INT NOT NULL,
-    `all_points` INT,
+	`add_points` INT DEFAULT 0,
+    `all_points` INT DEFAULT 0,
     `name` VARCHAR(50) NOT NULL,
     `contents` VARCHAR(200) NOT NULL,
     `created` DATETIME DEFAULT CURRENT_TIMESTAMP,

@@ -40,7 +40,7 @@
 
         }
         
-        public static function password_check($receive,$low=8,$upper=40){
+        public static function pass_check($receive,$low=8,$upper=40){
             
             $checkData = Validation::creat()->input($receive)
             ->charType(1,1,1,1,0,0,0)

@@ -20,7 +20,7 @@
   <br><br>
   <div class="title">変更</div>
   <div class="brown-box text">
-    アカウント情報を変更する
+    アカウント情報の変更する
   </div>
   
 </div>

@@ -214,16 +214,9 @@ class Item_Ex
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            if($act['check']){
-                return [
-                    'check' => true,
-                ];
-            }else{
-                return [
-                    'check' => false
-                ];
-            }
-
+            return [
+                'check' => $act['check'],
+            ];
 
         }catch(Exception $ex){
 

@@ -34,6 +34,7 @@ class DB_function{
                 echo json_encode(["db error" => "{$e->getMessage()}"]);
                 exit();
             }
+            
         }else{
         
             try {
@@ -151,7 +152,7 @@ class DB_function{
                 $this->sql .= "`{$columnName[$i]}`";
                 $values .= ":{$columnName[$i]}";
          
-                if($insertData[$i] !== end($insertData)){
+                if($i < count($insertData)){
                     $this->sql .= ",";
                     $values .= ",";
                 }else{
@@ -173,7 +174,7 @@ class DB_function{
                 $this->sql .= "`{$key}`";
                 $values .= ":{$key}";
          
-                if($row !== end($columnName)){
+                if($i < count($columnName)){
                     $this->sql .= ",";
                     $values .= ",";
                 }else{
@@ -203,7 +204,7 @@ class DB_function{
 
                 $this->sql .= " `{$columnName[$i]}` = :{$columnName[$i]}";
 
-                if($columnName[$i] !== end($columnName)){
+                if($i < count($columnName)-1){
 
                     $this->sql .= " ,";
                 
@@ -221,7 +222,7 @@ class DB_function{
 
                 $this->sql .= " `{$columnName[$i]}` = :{$columnName[$i]}";
 
-                if($columnName[$i] !== end($columnName)){
+                if($i < count($columnName)-1){
                     $this->sql .= " ,";
                 }
 

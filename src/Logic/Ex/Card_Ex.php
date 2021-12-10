@@ -5,9 +5,13 @@ require_once('DB_Function.php');
 class Card_Ex
 {
 
+    private $main = 'card';
+
     public function add($data){
 
         try{
+
+            var_dump($data);
 
             $act = DB_function::create($this->main)
             ->connect('naisa')
@@ -15,7 +19,7 @@ class Card_Ex
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
             return [
-                'check' => true
+                'check' => $act['check']
             ];
 
         }catch(Exception $ex){

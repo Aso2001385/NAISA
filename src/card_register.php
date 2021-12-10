@@ -1,12 +1,14 @@
 <?php 
 session_start();
 require_once 'Logic/Authent_Logic.php';
+if(isset($_SESSION['user'])){
+    header('Location:index.php');
+}
 
 $page_css = 'card_register';
 
-Authent_Logic::input_retention($_POST['user']);
-if(Authent_Logic::login_check()){
-    header('Location:index.php');
+if(!Authent_Logic::input_retention($_POST['user'])){
+    header('Location:user_complete.php?mode=0');
 }
 
 $month_opt = '';
@@ -30,7 +32,7 @@ require_once 'header.php';
 
 <div class="contents">
 
-    <form action="register_comfim.php" method="post">
+    <form action="user_register_comfim.php" method="post">
         <div class="form_outer">
             <div class="form_inner">
                 <div class="heading_word">お支払い方法登録</div>
@@ -53,8 +55,8 @@ require_once 'header.php';
                 </div>
             </div>
             <button class="next_btn">次へ</button>
-            <div class="skip_link">
-                <a href="register_comfim.php">登録せずにスキップ</a>
+            <div class="link">
+                <a href="user_register_comfim.php">登録せずにスキップ</a>
             </div>
         </div>
     </form>

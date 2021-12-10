@@ -1,22 +1,145 @@
 <?php
 
-require_once 'Validation/basicValidation.php';
-
 class Exhibit_Logic{
 
-    /* 商品登録処理 */
-    public static function item_register($item_data)
+    /* 画像仮登録 */
+    public static function tmp_image_add($image_post)
     {
 
-        require_once 'Ex\Item_Ex.php';
-        $item_ex = new Item_Ex();
+        try{
+          
+            if(!file_exists('img/tmp_item')){
+                mkdir('img/tmp_item');
+            }
+            $rand_word = '';
+            for($i=0; $i<6; $i++){
+                $rand_word .= chr(mt_rand(97,122));
+            }
+            
+            switch($image_post['type']){
 
-        $act = $item_ex->add($item_data);
+                case 'image/jpeg':
+                    $tmp_image_name = 'img/tmp_item/'.basename($rand_word.'.jpg');
+                    break;
+                case 'image/png':
+                    $tmp_image_name = 'img/tmp_item/'.basename($rand_word.'.png');
+                    break;
+            }
 
+            if(!move_uploaded_file($image_post['tmp_name'],$tmp_image_name)){
+                return [
+                    'check' => false,
+                ];
+            }
+
+
+            return [
+                'check' => true,
+                'tmp_image_name' => $tmp_image_name,
+                'tmp_image_type' => $image_post['type'],
+            ];
+
+            
+
+        }catch(Exception $e){
+            return [
+                'check' => true,
+            ];
+        }
+        
     }
 
+    /* 画像登録(フォルダに)処理 */
+    public static function image_download($tmp_image_name,$tmp_image_type,$size)
+    {
+
+        try{
+          
+            switch($tmp_image_type){
+
+                case 'image/jpeg':
+                    $baseimage = imagecreatefromjpeg($tmp_image_name);
+                    break;
+                case 'image/png':
+                    $baseimage = imagecreatefrompng($tmp_image_name);
+                    break;
+            }
+          
+            list($width,$hight) = getimagesize($tmp_image_name);
+            $reduced_hight = $hight;
+            $reduced_width = $width;
+            
+            if($reduced_hight < $reduced_width){
+                $divide = $reduced_width / $size;
+            }else{
+                $divide = $reduced_hight / $size;
+            }
+            
+            $reduced_width = $reduced_width / $divide;
+            $reduced_hight = $reduced_hight / $divide; 
+            
+            $image = imagecreatetruecolor($reduced_width,$reduced_hight);
+            imagecopyresampled($image,$baseimage,0,0,0,0,$reduced_width,$reduced_hight,$width,$hight);
+
+            $user_id = $_SESSION['user']['id'];
+            $sale_count = $_SESSION['user']['sale_count'] + 1;
+
+            $image_name = 'item_'.str_pad($user_id,4,0,STR_PAD_LEFT).str_pad($sale_count,4,0,STR_PAD_LEFT).'.png';
+
+            imagepng($image,'img/item/'.$image_name);
+
+            if(!unlink($tmp_image_name)){
+                return [
+                    'check' => false,
+                ];
+            }
+
+            return [
+                'check' => true,
+                'image_name' => $image_name
+            ];
+
+            
+
+        }catch(Exception $e){
+            return [
+                'check' => true,
+            ];
+        }
+        
+    }
+
+    /* 商品登録処理 */
+    public static function item_register($item_data,$image_name,$user_id)
+    {
+        
+        require_once 'Ex\Item_Ex.php';
+        $item = array_merge($item_data,['image'=>$image_name,'user_id'=>$user_id]);
+        $item_ex = new Item_Ex();
+        $user_ex = new User_Ex();
+        $act = $item_ex->add($item);
+
+        if($act['check']){
+
+            $_SESSION['user']['sale_count'] = $_SESSION['user']['sale_count'] + 1;
+
+            unset($_SESSION['user']['created']);
+            unset($_SESSION['user']['updated']);
+            unset($_SESSION['user']['deleted']);
+
+            $act = $user_ex->update($_SESSION['user']);
+
+        }else{
+
+        }
+
+        return $act['check'];
+
+    }
+    
+
     /* 登録した商品の確認(商品詳細) */
-    public static function item_comfirm($user_id)
+    public static function item_comfim($user_id)
     {
 
         require_once 'Ex/Item_Ex.php';
