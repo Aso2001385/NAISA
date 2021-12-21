@@ -1,3 +1,8 @@
+<?php 
+require_once './Logic/Authent_Logic.php';
+$li_output = Authent_Logic::header_set();
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,19 +14,15 @@
   <title></title>
 </head>
 <body>
-<!--
-<div class=""></div>
--->
-
-<!--header-->
 <header>
-  <div class="header-logo">NAISA!</div>
-  <img class="search-icon" src="img/search.png">
-  <input type="text" class="search-box">
+  <a href="index.php"><div class="header-logo">NAISA!</div></a>
+  <form class="search_form" action="index.php" method="post">
+    <img class="search-icon" src="img/search.png">
+    <input type="text" name='keyword' class="search-box">
+    <button class='search_btn'>検索</button>
+  </form>
   <ul>
-    <li>お知らせ</li>
-    <li>～～様<br>アカウント＆リスト</li>
-    <li>いいねした商品</li>
+    <?php echo $li_output; ?>  
   </ul>
 </header>
 <div class="main">

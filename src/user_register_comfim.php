@@ -2,7 +2,7 @@
 session_start();
 require_once 'Logic/Authent_Logic.php';
 
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['user']) || !isset($_SESSION['tmp_user'])){
     header('Location:index.php');
 }
 
@@ -22,7 +22,7 @@ if(isset($_POST['card'])){
     }
     
 }else{
-    $card_output = '<div class="subject">登録をスキップしました</div>';
+    $card_output = '<div class="skip_subject">登録をスキップしました</div>';
 }
 
 

@@ -13,10 +13,8 @@ try{
     // }
 
     $act = Exhibit_Logic::image_download($_SESSION['tmp_image']['name'],$_SESSION['tmp_image']['type'],500);
-    // unset($_SESSION['tmp_image']);
 
     if(!$act['check']){
-        // unset($_SESSION['tmp_item']);
         header('Location:item_register_complete.php?mode=0');
     }
 

@@ -1,10 +1,13 @@
 <?php
 
 require_once 'Validation/Special_Val.php';
+require_once 'Validation/Validation.php';
 require_once 'Ex/Item_Ex.php';
 require_once 'Ex/User_Ex.php';
 require_once 'Ex/Comment_Ex.php';
 require_once 'Ex/Order_Ex.php';
+require_once 'Ex/Card_Ex.php';
+
 
 /* 購入系 */
 class Purchase_Logic{
@@ -15,66 +18,58 @@ class Purchase_Logic{
     */
 
     /* 商品一覧 + */
-    public static function item_list()
+    public static function item_list($page)
     {
 
         $item_ex = new Item_Ex();
-        $data = $item_ex->get_multi();
-   
-        $output = '';
-        if($data['check']){
 
-            foreach($data['data'] as $record){
-
-                $image_tag  = "<div class='item_image'><img class='img' src='/image/item/{$record['image']}'alt='商品画像'></img></div>";
-                $item_name  = "<div class'item_status'><div class='item_name'>{$record['name']}</div>";
-                $item_price = "<div class='item_price'>¥{$record['price']}</div></div>";
-    
-                $item_block  = "<div onclick='DivFrameClick({$record['id']})'>";
-                $item_block .= $image_tag.$item_name.$item_price.'</div>';
-
-                $output .= $item_block;
-
+        $page *= 24; 
+        $act = $item_ex->get_multi($page);
+        
+        if(is_array($act['data'])){
+            if(array_values($act['data']) !== $act['data']) {
+                $act['data'] = [$act['data']]; 
             }
-
         }
-
-        return [
-            'list' => $output
-        ];
+        
+        return $act;
 
     }
 
     /* 商品検索 */
-    public static function item_search($search_word)
+    public static function item_search($search_word,$page)
     {
 
         $item_ex = new Item_Ex();
+        $page *= 24; 
 
-        $item_data = $item_ex->search($search_word);
+        $checkData = Validation::creat()->input($search_word)
+        ->charType(1,1,1,0,1,1,1)
+        ->toLENGTH(1,50)
+        ->toEXECUTE();
 
-        $output = '';
-        if($item_data['check']){
+        if(!$checkData['check']) return [ 'check' => false, 'data' => false ];
 
-            foreach($item_data['data'] as $record){
 
-                $image_tag  = "<div class='item_image'><img class='img' src='/image/item/{$record['image']}'alt='商品画像'></img></div>";
-                $item_name  = "<div class'item_status'><div class='item_name'>{$record['name']}</div>";
-                $item_price = "<div class='item_price'>¥{$record['price']}</div></div>";
-    
-                $item_block  = "<div onclick='DivFrameClick({$record['id']})'>";
-                $item_block .= $image_tag.$item_name.$item_price.'</div>';
-
-                $output .= $item_block;
-
+        $act = $item_ex->search($search_word,$page);
+        $fusion = [];
+        if(is_bool($act['data'])) return $act;
+        if(is_array($act['data'])){
+            if(array_values($act['data']) !== $act['data']) {
+                $act['data'] = [$act['data']]; 
             }
+        }
 
+        foreach($act['data'] as $item){
+            if($item['start'] === NULL && $item['deleted'] === NULL){
+                $fusion[count($fusion)] = $item;
+            }
         }
 
         return [
-            'list' => $output
+            'check' => $act['check'],
+            'data' => $fusion
         ];
-
 
     }
 
@@ -86,16 +81,88 @@ class Purchase_Logic{
         $user_ex = new User_Ex();
         $come_ex = new Comments_Ex();
         $item_data   = $item_ex->get_singul($id);
-        $seller_data = $user_ex->get_singul($item_data['data']['id']);
+        $seller_data = $user_ex->get_singul($item_data['data']['user_id']);
         $item_come   = $come_ex->get_item_comment($id);
-
 
         return [
             'item' => $item_data['data'],
             'seller' => $seller_data['data'],
-            'come' => $item_come['data']
+            'come' => $item_come
         ];
     
+    }
+
+    public static function detail_get_order($item_id){
+        $order_ex = new Order_Ex();
+
+        $act = $order_ex->get_by_item_id($item_id);
+
+        return $act;
+    }
+
+    public static function card_rigister($card_data,$user_id){
+
+        $card_ex = new Card_Ex();
+
+        $card_data =  array_merge($card_data,array('user_id'=>$user_id));
+
+        $act = $card_ex->add($card_data);
+
+        return $act['check'];
+
+    }
+
+    public static function get_card($user_id){
+        
+        $card_ex = new Card_Ex();
+        $act = $card_ex->get_multi($user_id);
+        if(!$act['check'] || !$act['data']) return ['check' => false];
+
+        if(!isset($act['data'][0])) $act['data'] = [$act['data']];
+
+        $card = $act['data'];
+        for($i=0; $i<count($card); $i++){
+            $code = $card[$i]['code'];
+            $card[$i]['code'] = substr_replace($code,str_repeat('*',strlen($code)-4),0,strlen($code)-4);
+            unset($card[$i]['user_id']);  
+            unset($card[$i]['month']);
+            unset($card[$i]['year']);
+            unset($card[$i]['security']);
+            unset($card[$i]['created']);
+            unset($card[$i]['deleted']);
+        }
+
+        return [
+            'check' => true,
+            'data' => $card   
+        ];
+
+    }
+
+    public static function get_new_card($user_id){
+        $card_ex = new Card_Ex();
+        $act = $card_ex->get_new_single($user_id);
+        if(!$act['check'] || !$act['data']) return ['check' => false];
+
+        if(!isset($act['data'][0])) $act['data'] = [$act['data']];
+
+        $card = $act['data'];
+        for($i=0; $i<count($card); $i++){
+            $code = $card[$i]['code'];
+            $card[$i]['code'] = substr_replace($code,str_repeat('*',strlen($code)-4),0,strlen($code)-4);
+            unset($card[$i]['user_id']);  
+            unset($card[$i]['month']);
+            unset($card[$i]['year']);
+            unset($card[$i]['security']);
+            unset($card[$i]['created']);
+            unset($card[$i]['deleted']);
+        }
+
+        return [
+            'check' => true,
+            'data' => $card   
+        ];
+
     }
 
     /* 商品購入 + */
@@ -107,12 +174,12 @@ class Purchase_Logic{
 
         $item_data   = $item_ex->get_singul($id);
         if($item_data['data']['user_id'] == $_SESSION['user_data']['id']){
-            //リダイレクト
+            header("Location:item_detail.php?item_id={$id}");
         }
         $user_data = $user_ex->get_singul($item_data['data']['id']);
         
         if($item_data['data']['start'] !== NULL){
-            //リダイレクト処理
+            header("Location:item_detail.php?item_id={$id}");
         }
 
         return [
@@ -126,45 +193,36 @@ class Purchase_Logic{
     public static function buy_act($data)
     {
 
-        /*  */
-        
-        
-        
-
         $order_ex = new Order_Ex();
         $item_ex = new Item_Ex();
 
         /* 商品データ取得 */
-        $item_data = $item_ex->get_singul($data['id']);
+        $item_data = $item_ex->get_singul($data['item_id']);
         
         /* 取引可能かチェック */
         if($item_data['data']['start'] !== NULL){
-            //リダイレクト
+            return [
+                'check' => false,
+                'flg' => true
+            ];
         }
+        
+        $act = $order_ex->add($data);  
 
         /* 取引開始日時を記録 */
         $datetime_ins = new DateTime();
         $datetime = $datetime_ins->format('Y-m-d H:i:s');
-        $act = $item_ex->update(['start'=>$datetime],$id);
-        if($act['check']){
-            //リダイレクト
-        }
-        $act = $order_ex->add($data);
-        /* 取引テーブルにレコード追加 */
-        if($act['check']){
-            //リダイレクト
-        }
+        $act = $item_ex->update(['start'=>$datetime],$data['item_id']);
         
         return [
-            'item' => $item_data['data'],
-            'seller' => $seller_data['data'],
-            'flg' => $start_flg
+            'check' => $act['check'],
+            'flg' => false
         ];
     
     }
 
     /* 取引 + */
-    public static function order($id,$user_id=0)
+    public static function get_order($id,$user_id=0)
     {
         
         $order_ex = new Order_Ex();
@@ -172,40 +230,91 @@ class Purchase_Logic{
         $user_ex = new User_Ex();
         $come_ex = new Comments_Ex();
         
-        if($user_id = 0){
+        if($user_id == 0){
+            // order_idで取得
             $order_data = $order_ex->get_singul($id);
+            
         }else{
+            // item_idと購入者idで取得
             $order_data = $order_ex->get_singul($id,$user_id);
+
         }
         
         $item_data   = $item_ex->get_singul($order_data['data']['item_id']);
-        $user_data = $user_ex->get_singul($item_data['data']['id']);
-        $order_come   = $come_ex->get_order_comment($order_data['data']['order_id']);
+        $seller_data = $user_ex->get_singul($item_data['data']['user_id']);
+        $buyer_data = $user_ex->get_singul($order_data['data']['user_id']);
+        $order_come   = $come_ex->get_order_comment($order_data['data']['id']);
+        $order_data = $order_data['data'];
+        $item_data = $item_data['data'];
+        $seller_data = $seller_data['data'];
+        $buyer_data =  $buyer_data['data'];
+
+        $fusion_data = [
+            'id' => $order_data['id'],
+            'seller_id' => $seller_data['id'],
+            'seller_name' => $seller_data['nick_name'],
+            'buyer_id' => $buyer_data['id'],
+            'buyer_name' => $buyer_data['name'],
+            'item_id' => $item_data['id'],
+            'item_name' => $item_data['name'],
+            'image' => $item_data['image'],
+            'price' => $item_data['price'],
+            'buy_date' => $order_data['created'],
+            'days' => $item_data['delivery_days'],
+            'post' => $order_data['post'],
+            'address' => $order_data['address'],
+        ];
+
         
         $flgs = [
-            'send' => $order_data['data']['send'] === NULL,
-            'recived' => $order_data['data']['recived'] === NULL,
-            'completion' => $order_data['data']['completion'] === NULL,
-            'stop' => $order_data['data']['stop'] === NULL,
+            'send' => $order_data['send'] === NULL,
+            'recived' => $order_data['recived'] === NULL,
+            'completion' => $order_data['completion'] === NULL,
+            'stop' => $order_data['stop'] === NULL,
         ];
 
         return [
-            'order' => $order_data['data'],
-            'item' => $item_data['data'],
-            'user' => $user_data['data'],
+            'data' => $fusion_data,
             'come' => $order_come,
             'flgs' => $flgs
         ];
     
     }
 
+    public static function order_list($user_id){
+
+        $item_ex  = new Item_Ex();
+
+        $act = $item_ex->get_order_multi($user_id);
+        $fusion = [];
+
+        if(is_bool($act['data'])) return $fusion;
+        if(array_values($act['data']) !== $act['data']) $act['data'] = [$act['data']];   
+
+        foreach($act['data'] as $row){
+
+            $item = [
+                'item_id' => $row['id'],
+                'image' => $row['image'],
+                'name' => $row['name'],
+                'price' => $row['price']
+            ];
+     
+
+            if($row['start'] !== NULL){
+                $fusion[count($fusion)] = $item; 
+            }
+
+        }
+
+        return $fusion;
+        
+    }
+
 
     /* 受け取り通知処理 */
     public static function order_recived_notic($id,$user_id)
     {
-
-        
-        
         
         $order_ex = new Order_Ex();
         $order_data = $order_ex->get_singul($id);
@@ -214,19 +323,17 @@ class Purchase_Logic{
         if($order_data['data']['recived'] === NULL){
 
             /* ユーザーが正しいかチェック */
-            if($order_data['data']['user_id'] == $user_id){
-                $datetime_ins = new DateTime();
-                $datetime = $datetime_ins->format('Y-m-d H:i:s');
-                $order_ex->update(['id'=>$id,'recived'=>$datetime]);
-            }else{
-                //リダイレクト
-            }
+      
+            $datetime_ins = new DateTime();
+            $datetime = $datetime_ins->format('Y-m-d H:i:s');
+            $order_ex->update(['id'=>$id,'recived'=>$datetime]);
+            
             
         }else{
             //リダイレクト
         }
 
-        //リダイレクト：完了処理
+        
 
     }
 
@@ -234,9 +341,6 @@ class Purchase_Logic{
     public static function order_cancel($id)
     {
 
-        
-        
-        
         $order_ex = new Order_Ex();
         $item_ex = new Item_Ex();
         

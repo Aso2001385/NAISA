@@ -11,7 +11,7 @@ if(isset($_SESSION['tmp_image'])){
     unset($_SESSION['tmp_image']);
 }
 
-if(!Authent_Logic::login_check()){
+if(!isset($_SESSION['user'])){
     header('Location:index.php');
 }
 if(!isset($_POST['item'])||!$_FILES['image']){
@@ -27,26 +27,30 @@ if($act['check']){
 }
 
 $user_output = '';
+
 $names = [ 
-    ['name','name_read','price','quality','delivery_fee','delivery_days','description'],
-    ['商品名','ヨミガナ','価格','商品状態','配送料負担','発送までの日数','商品説明']
-];
-$opt_val = [
-    ['美品','傷有り','汚れ有り','ジャンク品'],
-    ['出品者負担','購入者負担'],
-    ['1日以内','3日以内','1週間以内','2週間以内','1ヶ月以内','1ヶ月以上']
+    'name'=>'商品名','price'=>'価格','quality'=>'商品状態','delivery_fee'=>'配送料負担',
+    'delivery_days'=>'発送までの日数','description'=>'商品説明'
 ];
 
-for($i=0; $i<7; $i++){
-    if($i == 2){
-        $tags = "<div class='subject'>{$names[1][$i]}:￥{$_POST['item'][$names[0][$i]]}</div>";
-    }else if($i>2 && $i<6){
-        $tags = "<div class='subject'>{$names[1][$i]}:{$opt_val[$i-3][$_POST['item'][$names[0][$i]]]}</div>";
-    }else if($i == 6){
-        $in_val = nl2br($_POST['item'][$names[0][$i]]);
-        $tags = "<div class='subject'>{$names[1][$i]}:<br>{$in_val}</div>";
+$opt_val = [
+    'quality'=>['美品','傷有り','汚れ有り','ジャンク品'],
+    'delivery_fee'=>['出品者負担','購入者負担'],
+    'delivery_days'=>['1日以内','3日以内','1週間以内','2週間以内','1ヶ月以内','1ヶ月以上']
+];
+
+$keys = array_keys($names); 
+
+foreach($keys as $key){
+    if($key === 'price'){
+        $tags = "<div class='subject'>{$names[$key]}:￥{$_POST['item'][$key]}</div>";
+    }else if($key === 'quality' || $key === 'delivery_fee' || $key === 'delivery_days'){
+        $tags = "<div class='subject'>{$names[$key]}:{$opt_val[$key][$_POST['item'][$key]]}</div>";
+    }else if($key === 'descriptio'){
+        $in_val = nl2br($_POST['item'][$names[$key]]);
+        $tags = "<div class='subject'>{$names[$key]}:<br>{$in_val}</div>";
     }else{
-        $tags = "<div class='subject'>{$names[1][$i]}:{$_POST['item'][$names[0][$i]]}</div>";
+        $tags = "<div class='subject'>{$names[$key]}:{$_POST['item'][$key]}</div>";
     }
     $user_output .= "<div class='input_box'>{$tags}</div>";
 }

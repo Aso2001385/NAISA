@@ -27,7 +27,7 @@ require_once 'header.php';
 
 <div class="contents">
 
-    <form action="user_edit_comfim.php" method="post">
+    <form action="user_edit_act.php" method="post">
         <div class="form_outer">
             <div class="form_inner">
                 <div class="heading_word">アカウント情報編集</div>
@@ -49,7 +49,7 @@ require_once 'header.php';
                 </div>
                 <div class="input_box">
                     <div class="subject">メールアドレス</div>
-                    <div class="input"><input type="mail" name="user[mail]" pattern="^[a-zA-Z0-9@-_.]+$" value="<?php echo $in_val[3] ?>" required></div>
+                    <div class="input"><input type="mail" name="user[mail]" pattern="^[a-zA-Z0-9@\-_.]+$" value="<?php echo $in_val[3] ?>" required></div>
                 </div>
             </div>
             <div class="form_inner">
@@ -63,7 +63,7 @@ require_once 'header.php';
                     <div class="input"><input type="text" name="user[address]" value="<?php echo $in_val[6] ?>" required></div>
                 </div>
             </div>
-            <button class="next_btn">次へ</button>
+            <button class="next_btn">変更する</button>
         </div>
     </form>
 

@@ -25,7 +25,7 @@ class Order_Ex
     private $main = 'order';
 
     /* 商品データ複数取得 */
-    public function get_multi($id,$limit = 25)
+    public function get_multi($user_id,$limit = 25)
     {
 
         try{
@@ -33,16 +33,62 @@ class Order_Ex
             $act = DB_function::create($this->main)
             ->connect('naisa')
             ->toSELECT()
-            ->toWHERE('deleted','IS','NULL')
-            ->toAND('user_id','=',$id)
+            ->toWHERE('user_id','=',$user_id)
             ->toDESC('id')
-            ->toLIMIT(25)
+            ->toLIMIT($limit)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
+            return $act;
+
+        }catch(Exception $ex){
+
             return [
-                'check' => true,
-                'data' => $act['data']
+                'check' => false
             ];
+
+        }
+    }
+
+    public function get_by_seller_id($user_id){
+
+        try{
+
+            $act = DB_function::create($this->main)
+            ->connect('naisa')
+            ->toSELECT()
+            ->subWHERE('EXISTS')
+            ->toSELECT(['id'],['item'],'item')
+            ->subconnect('item','item_id','id')
+            ->toAND('user_id','=',$user_id,'item')
+            ->subEND()
+            ->toDESC('id')
+            ->toLIMIT(1)
+            ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            return $act;
+
+        }catch(Exception $ex){
+
+            return [
+                'check' => false
+            ];
+
+        }
+    }
+
+    public function get_by_item_id($item_id){
+
+        try{
+
+            $act = DB_function::create($this->main)
+            ->connect('naisa')
+            ->toSELECT(['id','user_id'])
+            ->toWHERE('item_id','=',$item_id)
+            ->toDESC('id')
+            ->toLIMIT(1)
+            ->toEXECUTE(PDO::FETCH_ASSOC);
+
+            return $act;
 
         }catch(Exception $ex){
 
@@ -64,7 +110,6 @@ class Order_Ex
                 ->connect('naisa')
                 ->toSELECT()
                 ->toWHERE('id','=',$id)
-                ->toAND('deleted','IS','NULL')
                 ->toLIMIT(1)
                 ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -75,16 +120,12 @@ class Order_Ex
                 ->toSELECT()
                 ->toWHERE('item_id','=',$id)
                 ->toAND('user_id','=',$user_id)
-                ->toAND('deleted','IS','NULL')
                 ->toLIMIT(1)
                 ->toEXECUTE(PDO::FETCH_ASSOC);
 
             }
-        
-            return [
-                'check' => true,
-                'data' => $act['data']
-            ];
+    
+            return $act;
 
         }catch(Exception $ex){
 
@@ -104,14 +145,10 @@ class Order_Ex
             ->connect('naisa')
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
-            ->toAND('deleted','IS','NULL')
             ->toLIMIT($limit)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-                'data' => $act
-            ];
+            return $act;
 
         }catch(Exception $ex){
 

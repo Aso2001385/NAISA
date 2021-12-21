@@ -5,19 +5,18 @@ require_once 'Logic/Authent_Logic.php';
 if(isset($_GET['mode'])){
     $mode = $_GET['mode'];
 }else{
-    $mode = 0;
+    $mode = 2;
 }
 
 $output = [
-    '問題が発生しました<br>再度やり直してください',
-    '会員登録が完了しました<br><span>クレジットカードの登録に失敗しました</span>',
     '会員登録が完了しました',
-    '致命的なエラーが発生しました<br>再度やり直して下さい',
+    '会員登録が完了しました<br><span>クレジットカードの登録に失敗しました</span>',
+    '問題が発生しました<br>再度やり直してください',
 ];
 
 $btns = [
-    ['user_register','login','login','user_register'],
-    ['再入力','ログイン','ログイン','再入力']
+    ['login','login','user_register'],
+    ['ログイン','ログイン','再入力']
 ];
 
 $page_css = 'user_register_complete';

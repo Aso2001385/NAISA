@@ -1,20 +1,20 @@
 <?php 
 session_start();
 require_once 'Logic/Authent_Logic.php';
-if(isset($_SESSION['user'])){
-    header('Location:index.php');
-}
+require_once 'Logic/Validation/Special_Val.php';
 
-$page_css = 'card_register';
+if(isset($_SESSION['user'])) header('Location:index.php');
 
-if(!Authent_Logic::input_retention($_POST['user'])){
-    header('Location:user_complete.php?mode=0');
-}
+
+$act = Authent_Logic::input_retention($_POST['user']);
+
+if(!$act['check']) header("Location:user_register.php?column={$act['column']}&errors={$act['errors']}");
 
 $month_opt = '';
 $year_opt = '';
 
 for($i=1;$i<13;$i++){
+
     if($i<10){
         $month_opt .= "<option value='0{$i}'>0{$i}</option>";
     }else{
@@ -27,6 +27,7 @@ for($i=21;$i<31;$i++){
     $year_opt .= "<option value='{$i}'>{$i}</option>";
 }
 
+$page_css = 'card_register';
 require_once 'header.php';
 ?>
 

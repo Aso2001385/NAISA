@@ -89,10 +89,7 @@ class User_Ex
             ->toLIMIT(1)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-                'data' => $act['data']
-            ];
+            return $act;
 
         }catch(Exception $ex){
 

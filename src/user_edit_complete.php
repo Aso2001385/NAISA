@@ -15,8 +15,8 @@ $output = [
 ];
 
 $btns = [
-    ['user_edit','user_edit','user_edit'],
-    ['再入力','再入力','再入力']
+    ['user_edit','index','user_edit'],
+    ['再入力','トップページへ','再入力']
 ];
 
 $page_css = 'user_register_complete';

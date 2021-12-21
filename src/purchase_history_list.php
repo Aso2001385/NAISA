@@ -1,30 +1,47 @@
-<!--header-->
-<?php require('header.php'); ?>
-<link rel="stylesheet" href="css/purchase_history_list.css">
+<?php
+session_start();
+require_once 'Logic/Purchase_Logic.php';
 
-<!--main-->
-<div class="main">
-<div class="main-wrap flex">
-  <button class="list-button text">
-    購入履歴
-  </button>
-  <div class="list-wrap">
-    <div class="big-title border">購入履歴</div>
-    <?php
-      for($i=0; $i<7; $i++){
-        echo 
-        '<div class="img-contents border">
-          <div class="img-box"></div>
-          <div class="img-text">
-            <div class="text">商品名</div>
-            <div class="text">￥値段</div>
-          </div>
-        </div>';
-      }
-    ?>
+if(!isset($_SESSION['user'])) header('Location:index.php');
+
+$act = Purchase_Logic::order_list($_SESSION['user']['id']);
+
+$item_box = '';
+
+
+if(count($act)>0){
+  foreach($act as $item){
+    $item_box .= "<a href='item_detail.php?item_id={$item['item_id']}'><div class='item_box'><div class='image_box'><img src='img/item/{$item['image']}'></div>";
+    $item_box .= "<div class='item_info_box'><div class='item_name'>{$item['name']}</div><div class='item_price'>￥{$item['price']}</div></div></div></a>";
+  }  
+  unset($item);
+}else{
+  $item_box .= "<div class='item_box'>購入した商品はありません</div>";
+}
+
+$page_css = 'exhibition_list';
+require_once('header.php'); 
+
+?>
+
+<div class='contents'>
+
+  <div class="left">
+
+    <div class="link_frame">
+      <a href='exhibition_list.php'><div class="link_box">出品履歴</div></a>
+    </div>
+    
   </div>
-</div>
-</div>
 
-<!--footer-->
+  <div class="right">
+    <div class="heading_word">購入履歴</div>
+    <div class="item_list_frame">
+      <?php echo $item_box; ?>
+    </div>
+  </div> 
+
+</div>
+ 
+
 <?php require('footer.php'); ?>

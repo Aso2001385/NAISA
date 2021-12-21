@@ -5,18 +5,69 @@ require_once 'Logic/Authent_Logic.php';
 $page_css = 'user_register';
 $in_val = ['','','','','','','','',''];
 $i=0;
-if(isset($_SESSION['tmp_user'])){
-    
-    foreach($_SESSION['tmp_user'] as $row){
-        $in_val[$i++] = $row;
-    }
-    
-}
-if(isset($_SESSION['card'])){
-    unset($_SESSION['card']);
+
+if(isset($_SESSION['user'])){
+    header('Location:index.php');
 }
 
-// Authent_Logic::login_check();
+$option = [
+    'subject' => ['名前','ヨミガナ','ニックネーム','電話番号','メールアドレス','パスワード','パスワード(確認用)','郵便番号'],
+    'name' => ['name','name_read','nick_name','tel','mail','pass','re_pass','post'],
+    'type' => ['text','text','text','tel','mail','password','password','text'],
+    'minlength' => [2,2,1,11,0,8,8,7],
+    'maxlength' => [50,100,50,11,0,30,30,7],
+    'pattern' => ["^[a-zA-Z一-龠ぁ-んーァ-ヶー]+$","^[ァ-ヶー]+$",0,0,"^[a-zA-Z0-9@\-_.]+$","^[a-zA-Z0-9\-_]+$","^[a-zA-Z0-9\-_]+$","^[0-9]+$"],
+];
+
+$input_box = '';
+
+for($i=0; $i<7; $i++){
+
+    $input_box .= "<div class='input_box'><div class='subject'>{$option['subject'][$i]}";
+    if(isset($_GET['column'])){
+        if($_GET['column'] === $option['name'][$i]) $input_box .= "<span>:{$_GET['errors']}</span>"; ;
+    }
+    $input_box .="</div><div class='input'>";
+    $input_box .= "<input type='{$option['type'][$i]}' name='user[{$option['name'][$i]}]'";
+
+    if($option['minlength'][$i] != 0){
+        $input_box .= "minlength='{$option['minlength'][$i]}'";
+    }
+    if($option['maxlength'][$i] != 0){
+        $input_box .= "maxlength='{$option['maxlength'][$i]}'";
+    }
+    if($option['pattern'][$i] != 0){
+        $input_box .= "pattern='{$option['pattern'][$i]}'";
+    }
+
+    if(isset($_SESSION['tmp_user'])){
+        if($i!=5 && $i!=6){
+            $input_box .= "value='{$_SESSION['tmp_user'][$option['name'][$i]]}'";
+        }
+    }
+
+    $input_box .= "required></div></div>";
+
+}
+
+$address_box  = "<div class='input_box'><div class='subject'>郵便番号</div>";
+$address_box .= "<div class='input'><input type='text' name='user[post]' pattern='^[0-9]+$' minlength='7' maxlength='7'";
+if(isset($_SESSION['tmp_user'])){
+    $address_box .= "value='{$_SESSION['tmp_user']['post']}'";
+}
+$address_box .= "required></div></div>";
+
+$address_box  .= "<div class='input_box'><div class='subject'>住所</div>";
+$address_box .= "<div class='input'><input type='text' name='user[address]' maxlength='100'";
+if(isset($_SESSION['tmp_user'])){
+    $address_box .= "value='{$_SESSION['tmp_user']['address']}'";
+}
+$address_box .= "required></div></div>";
+
+
+
+if(isset($_SESSION['card'])) unset($_SESSION['card']);
+
 
 require_once 'header.php';
 ?>
@@ -27,45 +78,11 @@ require_once 'header.php';
         <div class="form_outer">
             <div class="form_inner">
                 <div class="heading_word">新規登録</div>
-                <div class="input_box">
-                    <div class="subject">名前</div>
-                    <div class="input"><input type="text" name="user[name]" pattern="^[a-zA-Z一-龠ぁ-んーァ-ヶー]+$" minlength="2" maxlength="50" value="<?php echo $in_val[0] ?>" required></div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">ヨミガナ</div>
-                    <div class="input"><input type="text" name="user[name_read]" pattern="^[ァ-ヶー]+$" minlength="2" maxlength="100" value="<?php echo $in_val[1] ?>" required></div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">ニックネーム</div>
-                    <div class="input"><input type="text" name="user[nick_name]" minlength="1" maxlength="50" value="<?php echo $in_val[2] ?>" required></div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">電話番号</div>
-                    <div class="input"><input type="tel" name="user[tel]" minlength="11" maxlength="12" value="<?php echo $in_val[3] ?>" required></div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">メールアドレス</div>
-                    <div class="input"><input type="mail" name="user[mail]" pattern="^[a-zA-Z0-9@-_.]+$" value="<?php echo $in_val[4] ?>" required></div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">パスワード</div>
-                    <div class="input"><input type="password" name="user[pass]" pattern="^[a-zA-Z0-9-_]+$" minlength="8" maxlength="30" required></div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">パスワード(確認)</div>
-                    <div class="input"><input type="password" name="user[re_pass]" pattern="^[a-zA-Z0-9-_]+$" minlength="8" maxlength="30" required></div>
-                </div>
+                <?php echo $input_box; ?>
             </div>
             <div class="form_inner">
                 <div class="heading_word">住所入力</div>
-                <div class="input_box">
-                    <div class="subject">郵便番号</div>
-                    <div class="input"><input type="text" name="user[post]" pattern="^[0-9]+$" minlength="7" maxlength="7" value="<?php echo $in_val[7] ?>" required></div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">住所</div>
-                    <div class="input"><input type="text" name="user[address]" value="<?php echo $in_val[8] ?>" required></div>
-                </div>
+                <?php echo $address_box ?>
             </div>
             <button class="next_btn">次へ</button>
         </div>

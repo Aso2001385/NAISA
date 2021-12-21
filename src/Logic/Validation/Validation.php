@@ -62,17 +62,17 @@ class Validation {
         $str_count = mb_strlen($this->receive);
         
         if($str_count == false){
-            throw new Exception("文字数チェック：入力値エラー");
+            throw new Exception("文字数チェック:入力値エラー");
         }
 
         if($str_count < $low){
             $this->check = false;
-            $this->errors["toLENGTH"] = ["low" => "下限値を下回っています"];  
+            $this->errors = "下限値を下回っています";  
         }
 
         if($str_count > $uper){
             $this->check = false;
-            $this->errors["toLENGTH"] = ["uper" => "上限値を上回っています"];
+            $this->errors = "上限値を上回っています";
         }
 
         return $this;
@@ -94,7 +94,7 @@ class Validation {
     public function toMAIL(){
         if (!preg_match('|^[0-9a-z_./?-]+@([0-9a-z-]+\.)+[0-9a-z-]+$|',$this->receive)) {
             $this->check = false;
-            $this->errors["toMAIL"] = ["case" => "メールアドレスのフォーマットではありません"];
+            $this->errors = "メールアドレスのフォーマットではありません";
         }
         return ['check'=>$this->check, 'errors'=>$this->errors];
     }
@@ -121,7 +121,12 @@ class Validation {
         
         if(!preg_match($permission,$this->receive)) {
             $this->check = false;
-            $this->errors["toEXECUTE"] = ["case" => "許可されていません"];
+            $this->errors = "許可されていない文字が含まれています";
+        }
+
+        if(strpos($this->receive,'<script>') !== false){
+            $this->check = false;
+            $this->errors = "悪質な文字が含まれています";
         }
 
         return ['check'=>$this->check, 'errors'=>$this->errors];

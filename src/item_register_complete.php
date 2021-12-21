@@ -15,7 +15,7 @@ $output = [
 ];
 
 $btns = [
-    ['item_register','item_new_detail','item_register'],
+    ['item_register','new_item_detail','item_register'],
     ['再入力','商品を確認','再入力',]
 ];
 

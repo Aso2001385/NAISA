@@ -2,7 +2,10 @@
 session_start();
 require_once 'Logic/Authent_Logic.php';
 
-// Authent_Logic::login_check();
+if(!isset($_SESSION['user'])){
+    header('Location:login.php');
+
+}
 
 $page_css = 'item_register';
 $in_item_val = ['','','','','','',''];
@@ -52,12 +55,6 @@ require_once 'header.php';
                     <div class="subject">商品名</div>
                     <div class="input">
                         <input type="text" name="item[name]" minlength="2" maxlength="50" value="<?php echo $in_item_val[$i++] ?>" required>
-                    </div>
-                </div>
-                <div class="input_box">
-                    <div class="subject">ヨミガナ(任意)</div>
-                    <div class="input">
-                        <input type="text" name="item[name_read]" pattern="^[ァ-ヶー]+$" minlength="2" maxlength="120" placeholder="カタカナのみ" value="<?php echo $in_item_val[$i++] ?>">
                     </div>
                 </div>
                 <div class="input_box">

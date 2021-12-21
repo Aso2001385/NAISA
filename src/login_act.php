@@ -10,8 +10,7 @@ if(!Special::login_val($_POST['user'])) header('Location:index.php');
 $act = Authent_Logic::user_login($_POST['user']);
 
 if($act['check']){
-    echo 'login成功';
-    // header('Location:index.php');
+    header('Location:index.php');
 }else{
     header('Location:login_failed.php');
 }

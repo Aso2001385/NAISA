@@ -21,7 +21,7 @@ deleted
 class Comments_Ex{
 
     private $item = 'item_comment';
-    private $order = 'item_order';
+    private $order = 'order_comment';
 
     public function get_item_comment($item_id)
     {
@@ -56,10 +56,7 @@ class Comments_Ex{
             ->toWHERE('item_id','=',$item_id,'item_comment')
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-                'data' => $act['data']
-            ];
+            return $act;
 
         }catch(Exception $ex){
 
@@ -78,7 +75,7 @@ class Comments_Ex{
             $column_name = [
                 'id',
                 'user_id',
-                'name',
+                'nick_name',
                 'contents',
                 'created',
                 'deleted',
@@ -100,11 +97,7 @@ class Comments_Ex{
             ->toWHERE('order_id','=',$order_id,'order_comment')
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-                'data' => $act
-            ];
-
+            return $act;
         }catch(Exception $ex){
 
             return [
@@ -148,9 +141,7 @@ class Comments_Ex{
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
-            return [
-                'check' => true,
-            ];
+            return $act;
 
         }catch(Exception $ex){
 

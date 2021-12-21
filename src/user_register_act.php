@@ -1,6 +1,15 @@
 <?php 
 session_start();
 require_once 'Logic/Authent_Logic.php';
+/*
+
+mode 登録状況
+
+    0 登録完了
+    1 カード登録失敗
+    2 問題発生
+
+*/
 
 try{
 
@@ -11,15 +20,20 @@ try{
     /* 前ページと入力フォームを介しているか */
     if(!isset($_POST['send']) || !isset($_SESSION['tmp_user'])){
         unset($_SESSION['tmp_user']);
-        header('Location:user_register_complete.php?mode=0');
+        header('Location:user_register_complete.php?mode=2');
     }
 
-    unset($_SESSION['tmp_user']['re_pass']);
     
     /* ユーザー登録処理 */
-    if(!Authent_Logic::user_register($_SESSION['tmp_user'])){
-        unset($_SESSION['tmp_user']);
-        header('Location:user_register_complete.php?mode=0');
+    $act = Authent_Logic::user_register($_SESSION['tmp_user']);
+
+    if(!$act['check']){
+        unset($_SESSION['card']);
+        if($act['error_type'] == 0){
+            header("Location:user_register.php?column={$act['column']}&errors={$act['errors']}");
+        }else{
+            header('Location:user_register_complete.php?mode=2');
+        }
     }
 
     /* カード登録処理 */
@@ -34,11 +48,11 @@ try{
     }
 
     unset($_SESSION['tmp_user']);
-    header('Location:user_register_complete.php?mode=2');
+    header('Location:user_register_complete.php?mode=0');
 
 }catch(Exception $e){
     $message = $e->getMessage();
-    header("Location:user_register_complete.php?mode=3");
+    header("Location:user_register_complete.php?mode=2");
 }
 
 

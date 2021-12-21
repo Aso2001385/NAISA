@@ -62,7 +62,7 @@
                 if(mb_strlen($ans) == mb_strlen($receive)){
                     return [
                         'check' => false,
-                        'errors' => '入力必須文字が入力されていません'
+                        'errors' => '入力必須の文字が入力されていません'
                     ];
                 }
                 $receive = $ans;
@@ -109,6 +109,18 @@
             ->toEXECUTE();
 
             return $checkData;
+        }
+
+        public static function num_check($receive,$row,$up){
+
+            $checkData = Validation::creat()->input($receive)
+            ->charType(0,0,1,0,0,0,0)
+            ->toSYMBOL()
+            ->toLENGTH($row,$up)
+            ->toEXECUTE();
+
+            return $checkData;
+
         }
 }
 

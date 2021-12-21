@@ -45,3 +45,8 @@ input{
     margin-bottom: 20%;
     background-color: #D11892;
 }
+
+span{
+    color: darkred;
+    font-size: 0.8em;
+}

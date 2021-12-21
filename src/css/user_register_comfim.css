@@ -23,6 +23,11 @@
 
 .subject{
     text-align: left;
+    margin-top: 0.5em;
+}
+.skip_subject{
+    margin-top: 5%;
+    text-align: center;
 }
 
 .next_btn{

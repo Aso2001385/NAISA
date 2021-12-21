@@ -53,15 +53,14 @@ class DB_function{
 
     }
 
-    public function toSELECT ( $columnName=[], $tableName = []) {
+    public function toSELECT ( $columnName=[], $tableName = NULL , $from_name = NULL) {
 
         $this->sql .= "SELECT ";
 
-        if(count($tableName)>0){
+        if(is_array($tableName)){
 
             if(count($columnName)>0){
                 for ($i=0; $i<count($columnName); $i++) {
-    
                     if(preg_match('/[A-Z]/',$columnName[$i])){
                         $this->sql .= $columnName[$i];
                     }else{
@@ -97,11 +96,19 @@ class DB_function{
 
         }
 
+        if(isset($from_name)){
+            $this->sql .= " FROM `".$from_name."`";
+        }else if(isset($tableName)){
+            if(is_array($tableName)){
+                $this->sql .= " FROM `".$this->mainTableName."`";
+            }else{
+                $this->sql .= " FROM `".$tableName."`";
+            }
+        }else{
+            $this->sql .= " FROM `".$this->mainTableName."`";
+        }
 
-
-
-        $this->sql .= " FROM `".$this->mainTableName."`";
-
+        
         return $this;
     }
 
@@ -325,6 +332,15 @@ class DB_function{
         }
         return $this;
 
+    }
+
+    public function subconnect($table_name,$main_column,$sub_column){
+
+        $this->sql .= "WHERE `{$this->mainTableName}`.`{$main_column}` = ";
+        $this->sql .= " `{$table_name}`.`$sub_column` ";
+
+
+        return $this;
     }
 
     public function toAND ($columnName,$cond,$checkVariable,$tableName=0){
@@ -755,9 +771,14 @@ class DB_function{
 
     }
 
-    public function toLIMIT($limit){
+    public function toLIMIT($start_point,$limit=0){
 
-        $this->sql .= " LIMIT {$limit}";
+        if($limit == 0){
+            $this->sql .= " LIMIT {$start_point}";
+        }else{
+            $this->sql .= " LIMIT {$start_point} , {$limit}";
+        }
+   
 
         return $this;
 
@@ -793,22 +814,33 @@ class DB_function{
        
             if($this->stats == 0){
                 if($mode == 0){
+
                     $mode_commit = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     for($i=0; $i<count($mode_commit); $i++){
                         $mode_commit[$i] = array_values($mode_commit[$i]);
                     }
-                    return ['check' => true,'data' => $mode_commit];
+
+                    return [
+                        'check' => true,
+                        'data' => $mode_commit
+                    ];
+                    
                 }else{
+
                     if($stmt->rowCount() > 1){
+
                         return [
                             'check' => true,
                             'data' => $stmt->fetchAll($mode)
                         ];
+
                     }else{
+
                         return [
                             'check' => true,
                             'data' => $stmt->fetch($mode)
                         ];
+
                     }
                 }
             }else{

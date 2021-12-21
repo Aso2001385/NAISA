@@ -1,0 +1,207 @@
+.contents{
+    width: 80%;
+    height: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.left_right{
+    width: 100%;
+    display: flex;
+}
+
+.left_side{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.left_back{
+    padding: 0 5% 0 5%;
+}
+
+.right_side{
+
+    width: 50%;
+}
+
+.info_box{
+    border-top: solid #B1685D;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+#under_box{
+    border-bottom: solid #B1685D;
+}
+
+#item_info{
+    display: flex;
+}
+
+.item_image{
+    width: 20%;
+    border: solid #B1685D;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner_frame{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5% 0 5%;
+}
+
+.inner_box{
+    width: 100%;
+}
+
+.left_subject{
+    font-size: 0.8em;
+}
+
+.heading_word{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight:300;
+}
+
+.input_box{
+    margin-top: 3%;
+}
+
+.subject{
+    text-align: left;
+}
+
+.text{
+    font-size: 1.2em;
+}
+
+.link{
+    margin-bottom: 50px;
+}
+
+img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.send_btn{
+    width: 100%;
+    height: 10%;
+}
+
+.send{
+    width: 100%;
+    height: 3em;
+    color: white;
+    background-color: #D11892;
+}
+
+.comment_list_frame{
+    position: relative;
+    width: 100%;
+    height: 60%;
+}
+
+.comment_list_box{
+    position: absolute;
+    width: 100%;
+    height: 85%;
+    padding: 1%;
+    background-color: white;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+.comment_list_box::-webkit-scrollbar{
+    display: none;
+}
+
+.comment_input_frame{
+    position: relative;
+    height:30%;
+}
+
+.comment_input_box{
+   
+    height: 100%;
+}
+
+form{
+
+    height: 100%;
+}
+
+.comment_btn_frame{
+    width: 100%;
+    height: 25%;
+}
+
+.comment_btn{
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #D11892;
+}
+
+textarea{
+    position: absolute;
+    width: 100%;
+    height: 65%;
+    border-radius: 5px;
+    resize: none;
+    bottom: 0;
+}
+
+#seller_btn{
+    background-color: #0077FF;
+}
+
+#buyer_btn{
+    background-color: #D11892;
+}
+
+.comment_box{
+    width: 100%;
+    padding: 1%;
+    border-top: rgb(200,200,200) solid ;
+    border-bottom: rgb(200,200,200) solid ;
+    margin-bottom: 1em;
+}
+
+.comment_info{
+    width: 100%;
+    display: flex;
+    position: relative;
+    border-bottom: gainsboro solid;
+
+}
+
+.comment_right_box{
+    width: 30%;
+    position: absolute;
+    display: flex;
+    right: 0;
+    text-align: right;
+}
+
+.comment_date{
+    width: 50%;
+    text-align: right
+}
+
+.comment_report{
+    width: 50%;
+    text-align: right
+}
+
+.comment_content{
+padding-top: 1em;
+padding-bottom: 1em;
+}
