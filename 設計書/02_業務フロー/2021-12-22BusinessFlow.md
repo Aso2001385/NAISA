@@ -9,8 +9,8 @@
   hnote across: ログインフロー
  end
  
- alt 購入目的
-   hnote across: 商品購入フロー
+  購入目的
+   hnote across: 購入フロー
  else 出品目的
    hnote across: 出品フロー
  end
