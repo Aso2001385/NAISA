@@ -62,15 +62,15 @@
 ```uml
 @startuml
  center header <size:20><b>ログアウト処理</b></size>
+ 
+ participant ユーザー as user
+ participant Webサーバー as web
+ participant DBサーバー as db
+ 
  loop ログアウト成功まで
-  ユーザー -> Webサーバー:ログアウト
-  Webサーバー -> DBサーバー:ログアウト申請
-  DBサーバー -> DBサーバー:ログアウト処理
-  alt 処理成功
-   DBサーバー -> Webサーバー:ログアウト処理結果
-  else 処理失敗
-   Webサーバー ->ユーザー:ログアウトメッセージ表示
-  end
+  user -> web:ログアウトリクエスト
+  web -> web:ログアウト処理(セッション消去)
+  web -> user:処理結果
  end
 @enduml
 ```
