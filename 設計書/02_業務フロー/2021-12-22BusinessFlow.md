@@ -64,7 +64,7 @@
  center header <size:20><b>ログアウト処理</b></size>
  
  participant ユーザー as user
- participant Webサーバー as we
+ participant Webサーバー as web
  
  loop ログアウト成功まで
   user -> web:ログアウトリクエスト
