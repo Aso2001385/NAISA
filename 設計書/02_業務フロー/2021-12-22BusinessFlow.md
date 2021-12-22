@@ -29,7 +29,7 @@
    hnote across: 購入処理
   end
 
- end
+
  
  loop 出品終了まで
   hnote across: 出品処理
