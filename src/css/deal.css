@@ -1,0 +1,33 @@
+
+.main-right {
+  width: 400px;
+}
+
+.clear-notice-button {
+  width: 100%;
+  height: 50px;
+}
+
+.submit-button {
+  width: 100%;
+  height: 50px;
+}
+
+.deal-message-box {
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+.deal-input-box {
+  padding: 15px 0 0 15px;
+  width: 100%;
+  height: 150px;
+}
+
+.buy-submit-button {
+  width: 400px;
+  height: 70px;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
