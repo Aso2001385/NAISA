@@ -9,9 +9,9 @@
   hnote across: ログインフロー
  end
  
- alt アイウエオ
+ alt 商品購入フロー
    hnote across: ユーザー登録フロー
- else かきくけこ
+ else 出品フロー
    hnote across: ユーザー登録フロー
  end
 
