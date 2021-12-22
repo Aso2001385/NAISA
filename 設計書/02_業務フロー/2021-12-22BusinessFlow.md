@@ -9,8 +9,10 @@
   hnote across: ログインフロー
  end
  
- alt
- else
+ alt アイウエオ
+   hnote across: ユーザー登録フロー
+ else かきくけこ
+   hnote across: ユーザー登録フロー
  end
 
  loop 購入処理成功まで
