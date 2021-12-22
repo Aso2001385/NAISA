@@ -4,14 +4,18 @@
 
  opt ログイン
   alt 未登録
-  hnote across: ユーザー登録処理
+  hnote across: ユーザー登録フロー
   end
-  hnote across: ログイン処理
+  hnote across: ログインフロー
+ end
+ 
+ alt
+ else
  end
 
  loop 購入処理成功まで
   loop 商品を見つけるまで
-   hnote across: 商品サーチ処理
+   hnote across: 商品検索フロー
   end
 
  opt 商品クリック(詳細表示)
