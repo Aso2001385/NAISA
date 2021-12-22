@@ -43,10 +43,11 @@
    end
   end
   
-  user -> web:ログイン
-  web -> db:ログイン
-  db -> db:ログイン処理および認証
-  db -> web:認証結果
+  user -> web:ログイン情報入力
+  web -> db:mail照合リクエスト
+  db -> db:mail検索処理
+  db -> web:検索結果
+  web -> web:パスワード照合処理
   
   alt 認証成功
    web ->user:成功表示
