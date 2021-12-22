@@ -1,7 +1,7 @@
 ```uml 
 @startuml 
  center header <size:20><b>メイン処理</b></size>
- actor ユーザー as user
+ participant ユーザー as user
  participant Webサーバー as web
  participant DBサーバー as db
 
