@@ -9,7 +9,7 @@
   hnote across: ログインフロー
  end
  
-  購入目的
+ opt 購入目的
    hnote across: 購入フロー
  else 出品目的
    hnote across: 出品フロー
