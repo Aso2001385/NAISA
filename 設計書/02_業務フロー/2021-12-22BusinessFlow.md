@@ -6,9 +6,6 @@
  participant DBサーバー as db
 
  opt ログイン
-  alt 未登録
-  hnote across: ユーザー登録フロー
-  end
   hnote across: ログインフロー
  end
  
