@@ -9,32 +9,12 @@
   hnote across: ログインフロー
  end
  
- opt 購入目的
-   hnote across: 購入フロー
- else 出品目的
+ opt 出品目的
    hnote across: 出品フロー
+ else 購入目的
+   hnote across: 購入フロー
  end
-
-  opt いいね情報更新
-   ユーザー -> Webサーバー:いいね情報更新(更新申請)
-   Webサーバー -> DBサーバー:いいね情報更新処理
-   DB -> Webサーバー:処理結果
-   Webサーバー -> ユーザー:いいねリスト更新
-  end
-
-  opt 購入
-   opt 未ログイン
-     hnote across: ログイン処理
-   end
-   hnote across: 購入処理
-  end
-
-
  
- loop 出品終了まで
-  hnote across: 出品処理
- end
-
  opt ログアウト
   hnote across: ログアウト処理
  end
