@@ -9,22 +9,11 @@
   hnote across: ログインフロー
  end
  
- alt 商品購入フロー
-   hnote across: ユーザー登録フロー
- else 出品フロー
-   hnote across: ユーザー登録フロー
+ alt 購入目的
+   hnote across: 商品購入フロー
+ else 出品目的
+   hnote across: 出品フロー
  end
-
- loop 購入処理成功まで
-  loop 商品を見つけるまで
-   hnote across: 商品検索フロー
-  end
-
- opt 商品クリック(詳細表示)
-ユーザー -> Webサーバー : 商品クリック
-Webサーバー -> DBサーバー : 商品照会
-DBサーバー -> Webサーバー : 照会結果
-Webサーバー -> ユーザー : 詳細情報表示
 
   opt いいね情報更新
    ユーザー -> Webサーバー:いいね情報更新(更新申請)
