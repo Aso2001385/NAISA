@@ -1,7 +1,9 @@
 ```uml 
 @startuml 
  center header <size:20><b>メイン処理</b></size>
- ユーザー
+ actor ユーザー as user
+ participant Webサーバー as web
+ participant DBサーバー as db
  
  opt 未登録
  ユーザー -> Webサーバー : ユーザー登録(情報を入力)
