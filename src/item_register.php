@@ -47,7 +47,7 @@ require_once 'header.php';
 ?>
 
 <div class="contents">
-    <form action="item_register_comfim.php" enctype="multipart/form-data" method="post">
+    <form action="item_register_confirm.php" enctype="multipart/form-data" method="post">
         <div class="form_outer">
             <div class="form_inner">
                 <div class="heading_word">出品する</div>

@@ -3,7 +3,7 @@ session_start();
 require_once 'Logic/Purchase_Logic.php';
 require_once 'Logic/Exhibit_Logic.php';
 
-$act = Exhibit_Logic::item_comfim($_SESSION['user']['id']);
+$act = Exhibit_Logic::item_confirm($_SESSION['user']['id']);
 
 if($act['check'] && !is_bool($act['data'])){
     $item = $act['item'];
@@ -58,7 +58,7 @@ if($seller_flg){
     $btns = "<button formaction='item_delete.php' class='act_btn' id='seller_btn'>商品を削除する</button>";
     $item_act_btn = "<div class='seller_btn_frame'>{$btns}</div>";
 }else{
-    $buy_btn   = "<div class='buyer_btn_frame' id='buy_btn_frame'><button formaction='buy_comfim.php' class='act_btn' id='buy_act_btn'>購入手続きへ</button></div>";
+    $buy_btn   = "<div class='buyer_btn_frame' id='buy_btn_frame'><button formaction='buy_confirm.php' class='act_btn' id='buy_act_btn'>購入手続きへ</button></div>";
     $act_btns  = "<div class='buyer_btns'><button formaction='like.php' class='act_btn'>いいねする</button></div>";
     $act_btns .= "<div class='buyer_btns'><button formaction='item_report.php' class='act_btn'>通報する</button></div>";
     

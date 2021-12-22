@@ -27,7 +27,7 @@ require_once 'header.php';
 
 <div class="contents">
 
-    <form action="card_register_comfim.php" method="post">
+    <form action="card_register_confirm.php" method="post">
         <div class="form_outer">
             <div class="form_inner">
                 <div class="heading_word">お支払い方法登録</div>

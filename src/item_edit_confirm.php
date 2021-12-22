@@ -57,7 +57,7 @@ foreach($keys as $key){
     $user_output .= "<div class='input_box'>{$tags}</div>";
 }
 
-$page_css = 'item_register_comfim';
+$page_css = 'item_register_confirm';
 require_once 'header.php';
 
 ?>

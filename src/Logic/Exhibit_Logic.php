@@ -204,7 +204,7 @@ class Exhibit_Logic{
     
 
     /* 登録した商品の確認(商品詳細) */
-    public static function item_comfim($user_id)
+    public static function item_confirm($user_id)
     {
 
         $item_ex = new Item_Ex();

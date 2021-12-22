@@ -75,7 +75,7 @@ if($seller_flg){
 
     if($item['start'] === NULL){
 
-        $buy_btn .= "<button formaction='buy_comfim.php' class='act_btn' id='buy_act_btn'>購入手続きへ</button></div>";
+        $buy_btn .= "<button formaction='buy_confirm.php' class='act_btn' id='buy_act_btn'>購入手続きへ</button></div>";
 
     }else{
 

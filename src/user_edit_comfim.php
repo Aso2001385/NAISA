@@ -22,7 +22,7 @@ for($i=0; $i<7; $i++){
     $user_output .= "<div class='input_box'>{$tags}</div>";
 }
 
-$page_css = 'user_register_comfim';
+$page_css = 'user_register_confirm';
 require_once 'header.php';
 
 ?>

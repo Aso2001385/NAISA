@@ -49,7 +49,7 @@ require_once 'header.php';
 ?>
 
 <div class="contents">
-    <form action="item_edit_comfim.php" enctype="multipart/form-data" method="post">
+    <form action="item_edit_confirm.php" enctype="multipart/form-data" method="post">
         <input type="hidden" name="now_image_name" value="<?php echo $image ?>">
         <input type="hidden" name="now_item_id" value="<?php echo $id ?>">
         <div class="form_outer">

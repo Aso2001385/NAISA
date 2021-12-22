@@ -25,7 +25,7 @@ foreach($names[0] as $row){
 
 $card_output .= "<input type='hidden' name='card[security]' value='{$card['security']}'>";
 
-$page_css = 'user_register_comfim';
+$page_css = 'user_register_confirm';
 require_once 'header.php';
 
 ?>

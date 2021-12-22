@@ -69,7 +69,7 @@ if($card['check']){
 $card_output .= "<option value='0'>新規カードを登録する</option>";
 $card_output .= "</select></div>";
 
-$page_css = 'buy_comfim';
+$page_css = 'buy_confirm';
 
 require_once 'header.php';
 

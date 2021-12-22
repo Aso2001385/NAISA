@@ -33,7 +33,7 @@ require_once 'header.php';
 
 <div class="contents">
 
-    <form action="user_register_comfim.php" method="post">
+    <form action="user_register_confirm.php" method="post">
         <div class="form_outer">
             <div class="form_inner">
                 <div class="heading_word">お支払い方法登録</div>
@@ -57,7 +57,7 @@ require_once 'header.php';
             </div>
             <button class="next_btn">次へ</button>
             <div class="link">
-                <a href="user_register_comfim.php">登録せずにスキップ</a>
+                <a href="user_register_confirm.php">登録せずにスキップ</a>
             </div>
         </div>
     </form>
