@@ -4,18 +4,6 @@
  actor ユーザー as user
  participant Webサーバー as web
  participant DBサーバー as db
- 
- opt 未登録
- ユーザー -> Webサーバー : ユーザー登録(情報を入力)
- Webサーバー -> DBサーバー : ユーザー登録
- DBサーバー -> DBサーバー : 登録処理
- DBサーバー -> Webサーバー : 登録結果
-
- alt 登録成功
- Webサーバー -> ユーザー : 登録成功
- else 登録失敗
- Webサーバー -> ユーザー : 登録失敗
-end
 
  opt ログイン
   alt 未登録
