@@ -1,4 +1,10 @@
 ### メイン処理
+
+## ログインフロー
+## 出品フロー
+## 購入フロー
+## ログアウトフロー
+
 ```uml 
 @startuml 
  center header <size:20><b>メイン処理</b></size>
@@ -21,6 +27,8 @@
  end
 @enduml
 ```
+
+## ログイン
 
 ```uml
 @startuml
@@ -45,8 +53,8 @@
   end
   
   user -> web:ログイン情報入力
-  web -> db:mail照合リクエスト
-  db -> db:mail検索処理
+  web -> db:メール照合リクエスト
+  db -> db:メール検索処理
   db -> web:検索結果
   web -> web:パスワード照合処理
   
@@ -74,22 +82,6 @@
  end
 @enduml
 ```
-
-```uml
-@startuml
- center header <size:20><b>ログアウト処理</b></size>
- 
- participant ユーザー as user
- participant Webサーバー as web
- 
- loop ログアウト成功まで
-  user -> web:ログアウトリクエスト
-  web -> web:ログアウト処理(セッション消去)
-  web -> user:処理結果
- end
-@enduml
-```
-
 
 ```uml
 @startuml
