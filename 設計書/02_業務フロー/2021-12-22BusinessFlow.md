@@ -87,9 +87,9 @@
 
 ## 出品者フロー
 * 出品フロー
-  * 商品確認フロー
 * 商品編集フロー
-  * 商品確認フロー
+
+### 出品フロー
 
 ```uml
 @startuml
@@ -110,29 +110,45 @@
  web -> seller:結果表示
  
  opt 商品確認
- seller -> web:商品確認
- web -> db:最新レコード取得リクエスト
- db -> db:検索処理
- db -> web:処理結果
- web -> seller:結果表示
+  seller -> web:商品確認
+  web -> db:最新レコード取得リクエスト
+  db -> db:検索処理
+  db -> web:処理結果
+  web -> seller:結果表示
+ end
  
 @enduml
 ```
 
+### 商品編集フロー
 
 ```uml
 @startuml
- center header <size:20><b>商品確認フロー</b></size>
+ center header <size:20><b>商品編集フロー</b></size>
   
  participant 出品者 as seller
  participant Webサーバー as web
  participant DBサーバー as db
  
- seller -> web:商品確認
- web -> db:更新日時最新レコード取得リクエスト
+ seller -> web:商品情報取得
+ web -> db:商品情報取得リクエスト
  db -> db:検索処理
  db -> web:処理結果
+ web -> seller:商品情報表示
+ 
+ seller -> web:更新情報入力
+ web -> db:商品情報更新
+ db -> db:更新処理
+ db -> web:処理結果
  web -> seller:結果表示
+ 
+ opt 商品確認
+  seller -> web:商品確認
+  web -> db:最新レコード取得リクエスト
+  db -> db:検索処理
+  db -> web:処理結果
+  web -> seller:結果表示
+ end
  
 @enduml
 ```
