@@ -85,6 +85,13 @@
 @enduml
 ```
 
+## 出品者フロー
+* 出品フロー
+  * 商品確認フロー
+* 商品編集フロー
+  * 商品確認フロー
+  * 
+
 ```uml
 @startuml
  center header <size:20><b>出品フロー</b></size>
@@ -113,6 +120,8 @@
 @enduml
 ```
 
+## 購入者フロー
+
 
 ```uml
 @startuml
@@ -138,6 +147,8 @@
  end
 @enduml
 ```
+
+## 購入フロー
 
 ```uml
 @startuml
