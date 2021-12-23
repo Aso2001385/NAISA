@@ -93,6 +93,52 @@
 
 ```uml
 @startuml
+ center header <size:20><b>出者者フロー</b></size>
+  
+ participant 出品者 as seller
+ participant Webサーバー as web
+ participant DBサーバー as db
+ 
+ alt 出品
+ 
+ hnote across: 出品フロー
+ 
+ else 編集
+ 
+  opt 商品検索
+   alt 出品リスト
+    seller -> web:出品リスト
+    web -> db:ユーザーid
+ 
+  
+  web -> web:画像保存
+  web -> db:登録リクエスト
+  db -> db:登録処理
+  db -> web:処理結果
+  alt 失敗
+  web -> web:画像消去
+  end
+  web -> seller:結果表示
+ 
+ end
+
+
+ 
+ opt 商品確認
+  seller -> web:商品確認
+  web -> db:最新レコード取得リクエスト
+  db -> db:検索処理
+  db -> web:処理結果
+  web -> seller:結果表示
+ end
+ 
+@enduml
+```
+
+## 出品フロー
+
+```uml
+@startuml
  center header <size:20><b>出品フロー</b></size>
   
  participant 出品者 as seller
