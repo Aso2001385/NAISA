@@ -108,6 +108,12 @@
  end
  web -> seller:結果表示
  
+ opt 商品確認
+ seller -> web:商品確認
+ web -> db:最新レコード取得リクエスト
+ db -> db:検索処理
+ db -> web:処理結果
+ web -> seller:結果表示
  
 @enduml
 ```
