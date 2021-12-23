@@ -98,11 +98,14 @@
  participant Webサーバー as web
  participant DBサーバー as db
 
- seller -> web:
- web -> web:
- web -> db:
- db -> web:
- web -> seller:
+ seller -> web:商品情報入力
+ web -> web:画像保存
+ web -> db:登録リクエスト
+ db -> web:処理結果
+ alt 失敗
+ 画像消去
+ end
+ web -> seller:結果表示
  
  
 @enduml
