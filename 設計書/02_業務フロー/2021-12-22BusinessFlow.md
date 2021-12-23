@@ -103,7 +103,7 @@
  web -> db:登録リクエスト
  db -> web:処理結果
  alt 失敗
- 画像消去
+ web -> web:画像消去
  end
  web -> seller:結果表示
  
