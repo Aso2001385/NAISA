@@ -101,6 +101,7 @@
  seller -> web:商品情報入力
  web -> web:画像保存
  web -> db:登録リクエスト
+ db -> db:登録処理
  db -> web:処理結果
  alt 失敗
  web -> web:画像消去
