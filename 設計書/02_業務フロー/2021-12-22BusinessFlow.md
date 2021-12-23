@@ -119,6 +119,24 @@
 @enduml
 ```
 
+
+```uml
+@startuml
+ center header <size:20><b>商品確認フロー</b></size>
+  
+ participant 出品者 as seller
+ participant Webサーバー as web
+ participant DBサーバー as db
+ 
+ seller -> web:商品確認
+ web -> db:更新日時最新レコード取得リクエスト
+ db -> db:検索処理
+ db -> web:処理結果
+ web -> seller:結果表示
+ 
+@enduml
+```
+
 ## 購入者フロー
 
 
