@@ -28,7 +28,7 @@
 @enduml
 ```
 
-## ログイン
+## ログインフロー
 
 ```uml
 @startuml
@@ -67,6 +67,8 @@
   
 @enduml
 ```
+
+## ログアウトフロー
 
 ```uml
 @startuml
