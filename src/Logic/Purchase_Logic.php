@@ -1,12 +1,12 @@
 <?php
 
-require_once 'Validation/Special_Val.php';
-require_once 'Validation/Validation.php';
-require_once 'Ex/Item_Ex.php';
-require_once 'Ex/User_Ex.php';
-require_once 'Ex/Comment_Ex.php';
-require_once 'Ex/Order_Ex.php';
-require_once 'Ex/Card_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Special_Val.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Validation.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Item_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/User_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Comment_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Order_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Card_Ex.php';
 
 
 /* 購入系 */

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'Logic/Info_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Info_Logic.php';
 if(!isset($_SESSION['user'])) header('Location:login.php');
 
 $act = Info_Logic::get_multi($_SESSION['user']['id']);

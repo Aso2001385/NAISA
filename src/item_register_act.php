@@ -1,7 +1,7 @@
 <?php 
 session_start();
-require_once 'Logic/Authent_Logic.php';
-require_once 'Logic/Exhibit_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
 try{
 

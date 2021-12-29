@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 
 if(!isset($_SESSION['user'])){
     header('Location:login.php');
@@ -54,19 +54,19 @@ require_once 'header.php';
                 <div class="input_box">
                     <div class="subject">商品名</div>
                     <div class="input">
-                        <input type="text" name="item[name]" minlength="2" maxlength="50" value="<?php echo $in_item_val[$i++] ?>" required>
+                        <input type="text" name="item[name]" minlength="2" maxlength="50" value="<?php echo $in_item_val[$i++] ?>" require_onced>
                     </div>
                 </div>
                 <div class="input_box">
                     <div class="subject">商品画像</div>
                     <div class="input">
-                        <input type="file" name="image" accept="image/*" value="<?php echo $in_image_val ?>" required>
+                        <input type="file" name="image" accept="image/*" value="<?php echo $in_image_val ?>" require_onced>
                     </div>
                 </div>
                 <div class="input_box">
                     <div class="subject">価格</div>
                     <div class="input">
-                        <input type="text" name="item[price]" minlength="3" maxlength="6" value="<?php echo $in_item_val[$i++] ?>" pattern="^[0-9]+$" placeholder="半角数字、100~999999まで" required>
+                        <input type="text" name="item[price]" minlength="3" maxlength="6" value="<?php echo $in_item_val[$i++] ?>" pattern="^[0-9]+$" placeholder="半角数字、100~999999まで" require_onced>
                     </div>
                 </div>
                 <div class="input_box">
@@ -88,7 +88,7 @@ require_once 'header.php';
                 <div class="input_box">
                     <div class="subject">発送までの日数</div>
                     <div class="input">
-                        <select name="item[delivery_days]" required>
+                        <select name="item[delivery_days]" require_onced>
                             <?php echo $opt_out[2] ?>
                         </select>
                     </div>
@@ -96,7 +96,7 @@ require_once 'header.php';
                 <div class="input_box">
                     <div class="subject">商品説明</div>
                     <div class="input">
-                        <textarea name="item[description]" cols="21" rows="6" placeholder="255文字まで" required><?php echo $in_item_val[6] ?></textarea>
+                        <textarea name="item[description]" cols="21" rows="6" placeholder="255文字まで" require_onced><?php echo $in_item_val[6] ?></textarea>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <?php 
 
-    require('Validation.php');
+    require_once('/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Validation.php');
 
     class Basic_Val{
 

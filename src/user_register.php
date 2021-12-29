@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 
 $page_css = 'user_register';
 $in_val = ['','','','','','','','',''];
@@ -46,7 +46,7 @@ for($i=0; $i<7; $i++){
         }
     }
 
-    $input_box .= "required></div></div>";
+    $input_box .= "require_onced></div></div>";
 
 }
 
@@ -55,14 +55,14 @@ $address_box .= "<div class='input'><input type='text' name='user[post]' pattern
 if(isset($_SESSION['tmp_user'])){
     $address_box .= "value='{$_SESSION['tmp_user']['post']}'";
 }
-$address_box .= "required></div></div>";
+$address_box .= "require_onced></div></div>";
 
 $address_box  .= "<div class='input_box'><div class='subject'>住所</div>";
 $address_box .= "<div class='input'><input type='text' name='user[address]' maxlength='100'";
 if(isset($_SESSION['tmp_user'])){
     $address_box .= "value='{$_SESSION['tmp_user']['address']}'";
 }
-$address_box .= "required></div></div>";
+$address_box .= "require_onced></div></div>";
 
 
 

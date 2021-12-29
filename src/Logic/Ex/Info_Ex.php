@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DB_Function.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/DB_Function.php';
 
 class Info_Ex
 {
@@ -18,7 +18,7 @@ class Info_Ex
         ];
 
         $act = DB_function::create($this->main)
-        ->connect('naisa')
+        ->connect()
         ->toINSERT($data)
         ->toEXECUTE();
 
@@ -27,7 +27,7 @@ class Info_Ex
     public function get_by_user_id($user_id)
     {
         $act = DB_function::create($this->main)
-        ->connect('naisa')
+        ->connect()
         ->toSELECT(['id','subject'])
         ->toWHERE('user_id','=',$user_id)
         ->toDESC('id')
@@ -41,7 +41,7 @@ class Info_Ex
     public function get_by_id($id){
 
         $act = DB_function::create($this->main)
-        ->connect('naisa')
+        ->connect()
         ->toSELECT()
         ->toWHERE('id','=',$id)
         ->toDESC('id')

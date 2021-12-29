@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DB_Function.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/DB_Function.php';
 
 
 /*
@@ -50,7 +50,7 @@ class Comments_Ex{
             ];
 
             $act = DB_function::create($this->item)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT($column_name,$table_name)
             ->toJOIN('user','user_id','id')
             ->toWHERE('item_id','=',$item_id,'item_comment')
@@ -91,7 +91,7 @@ class Comments_Ex{
             ];
 
             $act = DB_function::create($this->order)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT($column_name,$table_name)
             ->toJOIN('user','user_id','id')
             ->toWHERE('order_id','=',$order_id,'order_comment')
@@ -113,7 +113,7 @@ class Comments_Ex{
         try{
 
             $act = DB_function::create($this->item)
-            ->connect('naisa')
+            ->connect()
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -137,7 +137,7 @@ class Comments_Ex{
         try{
 
             $act = DB_function::create($this->order)
-            ->connect('naisa')
+            ->connect()
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -162,7 +162,7 @@ class Comments_Ex{
             $datetime = $datetime_ins->format('Y-m-d H:i:s');
 
             $act = DB_function::create($this->item)
-            ->connect('naisa')
+            ->connect()
             ->toUPDATE(['deleted'],[$datetime])
             ->toWHERE('item_id','=',$id)
             ->toLIMIT(1)
@@ -192,7 +192,7 @@ class Comments_Ex{
             $datetime = $datetime_ins->format('Y-m-d H:i:s');
 
             $act = DB_function::create($this->order)
-            ->connect('naisa')
+            ->connect()
             ->toUPDATE(['deleted'],[$datetime])
             ->toWHERE('item_id','=',$id)
             ->toLIMIT(1)

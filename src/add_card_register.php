@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 if(!isset($_SESSION['user'])){
     header('Location:index.php');
 }
@@ -33,7 +33,7 @@ require_once 'header.php';
                 <div class="heading_word">お支払い方法登録</div>
                 <div class="input_box">
                     <div class="subject">カード番号</div>
-                    <div class="input"><input type="text" name="card[code]" minlength="14" maxlength="19" pattern="^[0-9]+$" required></div>
+                    <div class="input"><input type="text" name="card[code]" minlength="14" maxlength="19" pattern="^[0-9]+$" require_onced></div>
                 </div>
                 <div class="input_box" id="limits">
                     <div class="subject">有効期限</div>
@@ -46,7 +46,7 @@ require_once 'header.php';
                 </div>
                 <div class="input_box" id="limits">
                     <div class="subject">セキュリティコード</div>
-                    <div class="input lim"><input class="limit" type="text" name="card[security]" minlength="3" maxlength="4"  pattern="^[0-9]+$"  required></div>
+                    <div class="input lim"><input class="limit" type="text" name="card[security]" minlength="3" maxlength="4"  pattern="^[0-9]+$"  require_onced></div>
                 </div>
             </div>
             <button class="next_btn">次へ</button>

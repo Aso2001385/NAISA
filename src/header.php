@@ -1,5 +1,5 @@
 <?php 
-require_once './Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 $li_output = Authent_Logic::header_set();
 
 ?>

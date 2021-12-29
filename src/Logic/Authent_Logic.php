@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Validation/Special_Val.php';
-require_once 'Ex/User_Ex.php';
-require_once 'Ex/Card_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Special_Val.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/User_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Card_Ex.php';
 
 /*
 
@@ -58,8 +58,11 @@ class Authent_Logic{
         $act = $user_ex->get_authent($user_data['mail']);
 
         if($act['check']){
-            $val_check['column'] = 'mail';
-            $val_check['errors'] = 'このメールアドレスは既に登録されています';
+            if(!is_bool($act['data'])){
+                $val_check['check'] = false;
+                $val_check['column'] = 'mail';
+                $val_check['errors'] = 'このメールアドレスは既に登録されています';
+            }
         }
         
         return $val_check;
@@ -89,7 +92,7 @@ class Authent_Logic{
         /* 既にメールアドレスが登録されているか */
         $act = $user_ex->get_authent($user_data['mail']);
 
-        if($act['check'] && $act['data']){
+        if($act['check'] && !is_bool($act['data'])){
             return [
                 'chack' => false,
                 'column' => 'mail' ,
@@ -204,14 +207,24 @@ class Authent_Logic{
         $pass = '$2y$10$Fx4FReusbCKrVvWVEkWjEuc'.$user_data["pass"].'dhIdcqrozCZMLKdZPw2fMKv4cw9pJi';
 
         /* パスワード照合 */
-        if(password_verify($pass,$act["data"]["pass"])){
+        if($act['check'] && !is_bool($act['data'])){
+            if(password_verify($pass,$act['data']['pass'])){
 
-            /* セッションにデータ挿入 */
-            $_SESSION['user'] = $act['data'];
-
-            return [ 
-                "check" => true,
-            ];
+                /* セッションにデータ挿入 */
+                $_SESSION['user'] = $act['data'];
+    
+                return [ 
+                    "check" => true,
+                ];
+    
+            }else{
+    
+                return [ 
+                    "check" => false,
+                    "message" => "認証に失敗しました"
+                ];
+                
+            }
 
         }else{
 
@@ -219,8 +232,8 @@ class Authent_Logic{
                 "check" => false,
                 "message" => "認証に失敗しました"
             ];
-            
         }
+        
 
     }
 

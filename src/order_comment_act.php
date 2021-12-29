@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'logic/Comment_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Comment_Logic.php';
 
 if(!isset($_POST['comment']) || !isset($_POST['order_info'])){
 

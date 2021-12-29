@@ -1,7 +1,7 @@
 <?php 
 session_start();
-require_once 'Logic/Authent_Logic.php';
-require_once 'Logic/Validation/Special_Val.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Special_Val.php';
 
 if(!isset($_POST['user']) || isset($_SESSION['user'])) header('Location:index.php');
 

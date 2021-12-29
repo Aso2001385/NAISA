@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Logic/Exhibit_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
 if(!isset($_SESSION['user']) || !isset($_GET['id'])) header('Location:index.php');
 

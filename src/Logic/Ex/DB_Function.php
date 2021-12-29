@@ -516,7 +516,7 @@ class DB_function{
 
     }
 
-    public function subSELECT ( $columnName=[],) {
+    public function subSELECT ( $columnName=[]) {
         
         $this->subQueryMode = 0;
         $this->sql .= "SELECT ";

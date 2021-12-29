@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Basic_Val.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Basic_Val.php';
 
 class Special{
 

@@ -1,9 +1,9 @@
 <?php
 
-require_once 'Validation/Special_Val.php';
-require_once 'Ex/User_Ex.php';
-require_once 'Ex/Comment_Ex.php';
-require_once 'Ex/Info_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Special_Val.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/User_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Comment_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Info_Ex.php';
 
 class Comment_Logic{
 

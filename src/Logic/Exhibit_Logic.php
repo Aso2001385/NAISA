@@ -1,10 +1,10 @@
 <?php
-require_once 'Validation/Special_Val.php';
-require_once 'Ex/Item_Ex.php';
-require_once 'Ex/User_Ex.php';
-require_once 'Ex/Comment_Ex.php';
-require_once 'Ex/Order_Ex.php';
-require_once 'Ex/Card_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Special_Val.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Item_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/User_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Comment_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Order_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Card_Ex.php';
 class Exhibit_Logic{
 
     /* 画像仮登録 */
@@ -13,8 +13,8 @@ class Exhibit_Logic{
 
         try{
           
-            if(!file_exists('img/tmp_item')){
-                mkdir('img/tmp_item');
+            if(!file_exists('/home/users/2/versus.jp-aso2001385/web/NAISA/img/tmp_item')){
+                mkdir('/home/users/2/versus.jp-aso2001385/web/NAISA/img/tmp_item');
             }
             $rand_word = '';
             for($i=0; $i<6; $i++){
@@ -24,10 +24,10 @@ class Exhibit_Logic{
             switch($image_post['type']){
 
                 case 'image/jpeg':
-                    $tmp_image_name = 'img/tmp_item/'.basename($rand_word.'.jpg');
+                    $tmp_image_name = '/home/users/2/versus.jp-aso2001385/web/NAISA/img/tmp_item/'.basename($rand_word.'.jpg');
                     break;
                 case 'image/png':
-                    $tmp_image_name = 'img/tmp_item/'.basename($rand_word.'.png');
+                    $tmp_image_name = '/home/users/2/versus.jp-aso2001385/web/NAISA/img/tmp_item/'.basename($rand_word.'.png');
                     break;
             }
 
@@ -178,7 +178,6 @@ class Exhibit_Logic{
     public static function item_register($item_data,$image_name,$user_id)
     {
         
-        require_once 'Ex\Item_Ex.php';
         $item = array_merge($item_data,['image'=>$image_name,'user_id'=>$user_id]);
         $item_ex = new Item_Ex();
         $user_ex = new User_Ex();

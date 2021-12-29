@@ -1,11 +1,12 @@
 <?php
 session_start();
-require_once 'Logic/Purchase_Logic.php';
-require_once 'Logic/Exhibit_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
 $act = Exhibit_Logic::item_confirm($_SESSION['user']['id']);
 
-if($act['check'] && !is_bool($act['data'])){
+
+if(!is_bool($act['item'])){
     $item = $act['item'];
 }
 

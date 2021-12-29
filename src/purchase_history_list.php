@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Logic/Purchase_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 
 if(!isset($_SESSION['user'])) header('Location:index.php');
 
@@ -44,4 +44,4 @@ require_once('header.php');
 </div>
  
 
-<?php require('footer.php'); ?>
+<?php require_once('footer.php'); ?>

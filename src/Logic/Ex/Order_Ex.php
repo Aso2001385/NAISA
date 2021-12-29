@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DB_Function.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/DB_Function.php';
 
 /*
 
@@ -31,7 +31,7 @@ class Order_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
             ->toDESC('id')
@@ -54,7 +54,7 @@ class Order_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->subWHERE('EXISTS')
             ->toSELECT(['id'],['item'],'item')
@@ -81,7 +81,7 @@ class Order_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT(['id','user_id'])
             ->toWHERE('item_id','=',$item_id)
             ->toDESC('id')
@@ -107,7 +107,7 @@ class Order_Ex
             if($user_id == 0){
 
                 $act = DB_function::create($this->main)
-                ->connect('naisa')
+                ->connect()
                 ->toSELECT()
                 ->toWHERE('id','=',$id)
                 ->toLIMIT(1)
@@ -116,7 +116,7 @@ class Order_Ex
             }else{
 
                 $act = DB_function::create($this->main)
-                ->connect('naisa')
+                ->connect()
                 ->toSELECT()
                 ->toWHERE('item_id','=',$id)
                 ->toAND('user_id','=',$user_id)
@@ -142,7 +142,7 @@ class Order_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
             ->toLIMIT($limit)
@@ -166,7 +166,7 @@ class Order_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -190,7 +190,7 @@ class Order_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toUPDATE($data)
             ->toWHERE('id','=',$data['id'])
             ->toEXECUTE(PDO::FETCH_ASSOC);
@@ -218,7 +218,7 @@ class Order_Ex
             $datetime = $datetime_ins->format('Y-m-d H:i:s');
             
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toUPDATE('deleted',[$datetime_ins])
             ->toWHERE('id','=',$id)
             ->toEXECUTE(PDO::FETCH_ASSOC);

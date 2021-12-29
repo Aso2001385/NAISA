@@ -1,6 +1,6 @@
 <?php 
 
-require_once('DB_Function.php');
+require_once('/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/DB_Function.php');
 
 class Card_Ex
 {
@@ -12,7 +12,7 @@ class Card_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -33,7 +33,7 @@ class Card_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
             ->toDESC('id')
@@ -59,7 +59,7 @@ class Card_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
             ->toEXECUTE(PDO::FETCH_ASSOC);

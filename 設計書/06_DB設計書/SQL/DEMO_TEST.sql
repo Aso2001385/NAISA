@@ -1,14 +1,14 @@
 INSERT INTO `user`(`name`,`name_read`,`nick_name`,`mail`,`pass`,`tel`,`post`,`address`,`sale_count`) VALUES
-    ('岩永尚','イワナガタカシ','タカシ','2021001@s.asojuku.ac.jp','$2y$10$BVLY6UAcnijcPxfaZXiDC.LUJ4B4AHCtJ5I0KEHrpOTA43J3M9pKm','0900605482','8793205','大分県佐伯市宇目千束2-14-10',10),
-    ('宇野由依','ウノユイ','ユイ','2021002@s.asojuku.ac.jp','$2y$10$DyuqbhHbXsIfyyOUqbA79ut25uUVxSXsHvbfuRgNfIbtkLnlZ4vye','0802804941','3840011','長野県小諸市赤坂1-19-16',10),
-    ('石村洋一郎','イシムラヨウイチロウ','ヨウイチロウ','2021003@s.asojuku.ac.jp','$2y$10$L5FAlvLjV0c.lQ67zejSz.UqoPwK5qlYIjYT8N5kf4.cHFwZkddsS','0909484107','5111107','三重県桑名市長島町上坂手2-3',10),
-    ('野村謙三','ノムラケンゾウ','ケンゾウ','2021004@s.asojuku.ac.jp','$2y$10$CRA7vHiWuNKEXzvVy9sFIutX4IZclyb84YpAm2omaqaC94o3zPeHy','0806386564','4860846','愛知県春日井市朝宮町3-14-10',10),
-    ('中沢良夫','ナカザワヨシオ','ヨシオ','2021005@s.asojuku.ac.jp','$2y$10$3wwCjd0s8UpCmfz72dT6SO70f19bwdlE8TuH1Ghx.dotbpWczHkU2','0908603984','7000853','岡山県岡山市南区豊浜町1-13',10),
-    ('青木彩音','アオキアヤネ','アヤネ','2021006@s.asojuku.ac.jp','$2y$10$l5SGXDCifYfe9xbEiLwQx.7mPEDKvOeNhL3HCrBJ0Zsjcs0ygl0u6','0806289089','6401115','和歌山県海草郡紀美野町奥佐々3-10',10),
-    ('大崎智嗣','オオサキサトシ','サトシ','2021007@s.asojuku.ac.jp','$2y$10$mhZ8jdpGaljmsFCiyrXQb.Mb1krBwnESvJL52oG.WPzWrXM/9RUXq','0906312166','7690313','香川県仲多度郡まんのう町生間2-18-8',10),
-    ('藤巻正之','フジマキマサユキ','マサユキ','2021008@s.asojuku.ac.jp','$2y$10$TR4jU7IBGXcTtWBjXaHLzOzfAMT6HOJheMi6sV8EnFHMl63Q2fPKG','0807584463','9300244','富山県中新川郡立山町末谷口4-8-4末谷口ロイヤルパレス315',10),
-    ('山野和義','ヤマノカズヨシ','カズヨシ','2021009@s.asojuku.ac.jp','$2y$10$0SVY9Poo1hAQWjAiz7VuV.xBk6.2EY79BJ0jvd9inwnqS9hvEjElS','0901991069','3250054','栃木県那須塩原市新朝日3-14-2新朝日コート109',10),
-    ('鶴岡美希','ツルオカミキ','ミキ','2021010@s.asojuku.ac.jp','$2y$10$OqrnK0CHfM3t5QM5xIlyFecl9sciqRwzcBgYrBln03bcYwUl2BZcq','0807345546','7230065','広島県三原市西野2-12-9西野ロイヤル302',10);
+    ('岩永尚','イワナガタカシ','タカシ','2021001@s.asojuku.ac.jp','$2y$10$IxT9Wc48wHmHLeOylIEPe.zb4ch1aI5qLb0WWPaPea1d0I6jYkA9C','0900605482','8793205','大分県佐伯市宇目千束2-14-10',10),
+    ('宇野由依','ウノユイ','ユイ','2021002@s.asojuku.ac.jp','$2y$10$zxCcGHR/zy71XTCITfvyPOia3i6de/GMjX88znwl3Ewwrl/GKd0he','0802804941','3840011','長野県小諸市赤坂1-19-16',10),
+    ('石村洋一郎','イシムラヨウイチロウ','ヨウイチロウ','2021003@s.asojuku.ac.jp','$$2y$10$OQuiUeLaDYFngmnYQAc59utRojPeZqi8UFKIzw2/M0FOUonXlhB7i','0909484107','5111107','三重県桑名市長島町上坂手2-3',10),
+    ('野村謙三','ノムラケンゾウ','ケンゾウ','2021004@s.asojuku.ac.jp','$2y$10$Icz4uPLuBr.MxBUHNN/q6uczwu5fSoW8ZqTIXd.dPAZbXZn.JMcGi','0806386564','4860846','愛知県春日井市朝宮町3-14-10',10),
+    ('中沢良夫','ナカザワヨシオ','ヨシオ','2021005@s.asojuku.ac.jp','$2y$10$bvpolvT4kECX6OVDVFK4AOcsKdJauc0truJfbqaLbqpZNMjXz1RTK','0908603984','7000853','岡山県岡山市南区豊浜町1-13',10),
+    ('青木彩音','アオキアヤネ','アヤネ','2021006@s.asojuku.ac.jp','$$2y$10$TRiO/cXYkHD2kS8C7cYv3ulqFkE/OVQnn5Z3PjEDm7VULV1Sw/zvG','0806289089','6401115','和歌山県海草郡紀美野町奥佐々3-10',10),
+    ('大崎智嗣','オオサキサトシ','サトシ','2021007@s.asojuku.ac.jp','$2y$10$gWU23O4I7RUBLNedRBs2jukwkBu8FW.JPAYUMwAyeCbZQzP3IMi7W','0906312166','7690313','香川県仲多度郡まんのう町生間2-18-8',10),
+    ('藤巻正之','フジマキマサユキ','マサユキ','2021008@s.asojuku.ac.jp','$2y$10$IRK27MN5rv2dlAkrlblPUOOTcwO2PdLv9leA8NTcc/yxzMw46ujYq','0807584463','9300244','富山県中新川郡立山町末谷口4-8-4末谷口ロイヤルパレス315',10),
+    ('山野和義','ヤマノカズヨシ','カズヨシ','2021009@s.asojuku.ac.jp','$2y$10$BSBmdBF.UajNAkMaD/KlSeet8h2DGj1Mf6vKMqvuTtWOdE60UG1py','0901991069','3250054','栃木県那須塩原市新朝日3-14-2新朝日コート109',10),
+    ('鶴岡美希','ツルオカミキ','ミキ','2021010@s.asojuku.ac.jp','$2y$10$hXXQ77uV/P/ip8pcUS36iOzZgEHc1vokvh5JYLfRtDV6ihgMRXCE6','0807345546','7230065','広島県三原市西野2-12-9西野ロイヤル302',10);
 
 INSERT INTO `item`(`user_id`,`name`,`image`,`price`,`quality`,`delivery_fee`,`delivery_days`,`description`) VALUES
     ('1','タカシの商品１','item_00010001.png','10000','0','0','0','テスト用の商品です。'),
@@ -81,3 +81,5 @@ INSERT INTO `item`(`user_id`,`name`,`image`,`price`,`quality`,`delivery_fee`,`de
     ('10','ミキの商品５','item_00100005.png','50000','3','0','1','テスト用の商品です。'),
     ('10','ミキの商品６','item_00100006.png','60000','0','1','2','テスト用の商品です。'),
     ('10','ミキの商品７','item_00100007.png','70000','1','0','3','テスト用の商品です。');
+
+    

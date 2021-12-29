@@ -1,0 +1,52 @@
+.contents{
+    width: 50%;
+    text-align: center;
+}
+
+.form_outer{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form_inner{
+    margin-top: 10%;
+}
+
+.heading_word{
+    font-size: 2em;
+    font-weight:300;
+}
+
+.input_box{
+    margin-top: 3%;
+}
+
+.subject{
+    text-align: left;
+    margin-top: 0.5em;
+}
+
+input,select,textarea{
+    resize: none;
+    left: 0;
+    box-sizing: border-box;
+    height: 2.5em;
+    width: 100%;
+    font-size: 1em;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 5px;
+}
+
+.next_btn{
+    width: 60%;
+    height: 3em;
+    color: white;
+    margin-top: 20%;
+    margin-bottom: 10%;
+    background-color: #D11892;
+}
+
+.link{
+    margin-bottom: 50px;
+}

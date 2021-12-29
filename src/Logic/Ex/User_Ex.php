@@ -1,6 +1,6 @@
 <?php
 
-require_once('DB_Function.php');
+require_once('/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/DB_Function.php');
 
 
 /* 
@@ -33,7 +33,7 @@ class User_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('mail','=',$mail)
             ->toLIMIT(1)
@@ -58,7 +58,7 @@ class User_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toLIMIT(25)
             ->toEXECUTE(PDO::FETCH_ASSOC);
@@ -83,7 +83,7 @@ class User_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('id','=',$id)
             ->toLIMIT(1)
@@ -107,7 +107,7 @@ class User_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
             
@@ -134,7 +134,7 @@ class User_Ex
             if($id==0){
 
                 $act = DB_function::create($this->main)
-                ->connect('naisa')
+                ->connect()
                 ->toUPDATE($data)
                 ->toWHERE('id','=',$data['id'])
                 ->toEXECUTE();
@@ -143,7 +143,7 @@ class User_Ex
             }else{
 
                 $act = DB_function::create($this->main)
-                ->connect('naisa')
+                ->connect()
                 ->toUPDATE($data)
                 ->toWHERE('id','=',$id)
                 ->toEXECUTE();
@@ -174,7 +174,7 @@ class User_Ex
             $datetime = $datetime_ins->format('Y-m-d H:i:s');
             
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toUPDATE('deleted',[$datetime_ins])
             ->toWHERE('id','=',$id)
             ->toEXECUTE(PDO::FETCH_ASSOC);

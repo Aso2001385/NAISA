@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 /*
 
 mode 登録状況
@@ -27,14 +27,17 @@ try{
     /* ユーザー登録処理 */
     $act = Authent_Logic::user_register($_SESSION['tmp_user']);
 
-    if(!$act['check']){
-        unset($_SESSION['card']);
-        if($act['error_type'] == 0){
-            header("Location:user_register.php?column={$act['column']}&errors={$act['errors']}");
-        }else{
-            header('Location:user_register_complete.php?mode=2');
+    if(isset($act['check'])){
+        if(!$act['check']){
+            unset($_SESSION['card']);
+            if($act['error_type'] == 0){
+                header("Location:user_register.php?column={$act['column']}&errors={$act['errors']}");
+            }else{
+                header('Location:user_register_complete.php?mode=2');
+            }
         }
     }
+    
 
     /* カード登録処理 */
     if(isset($_SESSION['card'])){

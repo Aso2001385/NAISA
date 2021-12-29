@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DB_Function.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/DB_Function.php';
 
 /*
 
@@ -36,7 +36,7 @@ class Item_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('deleted','IS',NULL)
             ->toAND('start','IS',NULL)
@@ -70,7 +70,7 @@ class Item_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('name','%:%',$word)
             ->toOR('description','%:%',$word)
@@ -96,7 +96,7 @@ class Item_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('id','=',$item_id)
             ->toAND('deleted','IS',NULL)
@@ -130,7 +130,7 @@ class Item_Ex
             try{
     
                 $act = DB_function::create($this->main)
-                ->connect('naisa')
+                ->connect()
                 ->toSELECT()
                 ->toWHERE('user_id','=',$user_id)
                 ->toAND('deleted','IS',NULL)
@@ -165,7 +165,7 @@ class Item_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toSELECT()
             ->toWHERE('user_id','=',$user_id)
             ->toAND('deleted','IS',NULL)
@@ -202,7 +202,7 @@ class Item_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toINSERT($data)
             ->toEXECUTE(PDO::FETCH_ASSOC);
 
@@ -224,7 +224,7 @@ class Item_Ex
         try{
 
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toUPDATE($data)
             ->toWHERE('id','=',$id)
             ->toEXECUTE(PDO::FETCH_ASSOC);
@@ -259,7 +259,7 @@ class Item_Ex
             $datetime = $datetime_ins->format('Y-m-d H:i:s');
             
             $act = DB_function::create($this->main)
-            ->connect('naisa')
+            ->connect()
             ->toUPDATE(['deleted'],[$datetime])
             ->toWHERE('id','=',$id)
             ->toEXECUTE();
@@ -288,7 +288,7 @@ class Item_Ex
     public function get_order_multi($user_id){
 
         $act = DB_function::create($this->main)
-        ->connect('naisa')
+        ->connect()
         ->toSELECT()
         ->subWHERE('EXISTS')
         ->toSELECT([],'order')

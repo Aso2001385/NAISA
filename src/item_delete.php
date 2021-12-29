@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'Logic/Authent_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 
 if(!isset($_SESSION['user']) || !isset($_POST['items']['id'])) header('Location:index.php');
 

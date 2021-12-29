@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'Logic/Purchase_Logic.php';
-require_once 'Logic/Exhibit_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
 $mode = $_GET['mode'];
 // 0 発送通知

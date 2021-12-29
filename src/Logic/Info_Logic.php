@@ -1,5 +1,5 @@
 <?php
-require_once 'Ex/Info_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Info_Ex.php';
 class Info_Logic
 {
 

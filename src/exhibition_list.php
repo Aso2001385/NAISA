@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Logic/Exhibit_Logic.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
 $act = Exhibit_Logic::exhibit_list($_SESSION['user']['id']);
 
@@ -59,4 +59,4 @@ require_once('header.php');
 
 </div>
  
-<?php require('footer.php'); ?>
+<?php require_once('footer.php'); ?>
