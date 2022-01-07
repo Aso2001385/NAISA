@@ -99,7 +99,7 @@ package "ECサイト" as target_system{
   
 }
 
-  user ||-u-o{ info
+  user ||-l-o{ info
   user ||-r-o{ card
   user ||-d-o{ item
   card ||-d-o{ order
