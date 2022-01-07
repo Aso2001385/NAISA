@@ -3,6 +3,7 @@ session_start();
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 if(!isset($_SESSION['user'])){
     header('Location:index.php');
+    exit();
 }
 
 $month_opt = '';

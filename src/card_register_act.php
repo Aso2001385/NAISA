@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 
 try{

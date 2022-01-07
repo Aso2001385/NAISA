@@ -25,7 +25,6 @@ if($data['seller_id'] == $_SESSION['user']['id'] ){
     header('Location:index.php');
 }
 
-/* 左 */
 $days = ['1日以内','3日以内','1週間以内','2週間以内','1ヶ月以内','1ヶ月以上'];
 if($seller_flg){
     $left_output  = "<div class='info_box'><div class='left_subject'>購入者</div><div class='text'>{$data['buyer_name']}</div></div>";
