@@ -25,7 +25,7 @@ require_once 'header.php';
                 <div class="input_box">
                     <div class="subject">確認コード（６桁）<?php echo $error; ?></div>
                     <div class="input">
-                        <input type="text" name="cord" minlength="6" maxlength="6" pattern="^[0-9]+$" require_onced>
+                        <input type="text" name="code" minlength="6" maxlength="6" pattern="^[0-9]+$" required>
                     </div>
                 </div>
             </div>
