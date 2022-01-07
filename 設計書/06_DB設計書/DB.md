@@ -93,3 +93,16 @@
 |レコード作成日時|created|datetime||〇||タイムスタンプ|
 |レコード更新日時|updated|datetime||〇||タイムスタンプ|
 |コメント削除日時|deleted|datetime||||タイムスタンプ|
+
+## お知らせテーブル
+### info
+|和名|属性名|型|PK|NN|FK|備考|
+|:---|:---|:---|:---:|:---:|:---:|:---|
+|お知らせ番号|id|int|〇|〇|||
+|対象ユーザー番号|user_id|int||||nullは全体公開|
+|お知らせ件名|name|varchar(50)||〇|||
+|お知らせ内容|contents|varchar(200)||〇|||
+|レコード作成日時|created|datetime||〇||タイムスタンプ|
+|レコード更新日時|updated|datetime||〇||タイムスタンプ|
+
+
