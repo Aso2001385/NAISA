@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['user'])){
+    header('Location:login.php');
+    exit();
+}
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 

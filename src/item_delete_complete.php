@@ -1,8 +1,10 @@
 <?php 
 session_start();
 
-if(!isset($_SESSION['user'])) header('Location:index.php');
-
+if(!isset($_SESSION['user'])){
+    header('Location:index.php');
+    exit();
+}
 $mode = $_GET['mode'];
 
 if($mode == 0){

@@ -3,13 +3,16 @@ session_start();
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 
-if(!isset($_POST['item_id']) || !isset($_POST['items'])){
-    header('Location:index.php');
-}
 
 if(!isset($_SESSION['user'])){
     $_SESSION['detail_id'] = $_POST['item_id'];
     header('Location:login.php');
+    exit();
+}
+
+if(!isset($_POST['item_id']) || !isset($_POST['items'])){
+    header('Location:index.php');
+    exit();
 }
 
 $item = $_POST['items'];

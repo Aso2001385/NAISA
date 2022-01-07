@@ -1,5 +1,9 @@
 <?php 
 session_start();
+if(!isset($_SESSION['user'])){
+    header('Location:index.php');
+    exit();
+}
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 
 if(isset($_GET['mode'])){

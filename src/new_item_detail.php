@@ -3,6 +3,11 @@ session_start();
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
+if(!isset($_SESSION['user'])){
+    header('Location:index.php');
+    exit();
+}
+
 $act = Exhibit_Logic::item_confirm($_SESSION['user']['id']);
 
 
@@ -60,10 +65,7 @@ if($seller_flg){
     $item_act_btn = "<div class='seller_btn_frame'>{$btns}</div>";
 }else{
     $buy_btn   = "<div class='buyer_btn_frame' id='buy_btn_frame'><button formaction='buy_confirm.php' class='act_btn' id='buy_act_btn'>購入手続きへ</button></div>";
-    $act_btns  = "<div class='buyer_btns'><button formaction='like.php' class='act_btn'>いいねする</button></div>";
-    $act_btns .= "<div class='buyer_btns'><button formaction='item_report.php' class='act_btn'>通報する</button></div>";
-    
-    $item_act_btn = "{$buy_btn}<div class='buyer_btn_frame'>{$act_btns}</div>";
+    $item_act_btn = "{$buy_btn}";
 }
 
 $description_text = nl2br($item['description']);

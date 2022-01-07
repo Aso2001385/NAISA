@@ -2,7 +2,8 @@
 session_start();
 require_once 'Logic/Authent_Logic.php';
 if(isset($_SESSION['user'])){
-    //り
+    header('Location:index.php');
+    exit();
 }
 $page_css = 'login';
 require_once 'header.php';

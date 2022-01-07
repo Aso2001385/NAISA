@@ -4,7 +4,10 @@ require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.
 if(isset($_SESSION['tmp_user'])) unset($_SESSION['tmp_user']);
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 0 ;
-if(!is_numeric($page)) header('Location:index.php');
+if(!is_numeric($page)){
+  header('Location:index.php');
+  exit();
+}
 $back_page = $page-1;
 $next_page = $page+1;
 

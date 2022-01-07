@@ -3,13 +3,17 @@ session_start();
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Validation/Special_Val.php';
 
-if(isset($_SESSION['user'])) header('Location:index.php');
-
+if(isset($_SESSION['user'])){
+    header('Location:index.php');
+    exit();
+}
 
 $act = Authent_Logic::input_retention($_POST['user']);
 
-if(!$act['check']) header("Location:user_register.php?column={$act['column']}&errors={$act['errors']}");
-
+if(!$act['check']){
+    header("Location:user_register.php?column={$act['column']}&errors={$act['errors']}");
+    exit();
+}
 $month_opt = '';
 $year_opt = '';
 

@@ -2,6 +2,10 @@
 session_start();
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 
+if(!isset($_GET['item_id'])){
+    header('Location:index.php');
+    exit();
+}
 
 $item_id = $_GET['item_id'];
 
@@ -92,10 +96,11 @@ if($seller_flg){
        
     }
     
-    $act_btns = "<div class='buyer_btns'><button formaction='like.php' class='act_btn'>いいねする</button></div>";
-    $act_btns .= "<div class='buyer_btns'><button formaction='item_report.php' class='act_btn'>通報する</button></div>";
+    // $act_btns = "<div class='buyer_btns'><button formaction='like.php' class='act_btn'>いいねする</button></div>";
+    // $act_btns .= "<div class='buyer_btns'><button formaction='item_report.php' class='act_btn'>通報する</button></div>";
     
-    $item_act_btn = "{$buy_btn}<div class='buyer_btn_frame'>{$act_btns}</div>";
+    // $item_act_btn = "{$buy_btn}<div class='buyer_btn_frame'>{$act_btns}</div>";
+    $item_act_btn = "{$buy_btn}";
 }
 
 $description_text = nl2br($item['description']);

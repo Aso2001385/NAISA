@@ -3,14 +3,18 @@ session_start();
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Comment_Logic.php';
 
-if(!isset($_SESSION['user'])) header('Location:index.php');
+if(!isset($_SESSION['user'])){
+    header('Location:index.php');
+    exit();
+}
 
 if(isset($_GET['item_id'])){
-    $act = Purchase_Logic::get_order($_GET['item_id'],$_SESSION['user']['id']);
+    $act = Purchase_Logic::get_order_by_item_id($_GET['item_id']);
 }else if(isset($_GET['id'])){
-    $act = Purchase_Logic::get_order($_GET['id']);
+    $act = Purchase_Logic::get_order_by_id($_GET['id']);
 }else{
     header('Location:index.php');
+    exit();
 }
 
 $data = $act['data'];
@@ -21,9 +25,11 @@ if($data['seller_id'] == $_SESSION['user']['id'] ){
 }else if($data['buyer_id'] == $_SESSION['user']['id']){
     $seller_flg = false;
     $info_user_id = $data['seller_id'];
+}else{
+    header('Location:index.php');
+    exit();
 }
 
-/* 左 */
 $days = ['1日以内','3日以内','1週間以内','2週間以内','1ヶ月以内','1ヶ月以上'];
 if($seller_flg){
     $left_output  = "<div class='info_box'><div class='left_subject'>購入者</div><div class='text'>{$data['buyer_name']}</div></div>";
@@ -61,8 +67,6 @@ if($seller_flg){
     }
 }
 
-/* 右 */
-
 $comments = '';
 
 $act = Comment_Logic::get_order_comment($data['id']);
@@ -73,7 +77,6 @@ if($act['check'] && !is_bool($act['data'])){
 
         $comment_box  = "<div class='comment_info'><div class='comment_name'>{$comment['nick_name']}</div>";
         $comment_box .= "<div class='comment_right_box'><div class='comment_date'>{$comment['created']}</div></div></div>";
-        // $comment_box .= "<div class='comment_report'>通報</div></div></div>";
         $comment_box .= "<div class='comment_content'>{$comment['contents']}</div>";
     
         $comments .= "<div class='comment_box'>{$comment_box}</div>";
@@ -83,14 +86,11 @@ if($act['check'] && !is_bool($act['data'])){
   
     $comment_box  = "<div class='comment_info'><div class='comment_name'>コメントしたユーザーのニックネーム</div>";
     $comment_box .= "<div class='comment_right_box'><div class='comment_date'>0分前</div></div></div>";
-    // $comment_box .= "<div class='comment_report'>通報</div></div></div>";
     $comment_box .= "<div class='comment_content'>ここにコメントが表示されます。<br>最初のコメントを送信してみましょう。</div>";
 
     $comments .= "<div class='comment_box'>{$comment_box}</div>";
     
 }
-
-
 
 
 $page_css = 'order';

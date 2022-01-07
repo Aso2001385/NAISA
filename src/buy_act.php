@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
+require_once 'Logic/Purchase_Logic.php';
 
 if(isset($_POST['order'])){
     $order = $_POST['order'];
@@ -9,6 +9,7 @@ if(isset($_POST['order'])){
     unset($_SESSION['order']);
 }else{
     header('Location:index.php');
+    exit();
 }
 
 
@@ -16,6 +17,7 @@ if(isset($_POST['order'])){
 if($order['card_id'] == 0){
     $_SESSION['order'] = $order;
     header('Location:add_card_register.php');
+    exit();
 }else{
     $act = Purchase_Logic::buy_act($order);
 

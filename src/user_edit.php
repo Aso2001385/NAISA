@@ -3,8 +3,9 @@ session_start();
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 
 if(!isset($_SESSION['user'])){
-  //リダイレクト
-}
+    header('Location:index.php');
+    exit();
+  }
 
 $page_css = 'user_register';
 $in_val = ['','','','','','','','',''];
@@ -18,9 +19,6 @@ foreach($key as $row){
   $in_val[$i++] = $_SESSION['user'][$row];
 }
 
-
-
-// Authent_Logic::login_check();
 
 require_once 'header.php';
 ?>

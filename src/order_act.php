@@ -1,11 +1,13 @@
 <?php
 session_start();
+if(!isset($_SESSION['user'])){
+    header('Location:index.php');
+    exit();
+}
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Purchase_Logic.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
 $mode = $_GET['mode'];
-// 0 発送通知
-// 1 受け取り通知
 
 if($mode == 0){
     $act = Exhibit_Logic::order_send_notic($_GET['id'],$_SESSION['user']['id']);

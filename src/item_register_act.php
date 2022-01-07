@@ -1,16 +1,14 @@
 <?php 
 session_start();
+if(!isset($_SESSION['user'])){
+    header('Location:index.php');
+    exit();
+}
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Exhibit_Logic.php';
 
-try{
 
-    /* 前ページと入力フォームを介しているか */
-    // if(!isset($_POST['send']) || !isset($_SESSION['tmp_item']) || !isset($_SESSION['tmp_image'])){
-    //     unset($_SESSION['tmp_item']);
-    //     unset($_SESSION['tmp_image']);
-    //     header('Location:item_register_complete.php?mode=0');
-    // }
+try{
 
     $act = Exhibit_Logic::image_download($_SESSION['tmp_image']['name'],$_SESSION['tmp_image']['type'],500);
 

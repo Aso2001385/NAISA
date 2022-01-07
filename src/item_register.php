@@ -4,7 +4,7 @@ require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Authent_Logic.p
 
 if(!isset($_SESSION['user'])){
     header('Location:login.php');
-
+    exit();
 }
 
 $page_css = 'item_register';

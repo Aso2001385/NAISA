@@ -8,6 +8,7 @@ $i=0;
 
 if(isset($_SESSION['user'])){
     header('Location:index.php');
+    exit();
 }
 
 $option = [
