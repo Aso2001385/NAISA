@@ -125,7 +125,7 @@ require_once 'header.php';
                 <div class="comment_btn_frame">
                     <button class="comment_btn" <?php echo $right_come_btn ?> name="comment[order_id]" value="<?php echo $data['id'];?>">メッセージを送信</button>
                 </div>
-                    <div class="comment_input_box"><textarea name='comment[contents]' maxlength="255" require_onced></textarea></div>
+                    <div class="comment_input_box"><textarea name='comment[contents]' maxlength="255" required></textarea></div>
             
                     </div>
             </form> 

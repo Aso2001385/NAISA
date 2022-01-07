@@ -69,6 +69,36 @@ class Authent_Logic{
 
     }
 
+    public static function confirm_code_send($mail,$name){
+
+        $title = 'ご登録メールアドレス確認';
+        
+        $code = random_int(100000,999999);
+        
+        $_SESSION['confirm_code'] = $code; 
+
+        $content = "{$name} 様\r\nご登録メールアドレス確認"
+                 . "\r\n\n下記の確認コードをご入力ください。"
+                 . "\r\n\n{$code}\r\n\n"
+                 . "お心当たりが無い場合は無視してください。";
+
+        $from_mail = "info@aso2001385.versus.jp";
+                 
+        $header = "MIME-Version: 1.0\r\n"
+                . "Content-Transfer-Encoding: 7bit\r\n"
+                . "Content-Type: text/plain: charset=ISO-2022-JP\r\n"
+                . 'From: NAISA<'.$from_mail.'>';
+
+        mb_language("Japanese");
+        mb_internal_encoding("UTF-8");
+
+        if(mb_send_mail($mail,$title,$content,$header)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /* ユーザー登録 */
     public static function user_register($user_data)

@@ -17,11 +17,11 @@ require_once 'header.php';
             <div class="heading_word">ログイン</div>
                 <div class="input_box">
                     <div class="subject">メールアドレス</div>
-                    <div class="input"><input type="mail" name="user[mail]" pattern="^[a-zA-Z0-9@\-_.]+$" require_onced></div>
+                    <div class="input"><input type="mail" name="user[mail]" pattern="^[a-zA-Z0-9@\-_.]+$" required></div>
                 </div>
                 <div class="input_box">
                     <div class="subject">パスワード</div>
-                    <div class="input"><input type="password" name="user[pass]" pattern="^[a-zA-Z0-9\-_]+$" minlength="8" maxlength="30" require_onced></div>
+                    <div class="input"><input type="password" name="user[pass]" pattern="^[a-zA-Z0-9\-_]+$" minlength="8" maxlength="30" required></div>
                 </div>
             </div>
             <button class="next_btn">ログイン</button>

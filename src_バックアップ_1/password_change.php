@@ -8,13 +8,13 @@
   <div class="big-title center">パスワード変更</div>
   <br><br><br>
   <div class="text">現在のパスワード</div>
-  <input type="text" class="white-box" require_onced>
+  <input type="text" class="white-box" required>
   <br><br><br>
   <div class="text">新しいパスワード</div>
-  <input type="text" class="white-box" require_onced>
+  <input type="text" class="white-box" required>
   <br><br><br>
   <div class="text">新しいパスワード（確認）</div>
-  <input type="text" class="white-box" require_onced>
+  <input type="text" class="white-box" required>
   <br><br><br><br>
   <button class="button center">変更を保存</button>
 </div>

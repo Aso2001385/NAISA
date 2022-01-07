@@ -45,7 +45,7 @@ require_once 'header.php';
 ?>
 
 <div class="contents">
-    <form action="user_register_act.php" method="post">
+    <form action="mail_send_act.php" method="post">
         <div class="form_outer">
             <div class="form_inner">
                 <div class="heading_word">入力内容</div>

@@ -47,7 +47,7 @@ for($i=0; $i<7; $i++){
         }
     }
 
-    $input_box .= "require_onced></div></div>";
+    $input_box .= "required></div></div>";
 
 }
 
@@ -56,14 +56,14 @@ $address_box .= "<div class='input'><input type='text' name='user[post]' pattern
 if(isset($_SESSION['tmp_user'])){
     $address_box .= "value='{$_SESSION['tmp_user']['post']}'";
 }
-$address_box .= "require_onced></div></div>";
+$address_box .= "required></div></div>";
 
 $address_box  .= "<div class='input_box'><div class='subject'>住所</div>";
 $address_box .= "<div class='input'><input type='text' name='user[address]' maxlength='100'";
 if(isset($_SESSION['tmp_user'])){
     $address_box .= "value='{$_SESSION['tmp_user']['address']}'";
 }
-$address_box .= "require_onced></div></div>";
+$address_box .= "required></div></div>";
 
 
 
