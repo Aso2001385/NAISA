@@ -1,0 +1,28 @@
+.contents{
+    width: 50%;
+}
+
+.info_subject{
+    width: 100%;
+    background-color: white;
+    border-bottom: solid gainsboro;
+    border-radius: 5px 5px 0  0;
+    padding: 1em;
+    text-align: center;
+}
+
+.info_contents{
+    width: 100%;
+    padding: 2em 1em 2em 1em;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    font-size: 1.2em;
+}
+
+.info_link{
+    margin-top: 3em;
+    color: #D11892;
+    padding: 0.5em;
+    border: solid #D11892;
+    text-align: center;
+}

@@ -1,0 +1,27 @@
+
+.account_info-wrap {
+  padding: 50px 0 50px 500px;
+  width: 500px;
+  height: auto;
+}
+
+/*.title, .text, 修正予定*/
+.title {
+  font-size: 30px;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.brown-box {
+  padding: 10px 0 0 10px;
+  width: 100%;
+  height: 100px;
+}
+
+a {
+  display: block;
+  color: #0085FF;
+  text-decoration: none;
+}
