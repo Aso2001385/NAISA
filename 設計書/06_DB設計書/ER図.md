@@ -60,17 +60,6 @@ package "ECサイト" as target_system{
     item_start
   }
 
-  entity "カテゴリテーブル" as category <<T,Color_T>> {
-    + category_id [PK]
-    --
-    category_name
-    category_created
-    category_updated
-    category_deleted
-
- 
-  }
-
   entity "取引テーブル" as order <<T,Color_T>> {
     + order_item_id [PK]
     --
@@ -86,19 +75,6 @@ package "ECサイト" as target_system{
    	order_stop
   }
   
-  entity "商品コメントテーブル" as itemComment <<C,Color_C>> {
-    + itemComment_id [PK]
-    --
-    itemComment_item_id	
-    itemComment_user_id
-    itemComment_user_name
-    itemComment_contents
-    itemComment_private
-    itemComment_created
-    itemComment_updated
-    itemComment_deleted
-  }
-  
   entity "取引コメントテーブル" as orderComment <<C,Color_C>> {
     + orderComment_id [PK]
     --
@@ -111,42 +87,6 @@ package "ECサイト" as target_system{
     orderComment_deleted	
   }
   
-  entity "商品コメント通報テーブル" as itemCommentReport <<R,Color_R>> {
-    + itemCommentReport_id [PK]
-    --
-    itemCommentReport_itemComment_id
-    itemCommentReport_item_id
-    itemCommentReport_user_id
-    itemCommentReport_reason
-    itemCommentReport_contents
-    itemCommentReport_created
-    itemCommentReport_updated
-    itemCommentReport_deleted
-  }
-  
-  entity "取引コメント通報テーブル" as orderCommentReport <<R,Color_R>> {
-    + orderCommentReport_id [PK]
-    --
-    orderCommentReport_orderComment_id
-    orderCommentReport_user_id
-    orderCommentReport_reason
-    orderCommentReport_contents
-    orderCommentReport_created
-    orderCommentReport_updated
-    orderCommentReport_deleted
-  }
-  
-   entity "商品通報テーブル" as itemReport <<R,Color_R>> {
-    + itemReport_id [PK]
-    --
-    itemReport_item_id
-    itemReport_reason
-    itemReport_contents
-    itemReport_created	
-    itemReport_updated
-    itemReport_deleted
-  }
-  
    entity "お知らせテーブル" as info <<T,Color_T>> {
     + info_id [PK]
     --
@@ -157,35 +97,12 @@ package "ECサイト" as target_system{
     info_updated
   }
   
-    entity "ペナルティテーブル" as penalty <<R,Color_R>> {
-    + penalty_id [PK]
-    --
-    penalty_user_id
-    penalty_addPoints
-    penalty_totalPoints
-    penalty_name
-    penalty_contents
-    penalty_created
-    penalty_updated
-  }
-  
 }
 
-  penalty }o-d-|| user
-  penalty }-r[hidden]-{ info
   user ||-u-o{ info
   user ||-r-o{ card
   user ||-d-o{ item
-  user ||-l-o{ itemComment
   card ||-d-o{ order
-  item ||-l-o{ itemComment
   item ||-r-o| order
-  item ||-d-o{ itemReport
-  itemComment ||-l-o{ itemCommentReport
   order ||-r-o{ orderComment
-  orderComment ||-d-o{ orderCommentReport
-  item }|-l-|| category
-  user ||-o{ itemReport
-  user ||-o{ itemCommentReport
-  user ||-o{ orderCommentReport
   
