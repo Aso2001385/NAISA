@@ -221,7 +221,7 @@ class Purchase_Logic{
 
         $contents = "出品中の商品が購入されました。\n取引ページを確認してください。\n#:links: 取引ページへ :end:#";
         
-        $info_act = $info_ex->add($item_data['data']['user_id'],$subject,$links,$contents);
+        $info_ex->add($item_data['data']['user_id'],$subject,$links,$contents);
         
         return [
             'check' => $act['check'],
@@ -427,7 +427,10 @@ class Purchase_Logic{
     {
         
         $order_ex = new Order_Ex();
+        $item_ex = new Item_Ex();
+        $info_ex = new Info_Ex();
         $order_data = $order_ex->get_singul($id);
+        $item_data = $item_ex->get_singul($order_data['data']['item_id']);
 
         /* 発送通知が既に入っていないかチェック */
         if($order_data['data']['recived'] === NULL){
@@ -437,6 +440,14 @@ class Purchase_Logic{
             $datetime_ins = new DateTime();
             $datetime = $datetime_ins->format('Y-m-d H:i:s');
             $order_ex->update(['id'=>$id,'recived'=>$datetime]);
+
+            $subject = "取引中の「{$item_data['data']['name']}」が受け取られました";
+            $links = ":order.php?item_id={$item_data['data']['id']}";
+    
+            $contents = "取引中の商品が受け取られました。\n取引ページを確認してください。\n#:links: 取引ページへ :end:#";
+            
+            $info_ex->add($item_data['data']['user_id'],$subject,$links,$contents);
+
             
             
         }else{

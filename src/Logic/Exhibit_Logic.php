@@ -5,6 +5,8 @@ require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/User_Ex.php'
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Comment_Ex.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Order_Ex.php';
 require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Card_Ex.php';
+require_once '/home/users/2/versus.jp-aso2001385/web/NAISA/Logic/Ex/Info_Ex.php';
+
 class Exhibit_Logic{
 
     /* 画像仮登録 */
@@ -323,6 +325,7 @@ class Exhibit_Logic{
 
         $order_ex = new Order_Ex();
         $item_ex = new Item_Ex();
+        $info_ex = new Info_Ex();
         
         $order_data = $order_ex->get_singul($id);
 
@@ -337,6 +340,13 @@ class Exhibit_Logic{
                 $datetime_ins = new DateTime();
                 $datetime = $datetime_ins->format('Y-m-d H:i:s');
                 $item_act = $order_ex->update(['id'=>$id,'send'=>$datetime]);
+
+                $subject = "取引中の「{$item_data['data']['name']}」が発送されました";
+                $links = ":order.php?item_id={$item_data['data']['id']}";
+        
+                $contents = "取引中の商品が発送されました。\n取引ページを確認してください。\n#:links: 取引ページへ :end:#";
+                
+                $info_act = $info_ex->add($order_data['data']['user_id'],$subject,$links,$contents);
 
             }else{
                 return ['check' => false];
