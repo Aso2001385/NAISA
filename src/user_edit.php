@@ -45,10 +45,6 @@ require_once 'header.php';
                     <div class="subject">電話番号</div>
                     <div class="input"><input type="tel" name="user[tel]" minlength="11" maxlength="12" value="<?php echo $in_val[4] ?>" required></div>
                 </div>
-                <div class="input_box">
-                    <div class="subject">メールアドレス</div>
-                    <div class="input"><input type="mail" name="user[mail]" pattern="^[a-zA-Z0-9@\-_.]+$" value="<?php echo $in_val[3] ?>" required></div>
-                </div>
             </div>
             <div class="form_inner">
                 <div class="heading_word">住所編集</div>

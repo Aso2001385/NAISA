@@ -15,11 +15,11 @@ if(!Authent_Logic::input_retention($_POST['user'])){
 $user_output = '';
 
 $names = [ 
-    ['name','name_read','nick_name','tel','mail','post','address'],
-    ['名前','名前(カタカナ)','ニックネーム','電話番号','メールアドレス','郵便番号','住所']
+    ['name','name_read','nick_name','tel','post','address'],
+    ['名前','名前(カタカナ)','ニックネーム','電話番号','郵便番号','住所']
 ];
 
-for($i=0; $i<7; $i++){
+for($i=0; $i<6; $i++){
     $tags = "<div class='subject'>{$names[1][$i]}:{$_SESSION['tmp_user'][$names[0][$i]]}</div>";
     $user_output .= "<div class='input_box'>{$tags}</div>";
 }
