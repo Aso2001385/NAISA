@@ -141,7 +141,7 @@ package "本システム" as main_system{
   skill_requests }|-d-|| users
   informations }o-d-|| users
   skill_relations }|-l-|| skills
-  skills ||-l-o{ user_skill
+ 
   user_skill }o-l-|| users
   users ||-l-o{ room_user
   users ||-d-o{ chats
