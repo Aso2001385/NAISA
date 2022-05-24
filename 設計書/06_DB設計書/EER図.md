@@ -138,7 +138,7 @@ package "本システム" as main_system{
   skill_request_teacher ||-l-|| skill_requests
   skill_requests }|-d-|| users
   informations }o-d-|| users
-  skill_request_teacher ||-d-|| skill
+  skill_request_teacher ||-d-|| skills
   users ||-l-o{ room_user
   users ||-d-o{ chats
   room_user ||-d-o{ chats
