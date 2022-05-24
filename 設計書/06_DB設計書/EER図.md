@@ -137,7 +137,7 @@ package "本システム" as main_system{
   
   events }o-l-|| teachers
   teachers ||-l-o{ skill_request_teacher
-  skill_request_teacher ||-l-|| skill_request
+  skill_request_teacher ||-l-|| skill_requests
   informations }o-r-|| users
   skill_relations }|-l-|| skills
   skills ||-l-o{ user_skill
