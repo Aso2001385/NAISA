@@ -24,7 +24,7 @@ package "本システム" as main_system{
     }
   }
   package "チャットシステム" as chat_system{
-    entity "チャットルーム" as rooms<<T,Color_T>> {
+    entity "チャットルーム" as rooms <<T,Color_T>> {
       + id [PK]
     }
     entity "ルーム参加者" as room_user <<T,Color_T>> {
@@ -145,8 +145,8 @@ package "本システム" as main_system{
   users ||-l-o{ room_user
   users ||-l-o{ chat
   room_user ||-d-o{ chat
-  room ||-r-|{ room_user
-  room ||-r-o{ chat
+  rooms ||-r-|{ room_user
+  rooms ||-r-o{ chat
   recruit_skill }|-l-|| recruits
   recruits ||-l-o{ recruit_user
   
