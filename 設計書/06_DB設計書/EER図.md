@@ -92,6 +92,7 @@ package "本システム" as main_system{
       user_id [FK]
     }
   }
+}
   package "管理システム" as management_system{
     entity "教師" as teachers <<T,Color_T>> {
       + id [PK]
@@ -133,7 +134,6 @@ package "本システム" as main_system{
       url
     }
   }
-}
   
   events }o-l-|| teachers
   teachers ||-l-o{ skill_request_teacher
