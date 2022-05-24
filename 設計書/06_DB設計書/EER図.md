@@ -22,28 +22,6 @@ package "本システム" as main_system{
       email
       password
     }
-  }
-  package "チャットシステム" as chat_system{
-    entity "チャットルーム" as rooms <<T,Color_T>> {
-      + id [PK]
-    }
-    entity "ルーム参加者" as room_user <<T,Color_T>> {
-      + id [PK]
-      --
-      room_id [FK]
-      user_id [FK]
-      name
-    }
-    entity "チャット" as chats <<T,Color_T>> {
-      + id [PK]
-      --
-      room_id [FK]
-      user_id [FK]
-      message
-      read
-    }
-  }
-  package "スキルシステム" as skill_system{
     entity "スキル" as skills <<T,Color_T>> {
       + id [PK]
       --
@@ -65,6 +43,26 @@ package "本システム" as main_system{
       practical_flag
       learning_flag
       level
+    }
+  }
+  package "チャットシステム" as chat_system{
+    entity "チャットルーム" as rooms <<T,Color_T>> {
+      + id [PK]
+    }
+    entity "ルーム参加者" as room_user <<T,Color_T>> {
+      + id [PK]
+      --
+      room_id [FK]
+      user_id [FK]
+      name
+    }
+    entity "チャット" as chats <<T,Color_T>> {
+      + id [PK]
+      --
+      room_id [FK]
+      user_id [FK]
+      message
+      read
     }
   }
   package "募集システム" as recruit_system{
