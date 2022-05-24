@@ -152,5 +152,3 @@ package "本システム" as main_system{
   recruits ||-l-o{ recruit_user
   recruit_user }o-u-|| users
   
-  skill_system --l--account
-  
