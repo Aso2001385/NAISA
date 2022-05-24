@@ -138,14 +138,14 @@ package "本システム" as main_system{
   events }o-l-|| teachars
   teachars ||-l-o{ skill_request_teachar
   skill_request_teachar ||-l-|| skill_request
-  informateions }o-r--d-|| users
+  informateions }o-r-|| users
   skill_relations }|-l-|| skills
   skills ||-l-o{ user_skill
   user_skill }o-l-|| users
   users ||-l-o{ room_user
-  users ||-l-d-o{ chat
+  users ||-l-o{ chat
   room_user ||-d-o{ chat
-  room ||-r-u-|{ room_user
+  room ||-r-|{ room_user
   room ||-r-o{ chat
   recruit_skill }|-l-|| recruits
   recruits ||-l-o{ recruit_user
