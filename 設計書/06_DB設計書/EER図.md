@@ -143,7 +143,6 @@ package "本システム" as main_system{
   skill_relations }|-l-|| skills
   skills ||-l-o{ user_skill
   user_skill }o-l-|| users
-  users ||-r-o{ user_skill
   users ||-l-o{ room_user
   users ||-d-o{ chats
   room_user ||-d-o{ chats
@@ -151,4 +150,5 @@ package "本システム" as main_system{
   rooms ||-r-o{ chats
   recruit_skill }|-l-|| recruits
   recruits ||-l-o{ recruit_user
+  recruit_user }o-u-|| users
   
