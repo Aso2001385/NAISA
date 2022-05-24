@@ -151,4 +151,5 @@ package "本システム" as main_system{
   recruit_skill }|-l-|| recruits
   recruits ||-l-o{ recruit_user
   recruit_user }o-u-|| users
+  users ||-d-o{ recruits
   
