@@ -144,9 +144,9 @@ package "本システム" as main_system{
   user_skill }o-l-|| users
   users ||-l-o{ room_user
   users ||-l-o{ chat
-  room_user ||-d-o{ chat
+  room_user ||-d-o{ chats
   rooms ||-r-|{ room_user
-  rooms ||-r-o{ chat
+  rooms ||-r-o{ chats
   recruit_skill }|-l-|| recruits
   recruits ||-l-o{ recruit_user
   
