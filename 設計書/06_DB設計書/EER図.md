@@ -140,14 +140,15 @@ package "本システム" as main_system{
   skill_request_teacher ||-l-|| skill_requests
   skill_requests }|-d-|| users
   informations }o-d-|| users
-  skill_relations }|-l-|| skills
-  skills ||-l-o{ user_skill
-
+  
   users ||-l-o{ room_user
   users ||-d-o{ chats
   room_user ||-d-o{ chats
   rooms ||-r-|{ room_user
   rooms ||-r-o{ chats
+  skill_relations }|-l-|| skills
+  skills ||-l-o{ user_skill
+  user_skill }o-l-|| users
   recruit_skill }|-l-|| recruits
   recruits ||-l-o{ recruit_user
   recruit_user }o-u-|| users
