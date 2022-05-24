@@ -143,7 +143,7 @@ package "本システム" as main_system{
   skills ||-l-o{ user_skill
   user_skill }o-l-|| users
   users ||-l-o{ room_user
-  users ||-l-o{ chat
+  users ||-l-o{ chats
   room_user ||-d-o{ chats
   rooms ||-r-|{ room_user
   rooms ||-r-o{ chats
